@@ -8,41 +8,43 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mint: {
-          100: "#e6f6f1",
-          300: "#9fe3cf",
-          500: "#3bbfa3",
-          700: "#1f8f79",
-        },
         brand: {
-          main: "#f7fdfb",
-          white: "#ffffff",
-          glass: "rgba(255, 255, 255, 0.75)",
+          main: "#f5f5f7",     
+          white: "#ffffff",    
         },
         ui: {
-          main: "#0f172a",
-          soft: "#475569",
-          muted: "#64748b",
+          main: "#1d1d1f",   
+          soft: "#424245",   
+          muted: "#86868b", 
         },
         border: {
-          light: "rgba(15, 23, 42, 0.08)",
+          light: "#d2d2d7", 
         },
-      },
-      borderRadius: {
-        sm: "10px",
-        md: "16px",
-        lg: "24px",
-      },
-      boxShadow: {
-        soft: "0 10px 30px rgba(15, 23, 42, 0.06)",
-        hover: "0 16px 45px rgba(15, 23, 42, 0.12)",
+        mint: {
+          100: "#e6f4ea",
+          300: "#a8dab5",
+          500: "#34a853", 
+          700: "#2c8c45", 
+        }
       },
       fontFamily: {
-        hind: ['var(--font-hind)', 'system-ui', 'sans-serif'],
+        sans: [
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          '"Segoe UI"', 
+          "Roboto", 
+          "Helvetica", 
+          "Arial", 
+          "sans-serif"
+        ],
+      },
+      boxShadow: {
+        soft: "0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)",
+        hover: "0 20px 40px -6px rgba(0, 0, 0, 0.08)",
       },
       transitionTimingFunction: {
-        apple: "cubic-bezier(0.4, 0, 0.2, 1)",
-      },
+        'apple': 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
+      }
     },
   },
   plugins: [],
