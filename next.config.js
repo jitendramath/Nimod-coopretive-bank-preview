@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   // Performance: Use SWC for faster minification
 
   // Images: Prioritize modern formats for Apple-like crispness
