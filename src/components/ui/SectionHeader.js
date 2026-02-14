@@ -1,20 +1,31 @@
-export default function SectionHeader({ title, span, description, className = "" }) {
-  // Description array ho ya string, usko handle karna
-  const descArray = Array.isArray(description) ? description : [description];
+export default function SectionHeader({ title, span, description, variant = "light" }) {
+  const isDark = variant === "dark";
 
   return (
-    <div className={`mb-10 ${className}`}>
-      <h2 className="text-[clamp(2rem,3vw,2.6rem)] font-bold mb-5 leading-[1.2] text-ui-main reveal">
-        {title} <span className="text-mint-700">{span}</span>
+    <div className="max-w-[800px] reveal">
+      {/* Title with dynamic color based on variant */}
+      <h2 className={`
+        text-[clamp(2.2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-tight mb-6
+        ${isDark ? 'text-white' : 'text-ui-main'}
+      `}>
+        {title} 
+        <span className={`ml-3 ${isDark ? "text-premium-emerald" : "text-premium-forest"}`}>
+          {span}
+        </span>
       </h2>
-      
+
+      {/* Description with adjusted opacity for dark mode */}
       {description && (
-        <div className="text-[1.05rem] text-ui-soft max-w-[900px] space-y-4 leading-relaxed reveal delay-100">
-          {descArray.map((text, index) => (
-            <p key={index}>{text}</p>
-          ))}
-        </div>
+        <p className={`
+          text-[1.1rem] md:text-[1.25rem] leading-relaxed max-w-[650px]
+          ${isDark ? 'text-white/80' : 'text-ui-soft'}
+        `}>
+          {description}
+        </p>
       )}
+      
+      {/* Premium Accent Line */}
+      <div className={`h-1.5 w-20 mt-8 rounded-full ${isDark ? 'bg-premium-emerald' : 'bg-premium-forest'}`}></div>
     </div>
   );
 }
