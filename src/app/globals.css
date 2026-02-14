@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core Design Tokens from style.css */
+  --bg-main: #f7fdfb;
+  --bg-white: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.75);
+
+  --mint-100: #e6f6f1;
+  --mint-300: #9fe3cf;
+  --mint-500: #3bbfa3;
+  --mint-700: #1f8f79;
+
+  --text-main: #0f172a;
+  --text-soft: #475569;
+  --text-muted: #64748b;
+
+  --border-light: rgba(15, 23, 42, 0.08);
+
+  /* Animation & Transition */
+  --ease-apple: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-[var(--bg-main)] text-[var(--text-main)] antialiased;
+    /* Font family will be handled by Next.js Font in Layout */
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Focus states for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-mint-500 ring-offset-2 rounded-md;
+  }
+}
+
+@layer components {
+  /* Apple-style Glassmorphism */
+  .glass-navbar {
+    @apply sticky top-0 z-[999] bg-brand-glass backdrop-blur-xl border-b border-border-light;
+  }
+
+  /* Common Layout Container */
+  .container-custom {
+    @apply w-[92%] max-w-[1180px] mx-auto;
+  }
+}
+
+/* Scroll Reveal Base Classes */
+.reveal {
+  @apply opacity-0 translate-y-6;
+}
+
+.reveal-show {
+  @apply opacity-100 translate-y-0 transition-all duration-700 ease-[var(--ease-apple)];
+}
