@@ -8,9 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          main: "#f5f5f7",     
-          white: "#ffffff",    
+        // आपके भेजे हुए प्रीमियम कलर्स (From image 3267.jpg)
+        premium: {
+          mint: "#A2F5DE",      // Light Mint
+          emerald: "#3AF4B7",   // Vibrant Emerald
+          forest: "#5E997E",    // Professional Deep Green
+          slate: "#CCDAF0",     // Soft Blue/Slate
+          lavender: "#DFA5FF",  // Elegant Purple
+          charcoal: "#1d1d1f",  // Apple Dark Background
         },
         ui: {
           main: "#1d1d1f",   
@@ -18,29 +23,12 @@ module.exports = {
           muted: "#86868b", 
         },
         border: {
-          light: "#d2d2d7", 
-        },
-        mint: {
-          100: "#e6f4ea",
-          300: "#a8dab5",
-          500: "#34a853", 
-          700: "#2c8c45", 
+          light: "rgba(0,0,0,0.1)",
+          white: "rgba(255,255,255,0.15)",
         }
       },
       fontFamily: {
-        sans: [
-          "-apple-system", 
-          "BlinkMacSystemFont", 
-          '"Segoe UI"', 
-          "Roboto", 
-          "Helvetica", 
-          "Arial", 
-          "sans-serif"
-        ],
-      },
-      boxShadow: {
-        soft: "0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)",
-        hover: "0 20px 40px -6px rgba(0, 0, 0, 0.08)",
+        sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "sans-serif"],
       },
       transitionTimingFunction: {
         'apple': 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
