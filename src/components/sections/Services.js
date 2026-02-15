@@ -35,10 +35,16 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-premium-charcoal relative overflow-hidden">
-      
-      {/* REAL FIX: भारी blur-[120px] वाले बैकग्राउंड ग्लोज़ यहाँ से हटा दिए गए हैं ताकि मोबाइल पर 'Stutter' खत्म हो जाए */}
+    <section id="services" className="py-24 relative overflow-hidden bg-[#050507] border-t border-white/5">
 
+  {/* top emerald glow */}
+  <div className="absolute -top-[180px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/10 blur-[140px] pointer-events-none"></div>
+
+  {/* left subtle glow */}
+  <div className="absolute left-[-120px] top-[40%] w-[280px] h-[280px] bg-cyan-400/10 blur-[130px] pointer-events-none"></div>
+
+  {/* section bottom blend */}
+  <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
         
         {/* Header: साफ़ और सुथरा हेडर */}
@@ -46,7 +52,7 @@ export default function Services() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             प्रमुख <span className="text-premium-emerald">सेवाएं</span>
           </h2>
-          <p className="text-lg text-white/60">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
             निमोद ग्राम सेवा सहकारी समिति ग्रामीण आवश्यकताओं को ध्यान में रखते हुए बहु-आयामी सेवाएं प्रदान करती है।
           </p>
         </div>
@@ -56,10 +62,10 @@ export default function Services() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2"
-            >
+              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2 hover:border-emerald-400/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+  >
               {/* Icon Container: एनिमेटेड और प्रीमियम */}
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
+              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 shadow-[0_0_30px_rgba(58,244,183,0.15)] flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
                 <service.icon size={28} strokeWidth={1.5} />
               </div>
               
@@ -67,7 +73,7 @@ export default function Services() {
                 {service.title}
               </h3>
               
-              <p className="text-white/60 leading-relaxed text-sm mb-6">
+              <p className="text-white/50 leading-relaxed text-sm mb-6">
                 {service.text}
               </p>
 
