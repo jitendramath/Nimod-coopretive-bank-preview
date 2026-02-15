@@ -27,15 +27,24 @@ export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section id="faq" className="py-24 bg-premium-charcoal relative">
-      <div className="w-[92%] max-w-[900px] mx-auto relative z-10">
+    <section id="faq" className="py-24 relative overflow-hidden bg-[#07080c] border-t border-white/5">
+
+  {/* soft emerald glow */}
+  <div className="absolute left-1/2 -translate-x-1/2 top-[20%] w-[420px] h-[420px] bg-emerald-500/8 blur-[180px] pointer-events-none"></div>
+
+  {/* subtle violet glow */}
+  <div className="absolute left-[-120px] bottom-10 w-[280px] h-[280px] bg-purple-400/8 blur-[160px] pointer-events-none"></div>
+
+  {/* bottom fade */}
+  <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
+    <div className="w-[92%] max-w-[900px] mx-auto relative z-10">
         
         {/* Header Section */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             अक्सर पूछे जाने वाले <span className="text-premium-emerald">सवाल</span>
           </h2>
-          <p className="text-white/50 text-lg">
+          <p className="text-white/40 text-lg max-w-2xl mx-auto">
             समिति और हमारी सेवाओं से संबंधित सामान्य जिज्ञासाओं के समाधान यहाँ प्राप्त करें।
           </p>
         </div>
@@ -45,16 +54,16 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div 
               key={index}
-              className="premium-card rounded-2xl overflow-hidden transition-all duration-300"
+              className="premium-card rounded-2xl overflow-hidden transition-all duration-300 hover:border-emerald-400/20 hover:shadow-[0_15px_50px_rgba(0,0,0,0.7)]"
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 className="w-full p-6 flex justify-between items-center text-left focus:outline-none"
               >
-                <span className="text-lg font-semibold text-white/90 pr-8">
+                <span className="text-lg font-semibold text-white/80 pr-8">
                   {faq.question}
                 </span>
-                <div className={`p-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-premium-emerald text-premium-black' : 'bg-white/5 text-white/50'}`}>
+                <div className={`p-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-premium-emerald text-premium-black' : 'bg-white/5 text-white/50 shadow-[0_0_20px_rgba(0,0,0,0.4)]'}`}>
                   {activeIndex === index ? <Minus size={20} /> : <Plus size={20} />}
                 </div>
               </button>
@@ -78,7 +87,7 @@ export default function FAQ() {
         </div>
 
         {/* Bottom Support Callout: GPU Optimized */}
-        <div className="mt-12 text-center p-8 rounded-3xl bg-premium-emerald/5 border border-premium-emerald/10">
+        <div className="mt-12 text-center p-8 rounded-3xl bg-gradient-to-b from-premium-emerald/10 to-transparent border border-premium-emerald/20 shadow-[0_0_40px_rgba(58,244,183,0.15)]">
           <p className="text-white/70">
             क्या आपको अपना जवाब नहीं मिला? <a href="#contact" className="text-premium-emerald font-bold hover:underline">हमें सीधे संदेश भेजें →</a>
           </p>
