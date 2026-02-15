@@ -77,3 +77,22 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Reveal एनीमेशन को हटाकर सीधा विजिबिलिटी दे रहे हैं */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* कार्ड्स को थोड़ा साफ़ दिखाने के लिए */
+.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* मोबाइल के लिए ओवरफ्लो फिक्स */
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
