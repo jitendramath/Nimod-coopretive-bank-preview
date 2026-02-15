@@ -1,57 +1,62 @@
 import { content } from "@/data/content";
-import StatCard from "@/components/ui/StatCard";
+import Link from "next/link";
 
 export default function Hero() {
-  const { title, subtitle, description, stats } = content.hero;
+  // Safe Destructuring
+  const heroData = content?.hero || {};
+  const { title, span, subtitle, stats } = heroData;
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-brand-white">
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       
-      {/* --- Apple-Style Soft Blobs Background --- */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Top-Right Blob */}
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-mint-100 rounded-full blur-[120px] opacity-60"></div>
-        {/* Bottom-Left Blob */}
-        <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-mint-100 rounded-full blur-[100px] opacity-50"></div>
-        {/* Center Subtler Blob */}
-        <div className="absolute top-[20%] left-[30%] w-[300px] h-[300px] bg-white rounded-full blur-[80px] opacity-80"></div>
-      </div>
-
-      <div className="w-[92%] max-w-[1180px] mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center max-w-[900px] mx-auto">
-          
-          {/* Badge / Subtitle */}
-          <span className="inline-block px-4 py-1.5 mb-6 text-[0.85rem] font-semibold tracking-wider uppercase text-mint-700 bg-mint-100 rounded-full reveal">
-            {subtitle}
+      {/* Background Elements (Blobs) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-premium-mint/20 rounded-[100%] blur-[120px] -z-10 opacity-60 animate-pulse-slow"></div>
+      
+      <div className="w-[92%] max-w-[1180px] mx-auto text-center relative z-10">
+        
+        {/* Main Heading */}
+        <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold tracking-tight leading-[1.1] text-premium-charcoal mb-6 reveal">
+          {title} <br className="hidden md:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-emerald to-premium-forest">
+            {span}
           </span>
+        </h1>
 
-          {/* Centered Main Title */}
-          <h1 className="text-[clamp(2.5rem,8vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-ui-main mb-8 reveal delay-100">
-            {title.split(' ').map((word, i) => (
-              <span key={i} className={word === "सहकारी" || word === "समिति" ? "text-mint-700" : ""}>
-                {word}{' '}
-              </span>
-            ))}
-          </h1>
+        {/* Subtitle */}
+        <p className="text-[1.1rem] md:text-[1.25rem] text-ui-soft max-w-2xl mx-auto mb-10 leading-relaxed reveal delay-100">
+          {subtitle}
+        </p>
 
-          {/* Description */}
-          <p className="text-[clamp(1.1rem,2vw,1.3rem)] text-ui-soft leading-relaxed max-w-[700px] mb-16 reveal delay-200">
-            {description}
-          </p>
-
-          {/* Stats Grid - Centered & Premium */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 w-full max-w-[800px] reveal delay-300">
-            {stats.map((stat, index) => (
-              <StatCard 
-                key={index} 
-                value={stat.value} 
-                label={stat.label}
-                className="bg-white/40 backdrop-blur-md border-white/60" 
-              />
-            ))}
-          </div>
-
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 reveal delay-200">
+          <Link 
+            href="#contact" 
+            className="px-8 py-4 bg-premium-charcoal text-white rounded-full font-bold hover:scale-105 transition-transform duration-300 shadow-lg shadow-premium-charcoal/20"
+          >
+            संपर्क करें
+          </Link>
+          <Link 
+            href="#services" 
+            className="px-8 py-4 bg-white text-premium-charcoal border border-border-light rounded-full font-bold hover:bg-gray-50 transition-colors duration-300"
+          >
+            सेवाएं देखें
+          </Link>
         </div>
+
+        {/* Stats Strip - The Fix for .map() error */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-border-light pt-12 reveal delay-300">
+          {stats?.map((stat, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <span className="text-[2rem] md:text-[2.5rem] font-bold text-premium-forest block">
+                {stat.value}
+              </span>
+              <span className="text-[0.9rem] text-ui-muted font-medium uppercase tracking-wider mt-1">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
