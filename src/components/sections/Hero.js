@@ -19,9 +19,9 @@ export default function Hero() {
         
         {/* Main Heading: प्रीमियम शिमर इफ़ेक्ट के साथ जो अब लैग नहीं करेगा */}
         <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[5rem] font-bold tracking-tight leading-[1.1] text-white mb-8">
-          निमोद ग्राम सेवा <br className="hidden md:block" />
+          बहुउद्देशीय प्राथमिक ग्रामीण <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-emerald via-premium-mint to-premium-emerald bg-[length:200%_auto] animate-shimmer">
-            सहकारी समिति
+           सेवा सहकारी समिति निमोद 
           </span>
         </h1>
 
