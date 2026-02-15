@@ -3,10 +3,12 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import BentoCard from "@/components/ui/BentoCard";
 
 export default function Projects() {
-  const { id, title, span, description, items } = content.projects;
+  // Safe destructuring for build safety
+  const projectsData = content?.projects || {};
+  const { id, title, span, description, cards } = projectsData;
 
   return (
-    <section id={id} className="py-24 bg-gradient-to-b from-white to-premium-mint/30 overflow-hidden">
+    <section id={id || "projects"} className="py-24 bg-gradient-to-b from-white to-premium-mint/30 overflow-hidden">
       <div className="w-[92%] max-w-[1180px] mx-auto">
         
         {/* Header - Light variant with Mint touch */}
@@ -17,28 +19,29 @@ export default function Projects() {
           variant="light"
         />
 
-        {/* Projects Grid */}
+        {/* Projects Grid - Updated to map 'cards' instead of 'items' */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {items.map((project, index) => (
+          {cards?.map((card, index) => (
             <BentoCard
               key={index}
-              title={project.title}
-              // Alternating styles for visual interest
+              title={card.title}
+              // Conditional styling: Alternating borders for visual interest
               className={`
-                border-premium-mint/50 hover:border-premium-emerald
-                ${index === 0 || index === 3 ? "md:col-span-1" : "md:col-span-1"}
+                border-premium-mint/50 hover:border-premium-emerald transition-all duration-500 hover:shadow-lg
+                ${index === 0 ? "md:col-span-2 bg-white/80" : "bg-white/60"}
               `}
             >
               <div className="space-y-4">
-                <p className="text-ui-soft leading-relaxed">
-                  {project.description}
+                <p className="text-ui-soft leading-relaxed text-[1rem]">
+                  {/* Fixed: Using 'card.text' to match your new content structure */}
+                  {card.text}
                 </p>
                 
-                {/* Visual Accent for Projects */}
+                {/* Visual Accent: Progress Line */}
                 <div className="flex items-center gap-4 mt-6">
-                  <div className="h-[1px] flex-1 bg-premium-mint"></div>
+                  <div className="h-[2px] flex-1 bg-gradient-to-r from-premium-mint to-transparent rounded-full"></div>
                   <span className="text-[0.75rem] font-bold uppercase tracking-widest text-premium-forest opacity-60">
-                    आधुनिक विकास
+                    Active Project
                   </span>
                 </div>
               </div>
@@ -46,24 +49,14 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Featured Impact Box */}
-        <div className="mt-16 p-8 md:p-12 bg-premium-forest rounded-[2.5rem] text-white reveal shadow-hover">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            <div className="lg:col-span-2">
-              <h4 className="text-[1.5rem] md:text-[1.8rem] font-bold mb-4">
-                सौर ऊर्जा आत्मनिर्भरता की मिसाल
-              </h4>
-              <p className="text-white/80 text-[1.1rem]">
-                समिति द्वारा स्थापित 2.40 MW क्षमता के सौर ऊर्जा संयंत्र से न केवल कार्यालय का विद्युत व्यय शून्य हो गया है, बल्कि प्रति माह ₹10 लाख+ की बिजली बिक्री से अतिरिक्त आय भी प्राप्त हो रही है।
-              </p>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-32 h-32 rounded-full border-4 border-premium-emerald flex items-center justify-center bg-white/10 backdrop-blur-sm animate-pulse">
-                <span className="text-[1.2rem] font-bold text-premium-emerald">Active</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Bottom Tagline / Transition Strip Integration */}
+        {content.transitionStrip && (
+           <div className="mt-20 text-center reveal delay-300">
+             <p className="text-[1.1rem] font-medium text-premium-forest/80 italic max-w-2xl mx-auto">
+               "{content.transitionStrip}"
+             </p>
+           </div>
+        )}
 
       </div>
     </section>
