@@ -16,63 +16,44 @@ export default function TrustStrip() {
 
       <div className="max-w-[1200px] mx-auto">
 
-        {/* MOBILE = scrolling ticker | DESKTOP = normal */}
         <div className="relative py-6">
 
-          {/* MOBILE SCROLL */}
-<div className="md:hidden overflow-hidden">
-  <div className="flex gap-10 whitespace-nowrap animate-trustScroll px-6">
-    {[...trustItems, ...trustItems].map((item, index) => (
-      <div
-        key={index}
-        className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300 group cursor-default select-none"
-      >
-        <item.icon
-          size={18}
-          className="text-premium-emerald shrink-0"
-        />
-        <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-          {item.text}
-        </span>
-      </div>
-    ))}
-  </div>
-</div>
+          {/* 🔵 MOBILE SCROLL TICKER */}
+          <div className="md:hidden overflow-hidden">
+            <div className="flex gap-10 whitespace-nowrap animate-trustScroll px-6">
+              {[...trustItems, ...trustItems].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-all duration-300 select-none"
+                >
+                  <item.icon
+                    size={18}
+                    className="text-premium-emerald shrink-0"
+                  />
+                  <span className="text-[11px] font-bold text-white uppercase tracking-wider">
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-{/* DESKTOP NORMAL */}
-<div className="hidden md:flex justify-between items-center gap-8 px-6">
-  {trustItems.map((item, index) => (
-    <div
-      key={index}
-      className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-all duration-300"
-    >
-      <item.icon size={20} className="text-premium-emerald" />
-      <span className="text-sm font-bold text-white uppercase tracking-wider">
-        {item.text}
-      </span>
-    </div>
-  ))}
-</div>
-            {/* duplicate items for smooth loop */}
-            {[...trustItems, ...trustItems].map((item, index) => (
+          {/* 🖥️ DESKTOP NORMAL STRIP */}
+          <div className="hidden md:flex justify-between items-center gap-8 px-6">
+            {trustItems.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300 group cursor-default select-none"
+                className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-all duration-300"
               >
-                <item.icon
-                  size={18}
-                  className="text-premium-emerald shrink-0 group-hover:scale-110 transition-transform duration-300"
-                />
-
-                <span className="text-[11px] md:text-sm font-bold text-white uppercase tracking-wider group-hover:text-premium-mint transition-colors">
+                <item.icon size={20} className="text-premium-emerald" />
+                <span className="text-sm font-bold text-white uppercase tracking-wider">
                   {item.text}
                 </span>
               </div>
             ))}
-
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
