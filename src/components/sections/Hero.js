@@ -30,8 +30,7 @@ export default function Hero() {
           एक बहुउद्देश्यीय ग्रामीण सहकारी संस्था, जो वित्तीय समावेशन, कृषि विकास, ऊर्जा आत्मनिर्भरता और सामाजिक सशक्तिकरण के सिद्धांतों पर आधारित है।
         </p>
 
-        {/* CTA Buttons: रिस्पॉन्सिव और क्लिक करने में आसान */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
+        <div className="flex flex-row items-center justify-center gap-4 mb-20 flex-nowrap">
           <Link 
             href="#contact" 
             className="px-8 py-4 bg-premium-emerald text-premium-black rounded-full font-bold text-lg hover:scale-105 hover:shadow-[0_0_20px_rgba(58,244,183,0.3)] transition-all duration-300"
