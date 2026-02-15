@@ -18,11 +18,20 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Scroll Effect Logic
+  // 🔥 ultra smooth scroll detection (no lag)
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -32,11 +41,12 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-premium-charcoal/80 backdrop-blur-lg border-b border-white/5 py-4 shadow-lg"
+            ? "bg-premium-charcoal/80 backdrop-blur-md border-b border-white/5 py-4 shadow-lg"
             : "bg-transparent py-6"
         }`}
       >
         <div className="w-[92%] max-w-[1200px] mx-auto flex justify-between items-center">
+          
           {/* Logo */}
           <Link href="/" className="group relative z-50">
             <span className="text-2xl font-bold text-white tracking-tight">
@@ -44,7 +54,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation (Hidden on Mobile) */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <Link
@@ -56,7 +66,7 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-premium-emerald transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
-            
+
             <Link
               href="#contact"
               className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm font-semibold text-white hover:bg-premium-emerald hover:text-premium-charcoal hover:border-premium-emerald transition-all duration-300"
@@ -65,7 +75,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Toggle Button */}
+          {/* Mobile Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden relative z-50 text-white hover:text-premium-emerald transition-colors focus:outline-none"
@@ -75,7 +85,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && <MobileMenu closeMenu={() => setIsOpen(false)} links={navLinks} />}
       </AnimatePresence>
