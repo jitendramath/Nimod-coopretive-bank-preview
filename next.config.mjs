@@ -1,17 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // इमेज ऑप्टिमाइजेशन के लिए (अगर तुम बाहर से इमेज लोड करो)
+  reactStrictMode: true,
+  swcMinify: true,
+
+  // Image optimization safe for all hosting
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: "https",
+        hostname: "**",
       },
     ],
   },
-  // बेहतर परफॉरमेंस के लिए
-  reactStrictMode: true,
-  swcMinify: true,
+
+  // Prevent random Vercel hydration issues
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+  },
 };
 
 export default nextConfig;
