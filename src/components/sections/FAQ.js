@@ -1,0 +1,90 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
+
+const faqs = [
+  {
+    question: "निमोद सहकारी समिति का सदस्य कैसे बनें?",
+    answer: "समिति का सदस्य बनने के लिए आपको निमोद क्षेत्र का निवासी होना अनिवार्य है। आप हमारे मुख्य कार्यालय में आधार कार्ड, निवास प्रमाण पत्र और फोटो के साथ आवेदन कर सकते हैं। सदस्यता शुल्क जमा करने के बाद प्रबंधन समिति आपके आवेदन की समीक्षा करती है।"
+  },
+  {
+    question: "समिति द्वारा किस प्रकार के ऋण (Loans) प्रदान किए जाते हैं?",
+    answer: "हम मुख्य रूप से अल्पकालीन फसली ऋण (KCC), कृषि उपकरण ऋण, और महिला स्वयं सहायता समूहों के लिए सूक्ष्म ऋण प्रदान करते हैं। ऋण की ब्याज दरें सरकारी नियमों के अनुसार बहुत ही कम और पारदर्शी रखी गई हैं।"
+  },
+  {
+    question: "खाद और बीज प्राप्त करने की क्या प्रक्रिया है?",
+    answer: "समिति के पंजीकृत सदस्य अपने सदस्यता कार्ड के माध्यम से उचित मूल्य पर उच्च गुणवत्ता वाले खाद और बीज प्राप्त कर सकते हैं। स्टॉक की उपलब्धता के आधार पर वितरण 'पहले आओ, पहले पाओ' के आधार पर किया जाता है।"
+  },
+  {
+    question: "क्या मेरा पैसा समिति में सुरक्षित है?",
+    answer: "हाँ, बिल्कुल। निमोद सहकारी समिति राज्य सहकारिता अधिनियम के अंतर्गत पंजीकृत है और इसका नियमित रूप से सरकारी ऑडिट किया जाता है। हम पारदर्शिता और सुरक्षा के उच्चतम मानकों का पालन करते हैं।"
+  }
+];
+
+export default function FAQ() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  return (
+    <section id="faq" className="py-24 bg-premium-charcoal relative">
+      <div className="w-[92%] max-w-[900px] mx-auto relative z-10">
+        
+        {/* Header */}
+        <div className="text-center mb-16 reveal">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            अक्सर पूछे जाने वाले <span className="text-premium-emerald">सवाल</span>
+          </h2>
+          <p className="text-white/50 text-lg">
+            समिति और हमारी सेवाओं से संबंधित सामान्य जिज्ञासाओं के समाधान यहाँ प्राप्त करें।
+          </p>
+        </div>
+
+        {/* FAQ List */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index}
+              className="rounded-2xl border border-white/5 bg-white/[0.03] overflow-hidden transition-all duration-300 hover:border-premium-emerald/20"
+            >
+              <button
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                className="w-full p-6 flex justify-between items-center text-left focus:outline-none"
+              >
+                <span className="text-lg font-semibold text-white/90 pr-8">
+                  {faq.question}
+                </span>
+                <div className={`p-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-premium-emerald text-premium-black' : 'bg-white/5 text-white/50'}`}>
+                  {activeIndex === index ? <Minus size={20} /> : <Plus size={20} />}
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="px-6 pb-6 text-white/60 leading-relaxed border-t border-white/5 pt-4">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Support Callout */}
+        <div className="mt-12 text-center p-8 rounded-3xl bg-premium-emerald/5 border border-premium-emerald/10 reveal delay-200">
+          <p className="text-white/70">
+            क्या आपको अपना जवाब नहीं मिला? <a href="#contact" className="text-premium-emerald font-bold hover:underline">हमें सीधे संदेश भेजें →</a>
+          </p>
+        </div>
+
+      </div>
+    </section>
+  );
+}

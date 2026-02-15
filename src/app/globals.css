@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 15, 16;
+  --background-end-rgb: 15, 15, 16;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #ffffff;
+  background: #0f0f10; /* Force Deep Charcoal Background */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll glitches */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Premium Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #161618;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3AF4B7; /* Emerald Hover Effect */
+}
+
+/* --- Selection Color --- */
+::selection {
+  background-color: #3AF4B7;
+  color: #0f0f10;
+}
+
+/* --- Animation Utilities --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Text Gradient Utility */
+.text-gradient {
+  background: linear-gradient(to right, #3AF4B7, #2D8A6E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
