@@ -37,14 +37,12 @@ export default function Services() {
   return (
     <section id="services" className="py-24 bg-premium-charcoal relative overflow-hidden">
       
-      {/* Background Glows */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-premium-emerald/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-premium-mint/5 rounded-full blur-[100px] pointer-events-none"></div>
+      {/* REAL FIX: भारी blur-[120px] वाले बैकग्राउंड ग्लोज़ यहाँ से हटा दिए गए हैं ताकि मोबाइल पर 'Stutter' खत्म हो जाए */}
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="mb-16 md:text-center max-w-3xl mx-auto reveal">
+        {/* Header: साफ़ और सुथरा हेडर */}
+        <div className="mb-16 md:text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             प्रमुख <span className="text-premium-emerald">सेवाएं</span>
           </h2>
@@ -53,15 +51,15 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid: 'premium-card' का इस्तेमाल जो GPU पर बोझ नहीं डालता */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group relative p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-premium-emerald/50 hover:bg-white/[0.07] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2"
             >
-              {/* Icon Container */}
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:scale-110 transition-transform duration-500">
+              {/* Icon Container: एनिमेटेड और प्रीमियम */}
+              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
                 <service.icon size={28} strokeWidth={1.5} />
               </div>
               
@@ -73,8 +71,8 @@ export default function Services() {
                 {service.text}
               </p>
 
-              {/* Arrow Link */}
-              <div className="flex items-center text-premium-emerald text-sm font-bold tracking-wider opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+              {/* Action Link: मोबाइल पर आसानी से दिखने वाला */}
+              <div className="mt-auto flex items-center text-premium-emerald text-sm font-bold tracking-wider group-hover:translate-x-2 transition-transform duration-300">
                 अधिक जानें <span className="ml-2">→</span>
               </div>
             </div>
