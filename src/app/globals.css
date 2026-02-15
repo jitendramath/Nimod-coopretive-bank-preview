@@ -36,35 +36,39 @@ body {
   background: var(--premium-emerald);
 }
 
-/* --- The Master Reveal Logic (Ultra-Optimized) --- */
-/* MOBILE FIRST: Mobile par content humesha dikhega taaki blank screen na aaye */
+/* ========================================================= */
+/* 🔥 ULTRA SAFE REVEAL SYSTEM (VERCEL + NETLIFY FIX) */
+/* ========================================================= */
+
+/* DEFAULT: content always visible (fail-safe) */
 .reveal {
   opacity: 1;
   transform: none;
 }
 
-/* DESKTOP ONLY: Sirf badi screens (768px+) par hi animation trigger hoga */
+/* DESKTOP ANIMATION ONLY */
 @media (min-width: 768px) {
-  .reveal {
+
+  /* animation state only when JS adds class */
+  .reveal.animate {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
                 transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: opacity, transform;
   }
 
-  /* JavaScript is class ko toggle karega */
-  .reveal.active {
+  .reveal.animate.active {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
 }
 
-/* --- Glassmorphism Card Fix (GPU-Friendly) --- */
+/* --- Glassmorphism Card Fix --- */
 .premium-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(4px); /* Mobile GPU ke liye safe limit */
+  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   transition: all 0.4s ease;
 }
@@ -74,7 +78,7 @@ body {
   border-color: rgba(58, 244, 183, 0.3);
 }
 
-/* --- Text Gradient Utility --- */
+/* --- Text Gradient --- */
 .text-gradient {
   background: linear-gradient(135deg, #3AF4B7 0%, #A2F5DE 100%);
   -webkit-background-clip: text;
