@@ -84,3 +84,13 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+@keyframes trustScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-trustScroll {
+  animation: trustScroll 18s linear infinite;
+}
