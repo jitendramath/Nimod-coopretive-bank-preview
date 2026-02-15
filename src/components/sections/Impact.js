@@ -39,13 +39,12 @@ export default function Impact() {
   return (
     <section id="impact" className="py-24 bg-premium-charcoal relative overflow-hidden">
       
-      {/* Decorative Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black,transparent)] pointer-events-none"></div>
+      {/* REAL FIX: भारी बैकग्राउंड पैटर्न्स और मास्क हटा दिए गए हैं ताकि स्क्रॉलिंग स्मूथ रहे */}
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="mb-20 text-center max-w-3xl mx-auto reveal">
+        {/* Header Section */}
+        <div className="mb-20 text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             सामाजिक <span className="text-premium-emerald">प्रभाव</span>
           </h2>
@@ -54,17 +53,19 @@ export default function Impact() {
           </p>
         </div>
 
-        {/* Stats Grid */}
+        {/* Stats Grid: Optimized for mobile GPU */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="p-8 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-500 text-center group hover:-translate-y-2"
+              className="premium-card p-8 rounded-3xl text-center group transition-all duration-500 hover:-translate-y-2"
             >
+              {/* Icon Container */}
               <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 ${stat.bg} ${stat.color} group-hover:scale-110 transition-transform duration-500`}>
                 <stat.icon size={32} />
               </div>
 
+              {/* Stat Values */}
               <h3 className={`text-4xl font-bold mb-2 ${stat.color}`}>
                 {stat.value}
               </h3>
