@@ -37,7 +37,7 @@ export default function MobileMenu({ closeMenu, links }) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="fixed inset-0 z-[100] bg-premium-charcoal/98 flex flex-col"
+      className="fixed inset-0 z-[100] bg-premium-charcoal/90 backdrop-blur-md supports-[backdrop-filter]:bg-premium-charcoal/80 flex flex-col"
     >
       {/* Header */}
       <div className="w-[92%] mx-auto py-6 flex justify-between items-center border-b border-white/10">
