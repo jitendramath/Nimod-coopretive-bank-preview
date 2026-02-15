@@ -52,19 +52,13 @@ export default function About() {
   {/* gradient overlay only desktop */}
   <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-premium-charcoal via-transparent to-transparent z-10 opacity-60"></div>
             
-            <div className="absolute bottom-8 left-8 z-20 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full flex items-center gap-3">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-premium-emerald opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-premium-emerald"></span>
-              </span>
-              <span className="text-white font-medium text-sm tracking-wide">2009 से सेवारत</span>
-            </div>
+            
           </div>
 
           {/* Right: Text Content */}
           <div className="space-y-8">
             <p className="text-lg text-white/80 leading-relaxed">
-              <span className="text-premium-emerald font-bold">निमोद ग्राम सेवा सहकारी समिति</span> एक बहुउद्देश्यीय प्राथमिक ग्राम सेवा सहकारी संस्था है जो ग्रामीण क्षेत्र में वित्तीय, कृषि, ऊर्जा एवं सामाजिक विकास की आवश्यकताओं को पूरा करती है।
+              <span className="text-premium-emerald font-bold">बहुद्देशीय ग्राम सेवा सहकारी समिति निमोद</span> एक बहुउद्देश्यीय प्राथमिक ग्राम सेवा सहकारी संस्था है जो ग्रामीण क्षेत्र में वित्तीय, कृषि, ऊर्जा एवं सामाजिक विकास की आवश्यकताओं को पूरा करती है।
             </p>
 
             {/* Feature List: 'premium-card' का इस्तेमाल जो Performance-friendly है */}
