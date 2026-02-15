@@ -20,15 +20,27 @@ export default function Governance() {
   ];
 
   return (
-    <section id="governance" className="py-24 bg-premium-slate border-y border-white/5 relative">
-      <div className="w-[92%] max-w-[1200px] mx-auto">
+    <section id="governance" className="py-24 relative overflow-hidden bg-[#06070a] border-y border-white/5">
+
+  {/* subtle authority glow */}
+  <div className="absolute left-1/2 -translate-x-1/2 top-[30%] w-[420px] h-[420px] bg-emerald-500/8 blur-[170px] pointer-events-none"></div>
+
+  {/* right blue trust glow */}
+  <div className="absolute right-[-140px] bottom-10 w-[300px] h-[300px] bg-blue-400/10 blur-[150px] pointer-events-none"></div>
+
+  {/* premium grid texture */}
+  <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+  {/* bottom blend */}
+  <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
+    <div className="w-[92%] max-w-[1200px] mx-auto">
         
         {/* Header: मोबाइल पर साफ़ दिखने वाला टेक्स्ट */}
         <div className="mb-16 md:text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             प्रबंधन एवं <span className="text-premium-emerald">शासन</span>
           </h2>
-          <p className="text-lg text-white/60">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
             निमोद ग्राम सेवा सहकारी समिति का संचालन लोकतांत्रिक सिद्धांतों और पारदर्शी नियमों के अंतर्गत किया जाता है।
           </p>
         </div>
@@ -38,12 +50,12 @@ export default function Governance() {
           {governanceItems.map((item, index) => (
             <div 
               key={index} 
-              className="premium-card relative p-8 rounded-3xl group transition-all duration-500 hover:-translate-y-2"
-            >
+             className="premium-card relative p-8 rounded-3xl group transition-all duration-500 hover:-translate-y-2 hover:border-emerald-400/30 hover:shadow-[0_30px_90px_rgba(0,0,0,0.7)]"
+               >
               {/* Top Accent Line: CSS-only, zero lag */}
               <div className="absolute top-0 left-0 w-full h-1 bg-premium-emerald scale-x-0 group-hover:scale-x-50 transition-transform duration-500"></div>
 
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
+              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 shadow-[0_0_30px_rgba(58,244,183,0.15)] flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
                 <item.icon size={28} />
               </div>
 
@@ -56,7 +68,7 @@ export default function Governance() {
               </p>
 
               {/* Verified Badge: प्रोफेशनल फील के लिए */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-premium-emerald/5 border border-premium-emerald/10 text-premium-emerald text-[0.65rem] font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-premium-emerald/5 shadow-[0_0_20px_rgba(58,244,183,0.15)] border border-premium-emerald/10 text-premium-emerald text-[0.65rem] font-bold uppercase tracking-wider">
                 <FileSignature size={12} />
                 Verified System
               </div>
