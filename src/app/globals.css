@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --background-rgb: 15, 15, 16;
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 15, 15, 16;
-  --background-end-rgb: 15, 15, 16;
+  --premium-emerald: #3AF4B7;
 }
 
 html {
@@ -13,86 +13,62 @@ html {
 }
 
 body {
-  color: #ffffff;
-  background: #0f0f10; /* Force Deep Charcoal Background */
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  overflow-x: hidden; /* Prevent horizontal scroll glitches */
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- Premium Scrollbar --- */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #161618;
+  background: #0f0f10;
 }
 ::-webkit-scrollbar-thumb {
   background: #333;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3AF4B7; /* Emerald Hover Effect */
+  background: var(--premium-emerald);
 }
 
-/* --- Selection Color --- */
-::selection {
-  background-color: #3AF4B7;
-  color: #0f0f10;
-}
-
-/* --- Animation Utilities --- */
+/* --- The Master Reveal Logic (Optimized for Mobile) --- */
+/* शुरुआत में कंटेंट छुपा रहेगा लेकिन GPU को पता होगा कि इसे दिखाना है */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform; /* यह GPU को पहले से तैयार रखता है */
 }
 
+/* जब JS इसे देखेगा, तब यह क्लास ऐड करेगा */
 .reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-/* Stagger Delays */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-500 { transition-delay: 500ms; }
+/* --- Glassmorphism Card Fix --- */
+.premium-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
 
-/* Text Gradient Utility */
+.premium-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(58, 244, 183, 0.3);
+}
+
+/* --- Text Gradient Utility --- */
 .text-gradient {
-  background: linear-gradient(to right, #3AF4B7, #2D8A6E);
+  background: linear-gradient(135deg, #3AF4B7 0%, #A2F5DE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-/* Reveal Animation - इसे globals.css में सबसे नीचे डाल दो */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Reveal एनीमेशन को हटाकर सीधा विजिबिलिटी दे रहे हैं */
-.reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-/* कार्ड्स को थोड़ा साफ़ दिखाने के लिए */
-.bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* मोबाइल के लिए ओवरफ्लो फिक्स */
-body {
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
