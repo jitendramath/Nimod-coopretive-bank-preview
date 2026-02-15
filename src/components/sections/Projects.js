@@ -40,39 +40,42 @@ export default function Projects() {
     <section id="projects" className="py-24 bg-premium-slate relative overflow-hidden">
       <div className="w-[92%] max-w-[1200px] mx-auto">
         
-        <div className="mb-16 reveal">
+        {/* Header Section */}
+        <div className="mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             हमारी <span className="text-premium-emerald">परियोजनाएं</span>
           </h2>
-          <div className="h-1 w-20 bg-white/20 rounded-full"></div>
+          <div className="h-1 w-20 bg-premium-emerald/40 rounded-full"></div>
         </div>
 
+        {/* Projects Grid: GPU-Optimized Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div 
               key={index}
-              className="group p-8 rounded-3xl bg-premium-charcoal border border-white/5 hover:border-white/10 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+              className="premium-card p-8 rounded-3xl group relative overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
-              {/* Top Row: Icon & Status */}
+              {/* Top Row: Icon & Status Badge */}
               <div className="flex justify-between items-start mb-6">
-                <div className={`p-4 rounded-2xl ${project.bg} ${project.color}`}>
+                <div className={`p-4 rounded-2xl ${project.bg} ${project.color} group-hover:scale-110 transition-transform duration-500`}>
                   <project.icon size={28} />
                 </div>
-                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/60 uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-white/60 uppercase tracking-widest">
                   {project.status}
                 </span>
               </div>
 
+              {/* Content */}
               <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-premium-emerald transition-colors">
                 {project.title}
               </h3>
               
-              <p className="text-white/60 leading-relaxed text-lg">
+              <p className="text-white/60 leading-relaxed text-lg mb-4">
                 {project.desc}
               </p>
 
-              {/* Decorative Gradient Line at bottom */}
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-premium-emerald/50 transition-all duration-500"></div>
+              {/* Decorative Bottom Line: CSS-only, No heavy effects */}
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-premium-emerald/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
             </div>
           ))}
         </div>
