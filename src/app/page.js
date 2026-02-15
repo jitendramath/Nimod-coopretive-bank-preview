@@ -18,21 +18,38 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   
   useEffect(() => {
-    // Intersection Observer Logic to trigger animations
+    if (typeof window === "undefined") return;
+
+    // चेक करें कि क्या यूजर मोबाइल पर है
+    const isMobile = window.innerWidth < 768;
+
+    // मोबाइल के लिए: एनीमेशन हटाकर सीधे कंटेंट दिखाएं (No Blank Screen)
+    if (isMobile) {
+      document.querySelectorAll(".reveal").forEach((el) => {
+        el.classList.add("active");
+      });
+      return;
+    }
+
+    // डेस्कटॉप के लिए: परफॉरमेंस-फ्रेंडली ऑब्जर्वर
     const observerOptions = {
-      root: null,
-      threshold: 0.15, // जब सेक्शन 15% दिखेगा तब एनिमेट होगा
+      threshold: 0.1, // 10% दिखने पर ही ट्रिगर (Ultra Sensitive)
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("reveal-visible");
+          // GPU लोड कम करने के लिए requestAnimationFrame
+          requestAnimationFrame(() => {
+            entry.target.classList.add("active");
+          });
+          // एक बार दिखने के बाद ऑब्जर्वर हटा दें ताकि बैटरी बचे
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // उन सभी एलिमेंट्स को ढूँढना जिनमें 'reveal' क्लास है
     const hiddenElements = document.querySelectorAll(".reveal");
     hiddenElements.forEach((el) => observer.observe(el));
 
@@ -40,53 +57,49 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative flex min-h-screen flex-col bg-premium-charcoal">
-      {/* Background stays fixed and optimized */}
+    <main className="relative flex min-h-screen flex-col bg-premium-charcoal overflow-x-hidden">
       <BackgroundGradient />
-
-      {/* Navigation on top */}
       <Navbar />
 
-      {/* Main Content Sections wrapped in a z-index layer */}
       <div className="relative z-10 w-full">
-        {/* 'reveal' class handles the smooth entrance */}
-        <div className="reveal">
+        {/* हर सेक्शन को 'reveal' क्लास के साथ रैप किया गया है */}
+        <section className="reveal">
           <Hero />
-        </div>
+        </section>
         
         <TrustStrip />
 
-        <div className="reveal">
+        <section className="reveal">
           <About />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Services />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Projects />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Impact />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Governance />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Compliance />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <FAQ />
-        </div>
+        </section>
 
-        <div className="reveal">
+        <section className="reveal">
           <Contact />
-        </div>
+        </section>
       </div>
 
       <Footer />
