@@ -16,44 +16,61 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
-  
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // चेक करें कि क्या यूजर मोबाइल पर है
-    const isMobile = window.innerWidth < 768;
-
-    // मोबाइल के लिए: एनीमेशन हटाकर सीधे कंटेंट दिखाएं (No Blank Screen)
-    if (isMobile) {
+    const revealAll = () => {
       document.querySelectorAll(".reveal").forEach((el) => {
         el.classList.add("active");
       });
-      return;
-    }
-
-    // डेस्कटॉप के लिए: परफॉरमेंस-फ्रेंडली ऑब्जर्वर
-    const observerOptions = {
-      threshold: 0.1, // 10% दिखने पर ही ट्रिगर (Ultra Sensitive)
-      rootMargin: "0px 0px -50px 0px",
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // GPU लोड कम करने के लिए requestAnimationFrame
-          requestAnimationFrame(() => {
-            entry.target.classList.add("active");
-          });
-          // एक बार दिखने के बाद ऑब्जर्वर हटा दें ताकि बैटरी बचे
-          observer.unobserve(entry.target);
-        }
+    try {
+      const isMobile = window.innerWidth < 768;
+
+      // mobile = no animation, direct show
+      if (isMobile) {
+        revealAll();
+        return;
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        revealAll();
+        return;
+      }
+
+      const elements = document.querySelectorAll(".reveal");
+
+      elements.forEach((el) => {
+        el.classList.add("animate"); // animation enable
       });
-    }, observerOptions);
 
-    const hiddenElements = document.querySelectorAll(".reveal");
-    hiddenElements.forEach((el) => observer.observe(el));
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              requestAnimationFrame(() => {
+                entry.target.classList.add("active");
+              });
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
 
-    return () => observer.disconnect();
+      elements.forEach((el) => observer.observe(el));
+
+      return () => observer.disconnect();
+
+    } catch (err) {
+      console.error("Reveal system error:", err);
+      revealAll();
+    }
   }, []);
 
   return (
@@ -62,11 +79,11 @@ export default function Home() {
       <Navbar />
 
       <div className="relative z-10 w-full">
-        {/* हर सेक्शन को 'reveal' क्लास के साथ रैप किया गया है */}
+        
         <section className="reveal">
           <Hero />
         </section>
-        
+
         <TrustStrip />
 
         <section className="reveal">
