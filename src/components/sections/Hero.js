@@ -2,12 +2,19 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-      
-      {/* REAL FIX: भारी blur-[120px] और एनीमेशन वाले div को यहाँ से हटा दिया गया है। 
-          इससे मोबाइल पर होने वाला 'Lag' और 'Stutter' पूरी तरह खत्म हो जाएगा।
-      */}
-      
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#050507]">
+
+  {/* top luxury glow */}
+  <div className="absolute -top-[260px] left-1/2 -translate-x-1/2 w-[620px] h-[620px] bg-emerald-500/20 blur-[170px] pointer-events-none"></div>
+
+  {/* side soft glow */}
+  <div className="absolute top-[45%] -left-[140px] w-[320px] h-[320px] bg-emerald-400/10 blur-[130px] pointer-events-none"></div>
+
+  {/* right blue luxury glow */}
+  <div className="absolute bottom-[10%] right-[-120px] w-[300px] h-[300px] bg-cyan-400/10 blur-[140px] pointer-events-none"></div>
+
+  {/* bottom fade blend */}
+  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
       <div className="w-[92%] max-w-[1200px] mx-auto text-center relative z-10">
         
         {/* Main Heading: प्रीमियम शिमर इफ़ेक्ट के साथ जो अब लैग नहीं करेगा */}
