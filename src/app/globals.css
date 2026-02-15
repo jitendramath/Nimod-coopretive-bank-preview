@@ -36,28 +36,36 @@ body {
   background: var(--premium-emerald);
 }
 
-/* --- The Master Reveal Logic (Optimized for Mobile) --- */
-/* शुरुआत में कंटेंट छुपा रहेगा लेकिन GPU को पता होगा कि इसे दिखाना है */
+/* --- The Master Reveal Logic (Ultra-Optimized) --- */
+/* MOBILE FIRST: Mobile par content humesha dikhega taaki blank screen na aaye */
 .reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: opacity, transform; /* यह GPU को पहले से तैयार रखता है */
+  opacity: 1;
+  transform: none;
 }
 
-/* जब JS इसे देखेगा, तब यह क्लास ऐड करेगा */
-.reveal-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+/* DESKTOP ONLY: Sirf badi screens (768px+) par hi animation trigger hoga */
+@media (min-width: 768px) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+  }
+
+  /* JavaScript is class ko toggle karega */
+  .reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
 }
 
-/* --- Glassmorphism Card Fix --- */
+/* --- Glassmorphism Card Fix (GPU-Friendly) --- */
 .premium-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px); /* Mobile GPU ke liye safe limit */
+  -webkit-backdrop-filter: blur(4px);
   transition: all 0.4s ease;
 }
 
