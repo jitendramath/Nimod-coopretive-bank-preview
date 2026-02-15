@@ -30,8 +30,8 @@ export default function FAQ() {
     <section id="faq" className="py-24 bg-premium-charcoal relative">
       <div className="w-[92%] max-w-[900px] mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
+        {/* Header Section */}
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             अक्सर पूछे जाने वाले <span className="text-premium-emerald">सवाल</span>
           </h2>
@@ -40,12 +40,12 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* FAQ List */}
+        {/* FAQ List: 'premium-card' का इस्तेमाल जो स्मूथ ट्रांजिशन सुनिश्चित करता है */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div 
               key={index}
-              className="rounded-2xl border border-white/5 bg-white/[0.03] overflow-hidden transition-all duration-300 hover:border-premium-emerald/20"
+              className="premium-card rounded-2xl overflow-hidden transition-all duration-300"
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
@@ -59,15 +59,15 @@ export default function FAQ() {
                 </div>
               </button>
 
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {activeIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   >
-                    <div className="px-6 pb-6 text-white/60 leading-relaxed border-t border-white/5 pt-4">
+                    <div className="px-6 pb-6 text-white/60 leading-relaxed border-t border-white/5 pt-4 text-sm md:text-base">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -77,8 +77,8 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* Bottom Support Callout */}
-        <div className="mt-12 text-center p-8 rounded-3xl bg-premium-emerald/5 border border-premium-emerald/10 reveal delay-200">
+        {/* Bottom Support Callout: GPU Optimized */}
+        <div className="mt-12 text-center p-8 rounded-3xl bg-premium-emerald/5 border border-premium-emerald/10">
           <p className="text-white/70">
             क्या आपको अपना जवाब नहीं मिला? <a href="#contact" className="text-premium-emerald font-bold hover:underline">हमें सीधे संदेश भेजें →</a>
           </p>
