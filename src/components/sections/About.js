@@ -21,7 +21,16 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 bg-premium-slate relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden bg-[#0b0b0f] border-t border-white/5">
+
+  {/* left emerald glow */}
+  <div className="absolute -left-[120px] top-40 w-[300px] h-[300px] bg-emerald-500/10 blur-[130px] pointer-events-none"></div>
+
+  {/* right soft glow */}
+  <div className="absolute right-[-140px] bottom-20 w-[320px] h-[320px] bg-cyan-400/10 blur-[140px] pointer-events-none"></div>
+
+  {/* bottom blend */}
+  <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
       <div className="w-[92%] max-w-[1200px] mx-auto">
         
         {/* Section Header */}
@@ -34,8 +43,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group">
-  
+          <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)] group">
   
   <div className="relative w-full">
     <Image 
@@ -57,7 +65,7 @@ export default function About() {
 
           {/* Right: Text Content */}
           <div className="space-y-8">
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-lg text-white/70 leading-relaxed max-w-xl">
               <span className="text-premium-emerald font-bold">बहुद्देशीय ग्राम सेवा सहकारी समिति निमोद</span> एक बहुउद्देश्यीय प्राथमिक ग्राम सेवा सहकारी संस्था है जो ग्रामीण क्षेत्र में वित्तीय, कृषि, ऊर्जा एवं सामाजिक विकास की आवश्यकताओं को पूरा करती है।
             </p>
 
@@ -66,7 +74,7 @@ export default function About() {
               {cards.map((card, index) => (
                 <div 
                   key={index}
-                  className="premium-card p-6 rounded-2xl flex gap-5 items-start"
+                  className="premium-card p-6 rounded-2xl flex gap-5 items-start hover:border-emerald-400/30 hover:shadow-[0_0_40px_rgba(58,244,183,0.12)] transition-all duration-500"
                 >
                   <div className="p-3 rounded-full bg-premium-emerald/10 text-premium-emerald shrink-0">
                     <card.icon size={24} />
