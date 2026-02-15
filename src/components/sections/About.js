@@ -34,18 +34,23 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* Left: Image Section - विजुअल वेट कम किया गया है */}
-          <div className="relative h-[350px] md:h-[500px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group">
-            <div className="absolute inset-0 bg-gradient-to-t from-premium-charcoal via-transparent to-transparent z-10 opacity-60"></div>
-            
-            <Image 
-              src="/images/nimod-gate.jpg" 
-              alt="Nimod Cooperative Gate" 
-              fill 
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              priority={false}
-            />
+          <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group">
+  
+  
+  <div className="relative w-full">
+    <Image 
+      src="/images/nimod-gate.jpg"
+      alt="Nimod Cooperative Gate"
+      width={1200}
+      height={800}
+      className="w-full h-auto md:h-[500px] object-contain md:object-cover transition-transform duration-700 group-hover:scale-105"
+      sizes="(max-width:768px) 100vw, 50vw"
+      priority={false}
+    />
+  </div>
+
+  {/* gradient overlay only desktop */}
+  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-premium-charcoal via-transparent to-transparent z-10 opacity-60"></div>
             
             <div className="absolute bottom-8 left-8 z-20 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full flex items-center gap-3">
               <span className="flex h-3 w-3 relative">
