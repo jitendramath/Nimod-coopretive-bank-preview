@@ -7,17 +7,19 @@ export default function PremiumLoader({ onFinish }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // total loader duration
     const timer = setTimeout(() => {
       setLoading(false);
 
+      // hero reveal AFTER fade
       setTimeout(() => {
-        onFinish(); // 🔥 signal hero ko
-      }, 600); // fade out timing
+        onFinish();
+      }, 700);
 
-    }, 2200);
+    }, 2600); // 🔥 luxury timing
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [onFinish]);
 
   return (
     <AnimatePresence>
@@ -25,33 +27,55 @@ export default function PremiumLoader({ onFinish }) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-[99999] bg-[#030303] flex items-center justify-center md:hidden"
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="fixed inset-0 z-[99999] bg-[#020202] flex items-center justify-center md:hidden overflow-hidden"
         >
 
-          {/* glow bg */}
-          <div className="absolute w-[400px] h-[400px] bg-emerald-400/20 blur-[140px] rounded-full" />
+          {/* emerald luxury glow */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            className="absolute w-[500px] h-[500px] bg-emerald-400/20 blur-[160px] rounded-full"
+          />
 
-          {/* circle loader */}
+          {/* rotating outer ring */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{
               repeat: Infinity,
-              duration: 1.2,
+              duration: 2.2,
               ease: "linear",
             }}
-            className="w-20 h-20 rounded-full border-[3px] border-white/10 border-t-premium-emerald"
+            className="absolute w-28 h-28 rounded-full border border-emerald-400/20"
           />
 
-          {/* logo */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+          {/* main circle loader */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 1,
+              ease: "linear",
+            }}
+            className="relative w-16 h-16 rounded-full border-[3px] border-white/10 border-t-premium-emerald border-r-premium-emerald"
+          />
+
+          {/* brand text */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="absolute mt-32 text-white text-xl font-bold"
+            transition={{ delay: 0.5 }}
+            className="absolute mt-36 text-center"
           >
-            Nimod<span className="text-premium-emerald">Coop</span>
-          </motion.h1>
+            <h1 className="text-white text-2xl font-bold tracking-tight">
+              Nimod<span className="text-premium-emerald">PACS</span>
+            </h1>
+
+            <p className="text-[10px] tracking-[0.35em] text-white/40 mt-2">
+              MULTIPURPOSE COOPERATIVE
+            </p>
+          </motion.div>
 
         </motion.div>
       )}
