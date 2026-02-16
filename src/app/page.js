@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Hero from "./components/Hero";
 import TrustStrip from "./components/TrustStrip";
 import About from "./components/About";
@@ -13,9 +13,7 @@ import Governance from "./components/Governance";
 import Compliance from "./components/Compliance";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-
-/* 🍎 APPLE LEVEL MASTER SCROLL ENGINE */
+import Footer from "@/components/layout/Footer";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 80 },
