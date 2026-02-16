@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 
+import PremiumLoader from "@/components/ui/PremiumLoader";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -33,6 +34,8 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
 
+    <PremiumLoader />
+    
     <Navbar />
       {/* HERO */}
       <Hero />
