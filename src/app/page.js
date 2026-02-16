@@ -2,16 +2,18 @@
 
 import { motion } from "framer-motion";
 
-import Hero from "@/components/sections/Hero";
-import TrustStrip from "@/components/sections/TrustStrip";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Impact from "@/components/sections/Impact";
-import Projects from "@/components/sections/Projects";
-import Governance from "@/components/sections/Governance";
-import Compliance from "@/components/sections/Compliance";
-import FAQ from "@/components/sections/FAQ";
-import Contact from "@/components/sections/Contact";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import TrustStrip from "./components/TrustStrip";
+import About from "./components/About";
+import Services from "./components/Services";
+import Projects from "./components/Projects";
+import Impact from "./components/Impact";
+import Governance from "./components/Governance";
+import Compliance from "./components/Compliance";
+import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 /* 🍎 APPLE LEVEL MASTER SCROLL ENGINE */
 
@@ -31,6 +33,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
 
+    </Navbar />
       {/* HERO */}
       <Hero />
 
@@ -117,6 +120,7 @@ export default function Home() {
         <Contact />
       </motion.div>
 
+      <Footer />
     </main>
   );
 }
