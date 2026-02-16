@@ -3,17 +3,19 @@
 import { motion } from "framer-motion";
 
 import Navbar from "@/components/layout/Navbar";
-import Hero from "./components/Hero";
-import TrustStrip from "./components/TrustStrip";
-import About from "./components/About";
-import Services from "./components/Services";
-import Projects from "./components/Projects";
-import Impact from "./components/Impact";
-import Governance from "./components/Governance";
-import Compliance from "./components/Compliance";
-import FAQ from "./components/FAQ";
-import Contact from "./components/Contact";
 import Footer from "@/components/layout/Footer";
+
+/* sections */
+import Hero from "@/components/sections/Hero";
+import TrustStrip from "@/components/sections/TrustStrip";
+import About from "@/components/sections/About";
+import Services from "@/components/sections/Services";
+import Projects from "@/components/sections/Projects";
+import Impact from "@/components/sections/Impact";
+import Governance from "@/components/sections/Governance";
+import Compliance from "@/components/sections/Compliance";
+import FAQ from "@/components/sections/FAQ";
+import Contact from "@/components/sections/Contact";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 80 },
