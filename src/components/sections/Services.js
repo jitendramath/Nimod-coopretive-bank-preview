@@ -1,4 +1,31 @@
+"use client";
+
 import { Sprout, Tractor, Milk, Warehouse, ShoppingBasket, Users } from "lucide-react";
+import { motion } from "framer-motion";
+
+/* 🍎 Apple level stagger system */
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 70, scale: 0.96, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 export default function Services() {
   const services = [
@@ -35,37 +62,42 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-[#050507] border-t border-white/5">
+    <section id="services" className="py-24 bg-premium-charcoal relative overflow-hidden">
 
-  {/* top emerald glow */}
-  <div className="absolute -top-[180px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/10 blur-[140px] pointer-events-none"></div>
-
-  {/* left subtle glow */}
-  <div className="absolute left-[-120px] top-[40%] w-[280px] h-[280px] bg-cyan-400/10 blur-[130px] pointer-events-none"></div>
-
-  {/* section bottom blend */}
-  <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
-        
-        {/* Header: साफ़ और सुथरा हेडर */}
-        <div className="mb-16 md:text-center max-w-3xl mx-auto">
+
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity:0, y:60 }}
+          whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }}
+          transition={{ duration:0.8, ease:[0.22,1,0.36,1] }}
+          className="mb-16 md:text-center max-w-3xl mx-auto"
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             प्रमुख <span className="text-premium-emerald">सेवाएं</span>
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-lg text-white/60">
             निमोद ग्राम सेवा सहकारी समिति ग्रामीण आवश्यकताओं को ध्यान में रखते हुए बहु-आयामी सेवाएं प्रदान करती है।
           </p>
-        </div>
+        </motion.div>
 
-        {/* Services Grid: 'premium-card' का इस्तेमाल जो GPU पर बोझ नहीं डालता */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* 🍎 Apple wave grid */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once:true, margin:"-80px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
           {services.map((service, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2 hover:border-emerald-400/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
-  >
-              {/* Icon Container: एनिमेटेड और प्रीमियम */}
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 shadow-[0_0_30px_rgba(58,244,183,0.15)] flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
+              variants={item}
+              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2"
+            >
+              {/* Icon */}
+              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
                 <service.icon size={28} strokeWidth={1.5} />
               </div>
               
@@ -73,17 +105,16 @@ export default function Services() {
                 {service.title}
               </h3>
               
-              <p className="text-white/50 leading-relaxed text-sm mb-6">
+              <p className="text-white/60 leading-relaxed text-sm mb-6">
                 {service.text}
               </p>
 
-              {/* Action Link: मोबाइल पर आसानी से दिखने वाला */}
               <div className="mt-auto flex items-center text-premium-emerald text-sm font-bold tracking-wider group-hover:translate-x-2 transition-transform duration-300">
                 अधिक जानें <span className="ml-2">→</span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
