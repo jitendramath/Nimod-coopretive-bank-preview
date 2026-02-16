@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import PremiumLoader from "@/components/ui/PremiumLoader";
@@ -31,18 +32,19 @@ const sectionVariants = {
 };
 
 export default function Home() {
+  const [siteReady, setSiteReady] = useState(false);
   return (
     <main className="overflow-hidden">
-
-    <PremiumLoader />
     
+{!siteReady && (
+  <PremiumLoader onFinish={() => setSiteReady(true)} />
+)}
+
+{siteReady && (
+  <>
     <Navbar />
-      {/* HERO */}
-      <Hero />
-
-      {/* TRUST STRIP */}
-      <TrustStrip />
-
+    <Hero />
+    <TrustStrip />
       {/* ABOUT */}
       <motion.div
         variants={sectionVariants}
@@ -124,6 +126,7 @@ export default function Home() {
       </motion.div>
 
       <Footer />
+          </>
     </main>
   );
 }
