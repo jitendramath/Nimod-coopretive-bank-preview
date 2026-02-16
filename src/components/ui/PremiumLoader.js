@@ -1,15 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-export default function PremiumLoader() {
+export default function PremiumLoader({ onFinish }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2200); // luxury timing
+
+      setTimeout(() => {
+        onFinish(); // 🔥 signal hero ko
+      }, 600); // fade out timing
+
+    }, 2200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -20,64 +25,36 @@ export default function PremiumLoader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="fixed inset-0 z-[99999] bg-[#030303] flex items-center justify-center md:hidden overflow-hidden"
+          transition={{ duration: 0.6 }}
+          className="fixed inset-0 z-[99999] bg-[#030303] flex items-center justify-center md:hidden"
         >
 
-          {/* emerald glow bg */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute w-[500px] h-[500px] bg-emerald-400/20 blur-[160px] rounded-full"
-          />
+          {/* glow bg */}
+          <div className="absolute w-[400px] h-[400px] bg-emerald-400/20 blur-[140px] rounded-full" />
 
-          {/* moving gradient beam */}
+          {/* circle loader */}
           <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "100%" }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent"
-          />
-
-          {/* content */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            animate={{ rotate: 360 }}
             transition={{
-              duration: 1,
-              ease: [0.22, 1, 0.36, 1]
+              repeat: Infinity,
+              duration: 1.2,
+              ease: "linear",
             }}
-            className="relative text-center"
+            className="w-20 h-20 rounded-full border-[3px] border-white/10 border-t-premium-emerald"
+          />
+
+          {/* logo */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="absolute mt-32 text-white text-xl font-bold"
           >
+            Nimod<span className="text-premium-emerald">Coop</span>
+          </motion.h1>
 
-            {/* logo text */}
-            <h1 className="text-3xl font-bold text-white tracking-tight">
-              Nimod<span className="text-premium-emerald">Coop</span>
-            </h1>
-
-            {/* subtitle */}
-            <p className="text-[10px] tracking-[0.4em] text-white/50 mt-2">
-              MULTIPURPOSE PACS
-            </p>
-
-            {/* loading line */}
-            <div className="mt-8 w-44 h-[2px] bg-white/10 mx-auto overflow-hidden rounded-full">
-              <motion.div
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
-                transition={{
-                  duration: 1.4,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
-                className="h-full w-24 bg-premium-emerald"
-              />
-            </div>
-
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
   );
-                  }
+}
