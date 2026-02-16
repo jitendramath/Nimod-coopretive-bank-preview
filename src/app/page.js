@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
 
-    </Navbar />
+    <Navbar />
       {/* HERO */}
       <Hero />
 
