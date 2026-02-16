@@ -72,3 +72,51 @@ html {
   background: rgba(58,244,183,0.35);
   color: #fff;
 }
+
+/* TRUST STRIP SCROLL ANIMATION */
+
+@keyframes trustScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-trustScroll {
+  animation: trustScroll 18s linear infinite;
+}
+
+/* 🌌 LUXURY BACKGROUND MOVING GRADIENT */
+
+body {
+  background: linear-gradient(
+    120deg,
+    #020617,
+    #031b14,
+    #020617,
+    #041a13
+  );
+  background-size: 400% 400%;
+  animation: premiumBG 18s ease infinite;
+}
+
+/* subtle grain for luxury texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes premiumBG {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
