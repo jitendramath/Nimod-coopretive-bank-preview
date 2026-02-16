@@ -1,125 +1,122 @@
 "use client";
 
-import { useEffect } from "react";
-import BackgroundGradient from "@/components/ui/BackgroundGradient";
-import Navbar from "@/components/layout/Navbar";
+import { motion } from "framer-motion";
+
 import Hero from "@/components/sections/Hero";
 import TrustStrip from "@/components/sections/TrustStrip";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
-import Projects from "@/components/sections/Projects";
 import Impact from "@/components/sections/Impact";
+import Projects from "@/components/sections/Projects";
 import Governance from "@/components/sections/Governance";
 import Compliance from "@/components/sections/Compliance";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
-import Footer from "@/components/layout/Footer";
+
+/* 🍎 APPLE LEVEL MASTER SCROLL ENGINE */
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 80 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 export default function Home() {
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const revealAll = () => {
-      document.querySelectorAll(".reveal").forEach((el) => {
-        el.classList.add("active");
-      });
-    };
-
-    try {
-      const isMobile = window.innerWidth < 768;
-
-      // mobile = no animation, direct show
-      if (isMobile) {
-        revealAll();
-        return;
-      }
-
-      if (!("IntersectionObserver" in window)) {
-        revealAll();
-        return;
-      }
-
-      const elements = document.querySelectorAll(".reveal");
-
-      elements.forEach((el) => {
-        el.classList.add("animate"); // animation enable
-      });
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              requestAnimationFrame(() => {
-                entry.target.classList.add("active");
-              });
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        }
-      );
-
-      elements.forEach((el) => observer.observe(el));
-
-      return () => observer.disconnect();
-
-    } catch (err) {
-      console.error("Reveal system error:", err);
-      revealAll();
-    }
-  }, []);
-
   return (
-    <main className="relative flex min-h-screen flex-col bg-premium-charcoal overflow-x-hidden">
-      <BackgroundGradient />
-      <Navbar />
+    <main className="overflow-hidden">
 
-      <div className="relative z-10 w-full">
-        
-        <section className="reveal">
-          <Hero />
-        </section>
+      {/* HERO */}
+      <Hero />
 
-        <TrustStrip />
+      {/* TRUST STRIP */}
+      <TrustStrip />
 
-        <section className="reveal">
-          <About />
-        </section>
+      {/* ABOUT */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <About />
+      </motion.div>
 
-        <section className="reveal">
-          <Services />
-        </section>
+      {/* SERVICES */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Services />
+      </motion.div>
 
-        <section className="reveal">
-          <Projects />
-        </section>
+      {/* IMPACT */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Impact />
+      </motion.div>
 
-        <section className="reveal">
-          <Impact />
-        </section>
+      {/* PROJECTS */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Projects />
+      </motion.div>
 
-        <section className="reveal">
-          <Governance />
-        </section>
+      {/* GOVERNANCE */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Governance />
+      </motion.div>
 
-        <section className="reveal">
-          <Compliance />
-        </section>
+      {/* COMPLIANCE */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Compliance />
+      </motion.div>
 
-        <section className="reveal">
-          <FAQ />
-        </section>
+      {/* FAQ */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <FAQ />
+      </motion.div>
 
-        <section className="reveal">
-          <Contact />
-        </section>
-      </div>
+      {/* CONTACT */}
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <Contact />
+      </motion.div>
 
-      <Footer />
     </main>
   );
 }
