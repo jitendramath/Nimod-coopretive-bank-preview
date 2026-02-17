@@ -14,10 +14,10 @@ const fadeUp = {
 
 export default function AboutIntro() {
   return (
-    <section className="relative py-24 md:py-32 bg-[#050507] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
       
-      {/* subtle emerald glow */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-400/10 blur-[160px] rounded-full pointer-events-none" />
+      {/* 🟢 Subtle Glow (Dynamic) */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-premium-accent/10 blur-[160px] rounded-full pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
@@ -31,7 +31,7 @@ export default function AboutIntro() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative rounded-[28px] overflow-hidden border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,0.7)] group">
+            <div className="relative rounded-[28px] overflow-hidden border border-premium-border shadow-2xl shadow-premium-shadow group">
               
               <Image
                 src="/images/cooperative-main.jpg"
@@ -41,11 +41,11 @@ export default function AboutIntro() {
                 className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-[1600ms]"
               />
 
-              {/* dark gradient */}
+              {/* Dark Gradient Overlay (Always dark to make text pop) */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-              {/* floating badge */}
-              <div className="absolute bottom-6 left-6 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs tracking-widest uppercase">
+              {/* Floating Badge (Always white text on image) */}
+              <div className="absolute bottom-6 left-6 px-5 py-2 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white text-xs tracking-widest uppercase">
                 Since 1954
               </div>
             </div>
@@ -59,47 +59,44 @@ export default function AboutIntro() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-premium-text leading-tight transition-colors duration-500">
               ग्रामीण विकास की एक <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-emerald to-premium-mint">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-accent to-teal-400 animate-shimmer">
                 विश्वसनीय सहकारी संस्था
               </span>
             </h2>
 
-            <div className="h-1 w-24 bg-premium-emerald rounded-full" />
+            {/* Divider Line */}
+            <div className="h-1 w-24 bg-premium-accent rounded-full" />
 
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-premium-text text-lg leading-relaxed transition-colors duration-500">
               बहुउद्देशीय प्राथमिक ग्राम सेवा सहकारी समिति निमोद वर्ष 1954 से
               ग्रामीण किसानों, महिलाओं और परिवारों के आर्थिक एवं सामाजिक विकास
               हेतु निरंतर कार्यरत एक विश्वसनीय सहकारी संस्था है।
             </p>
 
-            <p className="text-white/60 leading-relaxed">
+            <p className="text-premium-muted leading-relaxed transition-colors duration-500">
               सहकारिता के सिद्धांतों पर आधारित यह संस्था वित्तीय समावेशन,
               कृषि उन्नति, ऊर्जा आत्मनिर्भरता एवं सामाजिक सशक्तिकरण के क्षेत्र
               में निरंतर योगदान दे रही है और क्षेत्रीय विकास का एक मजबूत
               स्तंभ बन चुकी है।
             </p>
 
-            {/* premium info cards */}
+            {/* Premium Info Cards */}
             <div className="grid grid-cols-2 gap-4 pt-6">
-              <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-premium-emerald text-2xl font-bold">
-                  1954
+              {[
+                { title: "1954", sub: "स्थापना वर्ष" },
+                { title: "70+ वर्ष", sub: "सेवा अनुभव" }
+              ].map((item, i) => (
+                <div key={i} className="p-5 rounded-2xl bg-premium-card border border-premium-border backdrop-blur-md hover:border-premium-accent transition-all shadow-sm">
+                  <div className="text-premium-accent text-2xl font-bold">
+                    {item.title}
+                  </div>
+                  <div className="text-premium-muted text-sm mt-1 font-medium">
+                    {item.sub}
+                  </div>
                 </div>
-                <div className="text-white/50 text-sm mt-1">
-                  स्थापना वर्ष
-                </div>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-premium-emerald text-2xl font-bold">
-                  70+ वर्ष
-                </div>
-                <div className="text-white/50 text-sm mt-1">
-                  सेवा अनुभव
-                </div>
-              </div>
+              ))}
             </div>
 
           </motion.div>
