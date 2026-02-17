@@ -3,7 +3,7 @@
 import { Users, Gavel, ShieldCheck, FileSignature } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple luxury stagger */
+/* 🍎 Apple luxury stagger system */
 const container = {
   hidden: {},
   show: {
@@ -47,17 +47,18 @@ export default function Governance() {
   ];
 
   return (
-    <section id="governance" className="py-24 relative overflow-hidden bg-[#06070a] border-y border-white/5">
+    <section id="governance" className="py-24 relative overflow-hidden bg-premium-bg border-y border-premium-border transition-colors duration-500">
 
-      {/* background glows */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[30%] w-[420px] h-[420px] bg-emerald-500/8 blur-[170px] pointer-events-none"></div>
-      <div className="absolute right-[-140px] bottom-10 w-[300px] h-[300px] bg-blue-400/10 blur-[150px] pointer-events-none"></div>
-      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
+      {/* 🌌 Ambient Dynamic Glows */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[30%] w-[420px] h-[420px] bg-premium-accent/5 dark:bg-emerald-500/8 blur-[170px] pointer-events-none transition-colors duration-500" />
+      <div className="absolute right-[-140px] bottom-10 w-[300px] h-[300px] bg-blue-500/5 dark:bg-blue-400/10 blur-[150px] pointer-events-none transition-colors duration-500" />
+      
+      {/* Subtle Pattern Overlay */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03] bg-[linear-gradient(var(--premium-border)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-      <div className="w-[92%] max-w-[1200px] mx-auto">
+      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* Header */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity:0, y:70 }}
           whileInView={{ opacity:1, y:0 }}
@@ -65,15 +66,15 @@ export default function Governance() {
           transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
           className="mb-16 md:text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            प्रबंधन एवं <span className="text-premium-emerald">शासन</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
+            प्रबंधन एवं <span className="text-premium-accent">शासन</span>
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-lg text-premium-muted font-medium max-w-2xl mx-auto transition-colors duration-500">
             निमोद ग्राम सेवा सहकारी समिति का संचालन लोकतांत्रिक सिद्धांतों और पारदर्शी नियमों के अंतर्गत किया जाता है।
           </p>
         </motion.div>
 
-        {/* 🍎 Apple stagger grid */}
+        {/* 🍎 Governance Stagger Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -85,43 +86,45 @@ export default function Governance() {
             <motion.div 
               key={index}
               variants={item}
-              className="premium-card relative p-8 rounded-3xl group transition-all duration-500 hover:-translate-y-2 hover:border-emerald-400/30 hover:shadow-[0_30px_90px_rgba(0,0,0,0.7)]"
+              className="group relative p-10 rounded-[2.5rem] bg-premium-card border border-premium-border transition-all duration-500 hover:-translate-y-3 hover:border-premium-accent/30 hover:shadow-2xl hover:shadow-premium-shadow"
             >
-              {/* accent line */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-premium-emerald scale-x-0 group-hover:scale-x-50 transition-transform duration-500"></div>
+              {/* Dynamic Accent Line */}
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-premium-accent scale-x-0 group-hover:scale-x-50 transition-transform duration-700 rounded-full" />
 
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 shadow-[0_0_30px_rgba(58,244,183,0.15)] flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
-                <itemData.icon size={28} />
+              {/* Icon Box */}
+              <div className="w-16 h-16 rounded-2xl bg-premium-surface shadow-sm flex items-center justify-center text-premium-accent mb-8 group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black transition-all duration-500">
+                <itemData.icon size={32} strokeWidth={2} />
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-premium-emerald transition-colors">
+              <h3 className="text-xl md:text-2xl font-bold text-premium-text mb-5 group-hover:text-premium-accent transition-colors duration-300">
                 {itemData.title}
               </h3>
 
-              <p className="text-white/60 leading-relaxed mb-8 text-sm">
+              <p className="text-premium-muted leading-relaxed mb-10 text-sm md:text-base font-medium transition-colors duration-500">
                 {itemData.text}
               </p>
 
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-premium-emerald/5 shadow-[0_0_20px_rgba(58,244,183,0.15)] border border-premium-emerald/10 text-premium-emerald text-[0.65rem] font-bold uppercase tracking-wider">
-                <FileSignature size={12} />
+              {/* Verified Badge */}
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-premium-surface border border-premium-border text-premium-accent text-[10px] font-black uppercase tracking-widest shadow-sm">
+                <FileSignature size={14} />
                 Verified System
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* bottom trust row */}
+        {/* Bottom Trust Row */}
         <motion.div
           initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
           transition={{ duration:0.9 }}
-          className="mt-16 pt-10 border-t border-dashed border-white/10 flex flex-wrap justify-center gap-6 md:gap-12"
+          className="mt-20 pt-12 border-t border-dashed border-premium-border flex flex-wrap justify-center gap-8 md:gap-16 transition-colors duration-500"
         >
           {["Democratic Control", "Member Economic Participation", "Autonomy & Independence"].map((text, i) => (
-            <div key={i} className="flex items-center gap-3 opacity-40 hover:opacity-100 transition-opacity cursor-default">
-              <div className="w-2 h-2 rounded-full bg-premium-emerald"></div>
-              <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-widest">{text}</span>
+            <div key={i} className="flex items-center gap-3 opacity-50 hover:opacity-100 transition-opacity cursor-default group">
+              <div className="w-2.5 h-2.5 rounded-full bg-premium-accent shadow-[0_0_8px_var(--accent-glow)] group-hover:scale-125 transition-transform" />
+              <span className="text-[10px] md:text-xs font-bold text-premium-text uppercase tracking-widest transition-colors duration-500">{text}</span>
             </div>
           ))}
         </motion.div>
