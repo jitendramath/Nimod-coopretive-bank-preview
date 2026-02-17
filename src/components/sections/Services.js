@@ -3,13 +3,10 @@
 import { Sprout, Tractor, Milk, Warehouse, ShoppingBasket, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple level stagger system */
 const container = {
   hidden: {},
   show: {
-    transition: {
-      staggerChildren: 0.18
-    }
+    transition: { staggerChildren: 0.18 }
   }
 };
 
@@ -20,10 +17,7 @@ const item = {
     y: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1]
-    }
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
@@ -62,11 +56,14 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-premium-charcoal relative overflow-hidden">
+    <section id="services" className="py-24 bg-premium-bg relative overflow-hidden transition-colors duration-500">
+
+      {/* 🌌 Ambient Glow */}
+      <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-premium-accent/5 blur-[160px] pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* Header */}
+        {/* Header Section */}
         <motion.div 
           initial={{ opacity:0, y:60 }}
           whileInView={{ opacity:1, y:0 }}
@@ -74,15 +71,15 @@ export default function Services() {
           transition={{ duration:0.8, ease:[0.22,1,0.36,1] }}
           className="mb-16 md:text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            प्रमुख <span className="text-premium-emerald">सेवाएं</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
+            प्रमुख <span className="text-premium-accent">सेवाएं</span>
           </h2>
-          <p className="text-lg text-white/60">
+          <p className="text-lg text-premium-muted font-medium transition-colors duration-500">
             निमोद ग्राम सेवा सहकारी समिति ग्रामीण आवश्यकताओं को ध्यान में रखते हुए बहु-आयामी सेवाएं प्रदान करती है।
           </p>
         </motion.div>
 
-        {/* 🍎 Apple wave grid */}
+        {/* Services Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -94,24 +91,28 @@ export default function Services() {
             <motion.div 
               key={index}
               variants={item}
-              className="premium-card p-8 rounded-3xl group flex flex-col items-start transition-all duration-500 hover:-translate-y-2"
+              className="group relative p-8 rounded-[2.5rem] bg-premium-card border border-premium-border transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-premium-shadow"
             >
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
-                <service.icon size={28} strokeWidth={1.5} />
+              {/* Icon Box */}
+              <div className="w-16 h-16 rounded-2xl bg-premium-surface flex items-center justify-center text-premium-accent mb-8 shadow-sm group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black transition-all duration-500">
+                <service.icon size={30} strokeWidth={2} />
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-premium-emerald transition-colors">
+              <h3 className="text-xl md:text-2xl font-bold text-premium-text mb-4 transition-colors duration-500">
                 {service.title}
               </h3>
               
-              <p className="text-white/60 leading-relaxed text-sm mb-6">
+              <p className="text-premium-muted leading-relaxed text-sm md:text-base mb-8 transition-colors duration-500 font-medium">
                 {service.text}
               </p>
 
-              <div className="mt-auto flex items-center text-premium-emerald text-sm font-bold tracking-wider group-hover:translate-x-2 transition-transform duration-300">
-                अधिक जानें <span className="ml-2">→</span>
+              {/* Action Link */}
+              <div className="mt-auto flex items-center text-premium-accent text-sm font-black tracking-widest group-hover:translate-x-3 transition-transform duration-300">
+                अधिक जानें <span className="ml-3 text-lg">→</span>
               </div>
+
+              {/* Subtle Bottom Glow */}
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-premium-accent opacity-30 group-hover:w-full transition-all duration-700 rounded-full" />
             </motion.div>
           ))}
         </motion.div>
