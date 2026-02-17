@@ -3,7 +3,7 @@
 import { FileCheck, Shield, BookOpen, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple luxury stagger */
+/* 🍎 Apple luxury stagger system */
 const container = {
   hidden: {},
   show: {
@@ -52,17 +52,18 @@ export default function Compliance() {
   ];
 
   return (
-    <section id="compliance" className="py-24 relative overflow-hidden bg-[#05060a] border-t border-white/5">
+    <section id="compliance" className="py-24 relative overflow-hidden bg-premium-bg border-t border-premium-border transition-colors duration-500">
 
-      {/* background glows (same as before, untouched) */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[25%] w-[420px] h-[420px] bg-emerald-500/6 blur-[180px] pointer-events-none"></div>
-      <div className="absolute right-[-120px] top-[40%] w-[300px] h-[300px] bg-blue-400/8 blur-[160px] pointer-events-none"></div>
-      <div className="absolute inset-0 opacity-[0.025] bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#050507] pointer-events-none"></div>
+      {/* 🌌 Premium Ambient Glows (Dynamic) */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[25%] w-[420px] h-[420px] bg-premium-accent/5 dark:bg-emerald-500/6 blur-[180px] pointer-events-none transition-colors duration-500" />
+      <div className="absolute right-[-120px] top-[40%] w-[300px] h-[300px] bg-blue-500/5 dark:bg-blue-400/8 blur-[160px] pointer-events-none transition-colors duration-500" />
+      
+      {/* Dynamic Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.025] bg-[linear-gradient(var(--premium-border)_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
         
-        {/* Header */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity:0, y:70 }}
           whileInView={{ opacity:1, y:0 }}
@@ -70,56 +71,61 @@ export default function Compliance() {
           transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
           className="mb-20 md:text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            अनुपालन एवं <span className="text-premium-emerald">पारदर्शिता</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
+            अनुपालन एवं <span className="text-premium-accent">पारदर्शिता</span>
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-lg text-premium-muted font-medium max-w-2xl mx-auto transition-colors duration-500">
             हमारा मूल मंत्र 'विश्वास' है। हम सुनिश्चित करते हैं कि हर प्रक्रिया नियमसंगत और पारदर्शी हो।
           </p>
         </motion.div>
 
-        {/* 🍎 Apple stagger grid */}
+        {/* 🍎 Compliance Stagger Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once:true, margin:"-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10"
         >
           {complianceItems.map((itemData, index) => (
             <motion.div 
               key={index}
               variants={item}
-              className="premium-card p-8 rounded-2xl group transition-all duration-500 hover:-translate-y-1 hover:border-emerald-400/25 hover:shadow-[0_25px_70px_rgba(0,0,0,0.75)]"
+              className="group relative p-8 md:p-10 rounded-[2.5rem] bg-premium-card border border-premium-border transition-all duration-500 hover:-translate-y-2 hover:border-premium-accent/30 hover:shadow-2xl hover:shadow-premium-shadow"
             >
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 shrink-0 rounded-xl bg-premium-emerald/10 shadow-[0_0_25px_rgba(58,244,183,0.15)] flex items-center justify-center text-premium-emerald group-hover:scale-110 group-hover:bg-premium-emerald group-hover:text-premium-black transition-all duration-500">
-                  <itemData.icon size={24} />
+              <div className="flex flex-col sm:flex-row items-start gap-8 relative z-10">
+                
+                {/* Icon Box */}
+                <div className="w-16 h-16 shrink-0 rounded-2xl bg-premium-surface shadow-sm flex items-center justify-center text-premium-accent group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black transition-all duration-500">
+                  <itemData.icon size={30} strokeWidth={2} />
                 </div>
                 
-                <div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-premium-emerald transition-colors">
+                <div className="space-y-4">
+                  <h4 className="text-xl md:text-2xl font-bold text-premium-text group-hover:text-premium-accent transition-colors duration-300">
                     {itemData.title}
                   </h4>
-                  <p className="text-white/60 leading-relaxed text-sm">
+                  <p className="text-premium-muted leading-relaxed text-[15px] md:text-base font-medium transition-colors duration-500">
                     {itemData.text}
                   </p>
                 </div>
               </div>
+              
+              {/* Internal Accent Glow (Hover) */}
+              <div className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-[radial-gradient(circle_at_top_left,var(--accent-glow),transparent_70%)] pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* bottom badges */}
+        {/* Bottom Trust Badges */}
         <motion.div
           initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
           transition={{ duration:0.9 }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-4 md:gap-8"
+          className="mt-20 flex flex-wrap justify-center items-center gap-4 md:gap-8"
         >
           {["RBI Guidelines Followed", "ISO 9001:2015 Standards", "Secure SSL Encryption", "Zero-Tolerance Fraud Policy"].map((badge, i) => (
-            <div key={i} className="px-5 py-2.5 rounded-full border border-white/10 text-white/40 shadow-[0_0_20px_rgba(0,0,0,0.4)] text-[10px] font-bold uppercase tracking-widest hover:text-premium-emerald hover:border-premium-emerald/50 hover:bg-premium-emerald/5 transition-all duration-300 cursor-default">
+            <div key={i} className="px-6 py-3 rounded-full border border-premium-border bg-premium-surface/50 text-premium-muted/60 text-[10px] md:text-xs font-black uppercase tracking-[0.15em] hover:text-premium-accent hover:border-premium-accent/50 transition-all duration-300 cursor-default shadow-sm backdrop-blur-sm">
               {badge}
             </div>
           ))}
