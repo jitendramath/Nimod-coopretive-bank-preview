@@ -8,25 +8,25 @@ const benefits = [
     icon: ShieldCheck,
     title: "विश्वसनीय और पारदर्शी सेवा",
     desc: "समिति पारदर्शी प्रक्रिया और सुरक्षित लेन-देन के साथ विश्वसनीय सेवाएं प्रदान करती है।",
-    gradient: "from-emerald-400 to-teal-500",
+    gradient: "from-emerald-500 to-teal-600 dark:from-emerald-400 dark:to-teal-500",
   },
   {
     icon: Zap,
     title: "तेज और सरल प्रक्रिया",
     desc: "ऋण, जमा और अन्य सेवाएं सरल प्रक्रिया के माध्यम से कम समय में उपलब्ध कराई जाती हैं।",
-    gradient: "from-yellow-400 to-orange-500",
+    gradient: "from-yellow-500 to-orange-600 dark:from-yellow-400 dark:to-orange-500",
   },
   {
     icon: Users,
     title: "ग्रामीण समुदाय केंद्रित",
     desc: "हर सेवा ग्रामीण परिवारों, किसानों और महिलाओं के विकास को ध्यान में रखकर बनाई गई है।",
-    gradient: "from-sky-400 to-cyan-500",
+    gradient: "from-sky-500 to-cyan-600 dark:from-sky-400 dark:to-cyan-500",
   },
   {
     icon: TrendingUp,
     title: "आर्थिक सशक्तिकरण",
     desc: "समिति की सेवाएं ग्रामीण अर्थव्यवस्था को मजबूत बनाकर आय और अवसर बढ़ाती हैं।",
-    gradient: "from-pink-500 to-rose-500",
+    gradient: "from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500",
   },
 ];
 
@@ -41,15 +41,15 @@ const reveal = {
 
 export default function ServicesBenefits() {
   return (
-    <section className="relative py-24 md:py-32 bg-[#050507] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      {/* glow background */}
-      <div className="absolute top-[20%] left-[-200px] w-[600px] h-[600px] bg-emerald-500/10 blur-[180px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-pink-500/10 blur-[180px] rounded-full pointer-events-none" />
+      {/* 🟢 Dynamic Glow Backgrounds */}
+      <div className="absolute top-[20%] left-[-200px] w-[600px] h-[600px] bg-premium-accent/10 blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-pink-500/5 dark:bg-pink-500/10 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* heading */}
+        {/* Heading */}
         <motion.div
           variants={reveal}
           initial="hidden"
@@ -57,21 +57,21 @@ export default function ServicesBenefits() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-premium-text mb-6 leading-tight transition-colors duration-500">
             हमारी सेवाओं के
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-sky-400 to-pink-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-sky-500 to-pink-600 dark:from-emerald-400 dark:via-sky-400 dark:to-pink-500">
               प्रमुख लाभ
             </span>
           </h2>
 
-          <p className="text-white/60 max-w-2xl mx-auto text-sm md:text-lg">
+          <p className="text-premium-muted max-w-2xl mx-auto text-sm md:text-lg transition-colors duration-500">
             समिति की सेवाएं केवल सुविधा नहीं, बल्कि ग्रामीण जीवन को बेहतर
             बनाने का एक मजबूत माध्यम हैं।
           </p>
         </motion.div>
 
-        {/* grid */}
+        {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           {benefits.map((item, index) => {
@@ -86,21 +86,23 @@ export default function ServicesBenefits() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                {/* glow border */}
-                <div className={`absolute -inset-[1px] rounded-3xl opacity-40 blur bg-gradient-to-br ${item.gradient}`} />
+                {/* ✨ Glow Border (Dynamic) */}
+                <div className={`absolute -inset-[1px] rounded-[2rem] opacity-20 dark:opacity-40 blur-sm bg-gradient-to-br ${item.gradient} group-hover:opacity-100 transition duration-500`} />
 
-                <div className="relative rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-xl p-7 md:p-8 h-full">
+                <div className="relative rounded-[2rem] bg-premium-card border border-premium-border backdrop-blur-xl p-8 h-full transition-all duration-500 group-hover:translate-y-[-4px]">
 
-                  {/* icon */}
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-br ${item.gradient}`}>
-                    <Icon size={26} className="text-black" />
+                  {/* Icon Box */}
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-500 group-hover:scale-110`}>
+                    <Icon size={26} className="text-white dark:text-black" />
                   </div>
 
-                  <h3 className="text-white text-lg md:text-xl font-bold mb-3">
+                  {/* Title */}
+                  <h3 className="text-premium-text text-lg md:text-xl font-bold mb-3 transition-colors duration-500">
                     {item.title}
                   </h3>
 
-                  <p className="text-white/60 text-sm md:text-base leading-relaxed">
+                  {/* Description */}
+                  <p className="text-premium-muted text-sm md:text-base leading-relaxed transition-colors duration-500">
                     {item.desc}
                   </p>
 
