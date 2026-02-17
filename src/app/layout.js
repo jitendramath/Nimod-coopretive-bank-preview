@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/providers/ThemeProvider"; // ✅ Updated Import
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
@@ -16,17 +16,15 @@ export default function RootLayout({ children }) {
     <html lang="hi" suppressHydrationWarning>
       <body className={`${inter.className} bg-premium-bg text-premium-text transition-colors duration-500`}>
         
+        {/* ✅ Wrapped in Client Component */}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           
-          {/* Global Navbar */}
           <Navbar />
 
-          {/* Main Page Content */}
           <main className="min-h-screen relative overflow-hidden">
             {children}
           </main>
 
-          {/* Global Footer */}
           <Footer />
 
         </ThemeProvider>
