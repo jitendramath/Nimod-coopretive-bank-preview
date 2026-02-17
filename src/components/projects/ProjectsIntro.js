@@ -4,34 +4,34 @@ import { motion } from "framer-motion";
 
 export default function ProjectsIntro() {
   return (
-    <section className="relative py-20 lg:py-28 bg-[#050507] overflow-hidden">
+    <section className="relative py-20 lg:py-28 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      {/* subtle divider glow */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+      {/* 🌌 Subtle Divider Glow (Dynamic) */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-premium-accent/40 to-transparent" />
 
       <div className="w-[92%] max-w-[1100px] mx-auto relative z-10">
 
-        {/* heading */}
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center text-premium-text transition-colors duration-500"
         >
           ग्रामीण विकास का
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-emerald via-premium-mint to-premium-emerald">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-accent via-teal-500 to-premium-accent">
             {" "}आधुनिक मॉडल
           </span>
         </motion.h2>
 
-        {/* paragraph block */}
+        {/* Paragraph Block */}
         <motion.div
           initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
           viewport={{ once: true }}
-          className="space-y-6 text-white/65 text-[15px] md:text-lg leading-relaxed text-center"
+          className="space-y-6 text-premium-muted text-[15px] md:text-lg leading-relaxed text-center transition-colors duration-500 font-medium"
         >
           <p>
             बहुउद्देशीय प्राथमिक ग्राम सेवा सहकारी समिति निमोद ने समय के साथ ऐसी
@@ -52,7 +52,7 @@ export default function ProjectsIntro() {
           </p>
         </motion.div>
 
-        {/* premium info cards */}
+        {/* Premium Info Cards */}
         <motion.div
           initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,17 +76,17 @@ export default function ProjectsIntro() {
           ].map((card, i) => (
             <div
               key={i}
-              className="relative p-6 rounded-2xl bg-white/[0.03] border border-white/10 
-              backdrop-blur-md hover:bg-white/[0.05] transition-all duration-500"
+              className="group relative p-8 rounded-[2rem] bg-premium-card border border-premium-border 
+              backdrop-blur-md transition-all duration-500 hover:border-premium-accent/40 hover:shadow-xl hover:shadow-premium-shadow"
             >
-              {/* glow */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition duration-500 bg-gradient-to-br from-emerald-400/10 via-transparent to-transparent" />
+              {/* Internal Glow Effect */}
+              <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-10 transition duration-500 bg-gradient-to-br from-premium-accent/20 via-transparent to-transparent pointer-events-none" />
 
-              <h3 className="text-white font-semibold text-lg mb-2">
+              <h3 className="text-premium-text font-bold text-lg mb-3 transition-colors duration-500">
                 {card.title}
               </h3>
 
-              <p className="text-white/60 text-sm leading-relaxed">
+              <p className="text-premium-muted text-sm leading-relaxed transition-colors duration-500">
                 {card.desc}
               </p>
             </div>
