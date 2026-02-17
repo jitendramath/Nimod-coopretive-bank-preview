@@ -54,14 +54,14 @@ const fadeUp = {
 
 export default function AboutServices() {
   return (
-    <section className="relative py-24 md:py-32 bg-premium-charcoal overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      {/* background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[180px] rounded-full pointer-events-none" />
+      {/* 🟢 Background Glow (Dynamic) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-premium-accent/10 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* heading */}
+        {/* Heading */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -69,16 +69,16 @@ export default function AboutServices() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            हमारी प्रमुख <span className="text-premium-emerald">सेवाएं</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
+            हमारी प्रमुख <span className="text-premium-accent">सेवाएं</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-premium-muted max-w-2xl mx-auto text-lg transition-colors duration-500">
             समिति ग्रामीण विकास को केंद्र में रखते हुए बहुआयामी सेवाएं प्रदान करती है,
             जिससे किसानों और ग्रामीण परिवारों की आर्थिक स्थिति मजबूत होती है।
           </p>
         </motion.div>
 
-        {/* grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
 
           {services.map((service, index) => (
@@ -89,25 +89,29 @@ export default function AboutServices() {
               whileInView="show"
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="group p-7 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-premium-emerald/40 transition-all duration-500 hover:-translate-y-2"
+              className="group p-8 rounded-[2rem] bg-premium-card border border-premium-border 
+              hover:border-premium-accent/40 transition-all duration-500 hover:-translate-y-2 
+              hover:shadow-xl hover:shadow-premium-shadow backdrop-blur-md"
             >
-              {/* icon */}
-              <div className="w-14 h-14 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald mb-6 group-hover:bg-premium-emerald group-hover:text-black transition-all duration-500">
-                <service.icon size={26} />
+              {/* Icon Box */}
+              <div className="w-16 h-16 rounded-2xl bg-premium-surface flex items-center justify-center 
+              text-premium-accent mb-6 transition-all duration-500 shadow-sm
+              group-hover:bg-premium-accent group-hover:text-white group-hover:scale-110">
+                <service.icon size={28} />
               </div>
 
-              {/* title */}
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-premium-emerald transition-colors">
+              {/* Title */}
+              <h3 className="text-xl font-bold text-premium-text mb-3 group-hover:text-premium-accent transition-colors duration-300">
                 {service.title}
               </h3>
 
-              {/* text */}
-              <p className="text-white/60 text-sm leading-relaxed">
+              {/* Text */}
+              <p className="text-premium-muted text-[15px] leading-relaxed transition-colors duration-500">
                 {service.text}
               </p>
 
-              {/* bottom glow line */}
-              <div className="mt-6 h-[2px] w-0 bg-gradient-to-r from-premium-emerald to-transparent group-hover:w-full transition-all duration-700" />
+              {/* Bottom Glow Line */}
+              <div className="mt-8 h-[2px] w-0 bg-gradient-to-r from-premium-accent to-transparent group-hover:w-full transition-all duration-700" />
             </motion.div>
           ))}
 
