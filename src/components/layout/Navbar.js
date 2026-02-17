@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 
 const navLinks = [
@@ -16,9 +17,12 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-  // 🔥 Ultra smooth scroll detection (Performance optimized)
+  // 🔥 Hydration Mismatch Avoidance & Smooth Scroll
   useEffect(() => {
+    setMounted(true);
     let ticking = false;
 
     const handleScroll = () => {
@@ -34,6 +38,9 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent Rendering until Mounted (Fixes Theme Icon Mismatch)
+  if (!mounted) return null;
 
   return (
     <>
@@ -67,6 +74,15 @@ export default function Navbar() {
               </Link>
             ))}
 
+            {/* 🌙☀️ Theme Toggle (Desktop) */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2.5 rounded-full bg-premium-surface border border-premium-border text-premium-accent hover:scale-110 transition-all shadow-sm"
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
             {/* Premium Action Button */}
             <Link
               href="/contact"
@@ -76,13 +92,24 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* 📱 Mobile Toggle Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative z-50 text-premium-text hover:text-premium-accent transition-colors focus:outline-none p-2"
-          >
-            {isOpen ? <X size={30} strokeWidth={2.5} /> : <Menu size={30} strokeWidth={2.5} />}
-          </button>
+          {/* 📱 Mobile Actions */}
+          <div className="flex items-center gap-4 md:hidden">
+            {/* Theme Toggle (Mobile) */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 text-premium-text hover:text-premium-accent transition-colors relative z-50"
+            >
+              {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+
+            {/* Menu Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative z-50 text-premium-text hover:text-premium-accent transition-colors focus:outline-none p-2"
+            >
+              {isOpen ? <X size={30} strokeWidth={2.5} /> : <Menu size={30} strokeWidth={2.5} />}
+            </button>
+          </div>
         </div>
       </nav>
 
