@@ -28,25 +28,36 @@ const governance = [
 
 export default function AboutGovernance() {
   return (
-    <section className="relative py-24 md:py-32 bg-[#050507] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      {/* background glow */}
-      <div className="absolute right-[-200px] top-[-120px] w-[600px] h-[600px] bg-emerald-500/10 blur-[200px] rounded-full pointer-events-none"></div>
+      {/* 🟢 Background Glow (Dynamic) */}
+      <div className="absolute right-[-200px] top-[-120px] w-[600px] h-[600px] bg-premium-accent/10 blur-[200px] rounded-full pointer-events-none"></div>
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* heading */}
+        {/* Heading */}
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            प्रबंधन एवं <span className="text-premium-emerald">शासन</span>
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-premium-text mb-6 tracking-tight transition-colors duration-500"
+          >
+            प्रबंधन एवं <span className="text-premium-accent">शासन</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-premium-muted max-w-2xl mx-auto text-lg leading-relaxed transition-colors duration-500"
+          >
             समिति का संचालन पारदर्शिता, लोकतंत्र और जवाबदेही के सिद्धांतों पर आधारित है,
             जिससे सदस्यों और ग्रामीण समुदाय का विश्वास लगातार मजबूत बना रहे।
-          </p>
+          </motion.p>
         </div>
 
-        {/* grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-2 gap-8">
 
           {governance.map((item, i) => (
@@ -60,26 +71,28 @@ export default function AboutGovernance() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-[#0b0c11] to-[#050507] p-8 md:p-10 hover:border-premium-emerald/40 transition-all duration-500"
+              className="group relative rounded-[2rem] border border-premium-border bg-premium-card 
+              p-8 md:p-10 hover:border-premium-accent/40 transition-all duration-500 
+              backdrop-blur-xl hover:-translate-y-2 hover:shadow-2xl hover:shadow-premium-shadow"
             >
 
-              {/* glow hover */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top,rgba(58,244,183,0.18),transparent_60%)]"></div>
+              {/* Hover Glow Overlay */}
+              <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-b from-premium-accent/5 to-transparent pointer-events-none"></div>
 
               <div className="relative z-10">
 
-                {/* icon */}
-                <div className="w-14 h-14 mb-6 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald group-hover:scale-110 transition-transform duration-500">
-                  <item.icon size={28} />
+                {/* Icon Box */}
+                <div className="w-16 h-16 mb-6 rounded-2xl bg-premium-surface border border-premium-border flex items-center justify-center text-premium-accent shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <item.icon size={32} />
                 </div>
 
-                {/* title */}
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-premium-emerald transition-colors">
+                {/* Title */}
+                <h3 className="text-xl md:text-2xl font-bold text-premium-text mb-4 group-hover:text-premium-accent transition-colors duration-300">
                   {item.title}
                 </h3>
 
-                {/* desc */}
-                <p className="text-white/60 leading-relaxed text-[15px]">
+                {/* Desc */}
+                <p className="text-premium-muted leading-relaxed text-[15px] transition-colors duration-500">
                   {item.desc}
                 </p>
               </div>
@@ -87,15 +100,15 @@ export default function AboutGovernance() {
           ))}
         </div>
 
-        {/* bottom trust bar */}
+        {/* Bottom Trust Bar */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="mt-24 border-t border-white/10 pt-12 text-center"
+          className="mt-24 border-t border-premium-border pt-12 text-center"
         >
-          <p className="text-white/50 text-sm md:text-base tracking-wide">
+          <p className="text-premium-text/60 text-sm md:text-base tracking-wide transition-colors duration-500">
             राजस्थान सहकारिता अधिनियम के अंतर्गत पंजीकृत एवं वैधानिक रूप से संचालित संस्था
           </p>
         </motion.div>
