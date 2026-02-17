@@ -32,25 +32,36 @@ const stats = [
 
 export default function AboutAchievements() {
   return (
-    <section className="relative py-24 md:py-32 bg-[#050507] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      {/* premium gradient glow */}
-      <div className="absolute left-1/2 -translate-x-1/2 -top-32 w-[700px] h-[700px] bg-emerald-500/10 blur-[180px] rounded-full pointer-events-none"></div>
+      {/* 🟢 Premium Gradient Glow (Dynamic) */}
+      <div className="absolute left-1/2 -translate-x-1/2 -top-32 w-[700px] h-[700px] bg-premium-accent/5 blur-[180px] rounded-full pointer-events-none"></div>
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* heading */}
+        {/* Heading */}
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            हमारी <span className="text-premium-emerald">उपलब्धियां</span>
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-premium-text mb-6 tracking-tight transition-colors duration-500"
+          >
+            हमारी <span className="text-premium-accent">उपलब्धियां</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-premium-muted max-w-2xl mx-auto text-lg leading-relaxed transition-colors duration-500"
+          >
             वर्षों की निरंतर सेवा, पारदर्शिता और विश्वास ने निमोद सहकारी समिति 
             को क्षेत्र की एक मजबूत और विश्वसनीय संस्था के रूप में स्थापित किया है।
-          </p>
+          </motion.p>
         </div>
 
-        {/* stats grid */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
 
           {stats.map((item, i) => (
@@ -64,31 +75,33 @@ export default function AboutAchievements() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl border border-white/10 bg-gradient-to-b from-[#0b0c11] to-[#050507] p-7 md:p-8 text-center hover:border-premium-emerald/40 transition-all duration-500"
+              className="group relative rounded-[2rem] border border-premium-border bg-premium-card 
+              p-7 md:p-8 text-center hover:border-premium-accent/40 transition-all duration-500 
+              backdrop-blur-xl hover:-translate-y-2 hover:shadow-2xl hover:shadow-premium-shadow"
             >
 
-              {/* hover glow */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top,rgba(58,244,183,0.18),transparent_60%)]"></div>
+              {/* Hover Glow Overlay */}
+              <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-b from-premium-accent/5 to-transparent pointer-events-none"></div>
 
               <div className="relative z-10">
 
-                {/* icon */}
-                <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-premium-emerald/10 flex items-center justify-center text-premium-emerald group-hover:scale-110 transition-transform duration-500">
-                  <item.icon size={28} />
+                {/* Icon Box */}
+                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-premium-surface border border-premium-border flex items-center justify-center text-premium-accent shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <item.icon size={32} />
                 </div>
 
-                {/* value */}
-                <div className="text-3xl md:text-4xl font-bold text-premium-emerald mb-2 tracking-tight">
+                {/* Value */}
+                <div className="text-3xl md:text-4xl font-bold text-premium-accent mb-2 tracking-tight transition-colors duration-500">
                   {item.value}
                 </div>
 
-                {/* label */}
-                <div className="text-white font-semibold text-sm md:text-base mb-1">
+                {/* Label */}
+                <div className="text-premium-text font-bold text-sm md:text-base mb-1 transition-colors duration-500">
                   {item.label}
                 </div>
 
-                {/* sub */}
-                <div className="text-white/40 text-[11px] uppercase tracking-widest font-bold">
+                {/* Sub */}
+                <div className="text-premium-muted text-[11px] uppercase tracking-widest font-bold transition-colors duration-500">
                   {item.sub}
                 </div>
               </div>
@@ -96,18 +109,18 @@ export default function AboutAchievements() {
           ))}
         </div>
 
-        {/* bottom statement */}
+        {/* Bottom Statement */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="mt-20 text-center max-w-3xl mx-auto"
+          className="mt-24 text-center max-w-3xl mx-auto"
         >
-          <p className="text-white/70 text-lg leading-relaxed">
-            हमारा उद्देश्य केवल आंकड़े बढ़ाना नहीं, बल्कि हर किसान और परिवार 
+          <p className="text-premium-text/80 text-lg md:text-xl font-medium leading-relaxed italic transition-colors duration-500">
+            "हमारा उद्देश्य केवल आंकड़े बढ़ाना नहीं, बल्कि हर किसान और परिवार 
             के जीवन में वास्तविक सकारात्मक परिवर्तन लाना है। 
-            विश्वास ही हमारी सबसे बड़ी पूंजी है।
+            विश्वास ही हमारी सबसे बड़ी पूंजी है।"
           </p>
         </motion.div>
 
