@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Target, Lightbulb, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple luxury stagger */
+/* 🍎 Apple luxury stagger system */
 const container = {
   hidden: {},
   show: {
@@ -47,11 +47,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 bg-premium-slate relative overflow-hidden">
+    <section id="about" className="py-24 bg-premium-bg relative overflow-hidden transition-colors duration-500">
 
-      <div className="w-[92%] max-w-[1200px] mx-auto">
+      {/* 🌌 Subtle Ambient Glow */}
+      <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-premium-accent/5 blur-[120px] pointer-events-none" />
 
-        {/* Header */}
+      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
+
+        {/* Header Section */}
         <motion.div
           initial={{ opacity:0, y:60 }}
           whileInView={{ opacity:1, y:0 }}
@@ -59,21 +62,21 @@ export default function About() {
           transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
           className="mb-16 max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            संस्था का <span className="text-premium-emerald">परिचय</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-premium-text mb-6 tracking-tight transition-colors duration-500">
+            संस्था का <span className="text-premium-accent">परिचय</span>
           </h2>
-          <div className="h-1.5 w-24 bg-premium-emerald rounded-full mb-8"></div>
+          <div className="h-1.5 w-24 bg-premium-accent/40 rounded-full mb-8 shadow-[0_0_10px_var(--accent-glow)]" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Image reveal */}
+          {/* Image Section with Reveal Effect */}
           <motion.div
             initial={{ opacity:0, scale:0.96, y:60 }}
             whileInView={{ opacity:1, scale:1, y:0 }}
             viewport={{ once:true }}
             transition={{ duration:1, ease:[0.22,1,0.36,1] }}
-            className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl group"
+            className="relative rounded-[2.5rem] overflow-hidden border border-premium-border shadow-2xl shadow-premium-shadow group transition-all duration-500"
           >
             <div className="relative w-full">
               <Image 
@@ -81,44 +84,52 @@ export default function About() {
                 alt="Nimod Cooperative Gate"
                 width={1200}
                 height={800}
-                className="w-full h-auto md:h-[500px] object-contain md:object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-auto md:h-[550px] object-cover transition-transform duration-1000 group-hover:scale-110"
                 sizes="(max-width:768px) 100vw, 50vw"
                 priority={false}
               />
             </div>
 
-            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-premium-charcoal via-transparent to-transparent z-10 opacity-60"></div>
+            {/* Premium Overlay for Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-60" />
+            
+            {/* Since 1954 Badge */}
+            <div className="absolute bottom-6 left-6 px-5 py-2 rounded-full bg-premium-card/80 backdrop-blur-md border border-premium-border text-premium-text text-[10px] font-bold tracking-widest uppercase z-20 shadow-lg">
+              Since 1954
+            </div>
           </motion.div>
 
-          {/* Right content */}
+          {/* Right Text & Info Cards */}
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once:true, margin:"-80px" }}
-            className="space-y-8"
+            className="space-y-10"
           >
-            <motion.p variants={item} className="text-lg text-white/80 leading-relaxed">
-              <span className="text-premium-emerald font-bold">
+            <motion.p variants={item} className="text-lg md:text-xl text-premium-text leading-relaxed transition-colors duration-500 font-medium opacity-90">
+              <span className="text-premium-accent font-black">
                 बहुद्देशीय ग्राम सेवा सहकारी समिति निमोद
               </span>{" "}
-              एक बहुउद्देश्यीय प्राथमिक ग्राम सेवा सहकारी संस्था है जो ग्रामीण क्षेत्र में वित्तीय, कृषि, ऊर्जा एवं सामाजिक विकास की आवश्यकताओं को पूरा करती है।
+              एक अग्रणी प्राथमिक ग्राम सेवा सहकारी संस्था है जो ग्रामीण क्षेत्र में वित्तीय, कृषि, ऊर्जा एवं सामाजिक विकास की आवश्यकताओं को पूरा करती है।
             </motion.p>
 
-            {/* Cards */}
-            <div className="grid gap-5">
+            {/* Philosophy Cards Grid */}
+            <div className="grid gap-6">
               {cards.map((card, index) => (
                 <motion.div 
                   key={index}
                   variants={item}
-                  className="premium-card p-6 rounded-2xl flex gap-5 items-start"
+                  className="group relative p-6 rounded-[2rem] bg-premium-card border border-premium-border flex gap-6 items-start transition-all duration-500 hover:shadow-xl hover:shadow-premium-shadow hover:border-premium-accent/30"
                 >
-                  <div className="p-3 rounded-full bg-premium-emerald/10 text-premium-emerald shrink-0">
-                    <card.icon size={24} />
+                  {/* Icon Box */}
+                  <div className="p-4 rounded-2xl bg-premium-surface text-premium-accent shrink-0 shadow-sm transition-all duration-500 group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black">
+                    <card.icon size={26} strokeWidth={2} />
                   </div>
+                  
                   <div>
-                    <h4 className="text-xl font-bold text-white mb-2">{card.title}</h4>
-                    <p className="text-white/60 text-sm leading-relaxed">{card.text}</p>
+                    <h4 className="text-xl font-bold text-premium-text mb-2 transition-colors duration-500">{card.title}</h4>
+                    <p className="text-premium-muted text-sm md:text-base leading-relaxed transition-colors duration-500 font-medium">{card.text}</p>
                   </div>
                 </motion.div>
               ))}
