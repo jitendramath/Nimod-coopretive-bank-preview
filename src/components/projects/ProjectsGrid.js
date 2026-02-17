@@ -9,7 +9,7 @@ export default function ProjectsGrid() {
     {
       title: "सौर ऊर्जा परियोजना",
       desc: "15.34 KW सौर संयंत्र के माध्यम से स्वच्छ ऊर्जा और अतिरिक्त आय का स्रोत।",
-      image: "/images/projects/solar.jpg", // change later
+      image: "/images/projects/solar.jpg",
       tag: "Energy",
       href: "#solar",
     },
@@ -44,22 +44,36 @@ export default function ProjectsGrid() {
   ];
 
   return (
-    <section className="py-20 md:py-28 relative">
+    <section className="relative py-20 md:py-28 bg-premium-bg overflow-hidden transition-colors duration-500">
 
-      <div className="w-[92%] max-w-[1200px] mx-auto">
+      {/* 🌌 Dynamic Ambient Glow */}
+      <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-premium-accent/5 blur-[180px] rounded-full pointer-events-none" />
 
-        {/* heading */}
+      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
+
+        {/* Heading Section */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            हमारी प्रमुख परियोजनाएं
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-premium-text mb-6 tracking-tight transition-colors duration-500"
+          >
+            हमारी प्रमुख <span className="text-premium-accent">परियोजनाएं</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-premium-muted max-w-2xl mx-auto leading-relaxed text-sm md:text-lg transition-colors duration-500"
+          >
             ऊर्जा, भंडारण, बैंकिंग और सामाजिक विकास के क्षेत्रों में समिति द्वारा
             संचालित परियोजनाएं ग्रामीण क्षेत्र के लिए एक मजबूत विकास मॉडल प्रस्तुत करती हैं।
-          </p>
+          </motion.p>
         </div>
 
-        {/* GRID */}
+        {/* Project Grid with Staggered Animation */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -72,7 +86,7 @@ export default function ProjectsGrid() {
               }
             }
           }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
         >
           {projects.map((project, i) => (
             <motion.div
