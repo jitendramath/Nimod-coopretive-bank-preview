@@ -89,7 +89,7 @@ export default function Hero() {
   className="flex justify-center mb-8"
 >
   <p className="text-[11px] md:text-xs text-[var(--text-muted)] tracking-[0.18em] whitespace-nowrap overflow-hidden text-ellipsis">
-    Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span> • Govt Registered
+    Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span>
   </p>
 </motion.div>
   
@@ -115,29 +115,83 @@ export default function Hero() {
 
         </motion.div>
 
-        {/* 📊 ULTRA PREMIUM STATS */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-[var(--border-color)] bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-[var(--border-color)] rounded-3xl p-4 md:p-10 shadow-sm"
-        >
-          {[
-            { val: "900+", label: "किसान सदस्य" },
-            { val: "1200+", label: "परिवार जुड़े" },
-            { val: "₹3 Cr+", label: "ऋण वितरण" },
-            { val: "1954", label: "स्थापना वर्ष" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center py-4 md:py-2">
-              <div className="text-2xl md:text-4xl font-semibold text-[var(--text-main)] mb-1">
-                {stat.val}
-              </div>
-              <div className="text-[10px] md:text-sm text-[var(--text-muted)] font-semibold uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+        {/* 📊 LUXURY FLOATING STATS */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.5 }}
+  className="relative"
+>
+
+  {/* outer glow */}
+  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-transparent blur-2xl rounded-[2.5rem]" />
+
+  <div className="
+    relative
+    grid grid-cols-2 md:grid-cols-4
+    gap-4 md:gap-0
+    rounded-[2.5rem]
+    border border-[var(--border-color)]
+    bg-[var(--card-bg)]
+    backdrop-blur-2xl
+    shadow-[0_20px_60px_var(--shadow-color)]
+    overflow-hidden
+  ">
+
+    {[
+      { val: "900+", label: "किसान सदस्य" },
+      { val: "1200+", label: "परिवार जुड़े" },
+      { val: "₹3 Cr+", label: "ऋण वितरण" },
+      { val: "1954", label: "स्थापना वर्ष" }
+    ].map((stat, index) => (
+      
+      <div
+        key={index}
+        className="
+        relative group
+        py-7 md:py-9
+        text-center
+        transition
+        hover:bg-white/[0.03]
+        "
+      >
+
+        {/* divider */}
+        {index !== 3 && (
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-12 w-px bg-[var(--border-color)]"/>
+        )}
+
+        {/* glow hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition duration-700 bg-[radial-gradient(circle_at_center,var(--accent-glow),transparent_60%)]" />
+
+        {/* value */}
+        <div className="
+          text-2xl md:text-4xl
+          font-medium
+          tracking-tight
+          text-[var(--text-main)]
+          group-hover:text-[var(--accent-primary)]
+          transition
+        ">
+          {stat.val}
+        </div>
+
+        {/* label */}
+        <div className="
+          mt-2
+          text-[10px] md:text-xs
+          tracking-[0.22em]
+          uppercase
+          text-[var(--text-muted)]
+        ">
+          {stat.label}
+        </div>
+
+      </div>
+    ))}
+
+  </div>
+</motion.div>
 
       </div>
     </section>
