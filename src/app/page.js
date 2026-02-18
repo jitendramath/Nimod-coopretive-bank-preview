@@ -9,7 +9,6 @@ import Footer from "@/components/layout/Footer";
 
 /* sections */
 import Hero from "@/components/sections/Hero";
-import TrustStrip from "@/components/sections/TrustStrip";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import Projects from "@/components/sections/Projects";
@@ -47,7 +46,7 @@ export default function Home() {
         <>
           <Navbar />
           <Hero />
-          <TrustStrip />
+          
 
           <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
             <About />
