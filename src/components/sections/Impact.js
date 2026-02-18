@@ -3,18 +3,18 @@
 import { Users, Heart, TrendingUp, IndianRupee } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple luxury stagger system */
+/* Luxury stagger */
 const container = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.18
+      staggerChildren: 0.15
     }
   }
 };
 
 const item = {
-  hidden: { opacity: 0, y: 80, scale: 0.95, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 60, scale: 0.96, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: 0,
@@ -28,101 +28,119 @@ const item = {
 };
 
 export default function Impact() {
+
   const stats = [
     {
       icon: Users,
       value: "900+",
       label: "किसान सदस्य",
-      desc: "सक्रिय रूप से जुड़े हुए और लाभान्वित",
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-500/10"
+      desc: "सक्रिय रूप से जुड़े हुए और लाभान्वित"
     },
     {
       icon: Heart,
       value: "1200+",
       label: "परिवार जुड़े",
-      desc: "प्रत्यक्ष और अप्रत्यक्ष रूप से सशक्त",
-      color: "text-rose-600 dark:text-rose-400",
-      bg: "bg-rose-500/10"
+      desc: "प्रत्यक्ष और अप्रत्यक्ष रूप से सशक्त"
     },
     {
       icon: TrendingUp,
       value: "108+",
       label: "SHG समूह",
-      desc: "महिला सशक्तिकरण की दिशा में पहल",
-      color: "text-premium-accent",
-      bg: "bg-premium-accent/10"
+      desc: "महिला सशक्तिकरण की दिशा में पहल"
     },
     {
       icon: IndianRupee,
       value: "₹3 Cr+",
       label: "ऋण वितरण",
-      desc: "ग्रामीण अर्थव्यवस्था को मजबूती",
-      color: "text-amber-600 dark:text-amber-400",
-      bg: "bg-amber-500/10"
+      desc: "ग्रामीण अर्थव्यवस्था को मजबूती"
     }
   ];
 
   return (
-    <section id="impact" className="py-24 bg-premium-bg relative overflow-hidden transition-colors duration-500">
+    <section
+      id="impact"
+      className="relative py-20 md:py-28 overflow-hidden transition-colors duration-500"
+    >
 
-      {/* 🌌 Dynamic Ambient Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-premium-accent/5 blur-[160px] pointer-events-none" />
+      {/* 🌌 Ambient Luxury Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[var(--accent-glow)] blur-[180px] opacity-40 dark:opacity-30" />
+        <div className="absolute bottom-[-200px] right-[-100px] w-[500px] h-[500px] bg-cyan-400/10 dark:bg-emerald-400/10 blur-[160px]" />
+      </div>
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity:0, y:70 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
-          className="mb-20 text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
-            सामाजिक <span className="text-premium-accent">प्रभाव</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-premium-text mb-6">
+            सामाजिक <span className="text-shimmer">प्रभाव</span>
           </h2>
-          <p className="text-lg text-premium-muted font-medium transition-colors duration-500">
+          <p className="text-premium-muted text-base md:text-lg leading-relaxed">
             समिति की गतिविधियों का प्रत्यक्ष प्रभाव ग्रामीण परिवारों की आर्थिक स्थिति एवं जीवन स्तर पर स्पष्ट रूप से दिखाई देता है।
           </p>
         </motion.div>
 
-        {/* 🍎 Stats Grid (Staggered Animation) */}
+        {/* Cards */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once:true, margin:"-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
         >
           {stats.map((stat, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               variants={item}
-              className="group relative p-10 rounded-[2.5rem] bg-premium-card border border-premium-border text-center transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-premium-shadow"
+              className="group relative rounded-[2.5rem] p-8 md:p-10 backdrop-blur-xl border border-[var(--border-color)] 
+              bg-[var(--card-bg)] 
+              transition-all duration-500 
+              hover:-translate-y-4 hover:shadow-[0_30px_80px_var(--shadow-color)] 
+              overflow-hidden"
             >
-              {/* Floating Icon Box */}
-              <div className={`w-18 h-18 mx-auto rounded-2xl flex items-center justify-center mb-8 bg-premium-surface shadow-sm ${stat.color} transition-all duration-500 group-hover:scale-110 group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black`}>
-                <stat.icon size={36} strokeWidth={2} />
+
+              {/* Internal Glow Ring */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--accent-glow),transparent_60%)]" />
               </div>
 
-              {/* Statistical Value */}
-              <h3 className={`text-4xl font-black mb-3 transition-colors duration-500 ${stat.color}`}>
+              {/* Floating Icon */}
+              <div className="relative z-10 w-16 h-16 mx-auto mb-8 rounded-2xl 
+                flex items-center justify-center 
+                bg-white/40 dark:bg-white/5 
+                backdrop-blur-md 
+                border border-white/20 
+                text-[var(--accent-primary)] 
+                group-hover:scale-110 
+                transition-all duration-500"
+              >
+                <stat.icon size={32} strokeWidth={2} />
+              </div>
+
+              {/* Value */}
+              <h3 className="relative z-10 text-3xl md:text-4xl font-black text-premium-text mb-3 tracking-tight">
                 {stat.value}
               </h3>
-              
-              <div className="text-lg font-bold text-premium-text mb-3 transition-colors duration-500">
+
+              {/* Label */}
+              <div className="relative z-10 text-base md:text-lg font-bold text-premium-text mb-3">
                 {stat.label}
               </div>
-              
-              <p className="text-sm text-premium-muted leading-relaxed font-medium transition-colors duration-500">
+
+              {/* Description */}
+              <p className="relative z-10 text-sm text-premium-muted leading-relaxed">
                 {stat.desc}
               </p>
 
-              {/* Subtle Decorative Element */}
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                 <stat.icon size={60} />
-              </div>
+              {/* Soft Glass Reflection */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/20 dark:bg-white/5 rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+
             </motion.div>
           ))}
         </motion.div>
