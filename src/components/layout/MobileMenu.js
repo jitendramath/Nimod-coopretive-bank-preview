@@ -2,111 +2,98 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { X, ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function MobileMenu({ closeMenu, links }) {
-  const menuVariants = {
-    hidden: { opacity: 0, y: "-100%" },
-    visible: {
+
+  const menu = {
+    hidden: { opacity: 0, y: -60 },
+    show: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for snappy feel
-      },
+      transition: { duration: 0.35 }
     },
     exit: {
       opacity: 0,
-      y: "-100%",
-      transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
+      y: -60,
+      transition: { duration: 0.25 }
+    }
   };
 
-  const linkVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: (i) => ({
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: (i) => ({
       opacity: 1,
-      x: 0,
-      transition: {
-        delay: 0.1 + i * 0.1,
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
+      y: 0,
+      transition: { delay: i * 0.05 }
+    })
   };
 
   return (
     <motion.div
-      variants={menuVariants}
+      variants={menu}
       initial="hidden"
-      animate="visible"
+      animate="show"
       exit="exit"
-      className="fixed inset-0 z-[100] bg-premium-bg/95 backdrop-blur-3xl flex flex-col supports-[backdrop-filter]:bg-premium-bg/90 transition-colors duration-500"
+      className="fixed inset-0 z-[999] bg-[var(--bg-primary)] flex flex-col"
     >
-      {/* Header */}
-      <div className="w-[90%] mx-auto py-6 flex justify-between items-center border-b border-premium-border">
-        <span className="text-2xl font-black text-premium-text tracking-tight transition-colors duration-500">
+      {/* top bar */}
+      <div className="flex items-center justify-between px-6 pt-6">
+        <span className="text-lg font-semibold tracking-tight text-[var(--text-main)]">
           Menu
         </span>
+
         <button
           onClick={closeMenu}
-          className="p-2.5 rounded-full bg-premium-surface text-premium-muted hover:text-premium-accent hover:scale-110 transition-all duration-300 border border-premium-border"
+          className="p-2 rounded-full border border-[var(--border-color)] hover:bg-black/5 dark:hover:bg-white/10 transition"
         >
-          <X size={26} strokeWidth={2.5} />
+          <X size={24} />
         </button>
       </div>
 
-      {/* Links */}
-      <div className="flex-1 flex flex-col justify-center px-8 gap-8">
-        {links.map((link, index) => (
+      {/* links */}
+      <div className="flex-1 flex flex-col justify-center px-7 gap-7">
+
+        {links.map((link, i) => (
           <motion.div
-            key={index}
-            custom={index}
-            variants={linkVariants}
+            key={i}
+            custom={i}
+            variants={item}
             initial="hidden"
-            animate="visible"
-            className="group"
+            animate="show"
           >
             <Link
               href={link.href}
               onClick={closeMenu}
-              className="flex items-center justify-between text-4xl font-bold text-premium-text/90 group-hover:text-premium-accent transition-colors tracking-tight"
+              className="block text-3xl font-semibold tracking-tight text-[var(--text-main)] hover:text-emerald-500 transition"
             >
               {link.name}
-              <ChevronRight
-                size={32}
-                className="opacity-0 -translate-x-6 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-premium-accent"
-              />
             </Link>
           </motion.div>
         ))}
 
-        {/* Membership CTA in Menu */}
+        {/* premium button */}
         <motion.div
-           variants={linkVariants}
-           custom={links.length}
-           initial="hidden"
-           animate="visible"
-           className="mt-6"
+          custom={links.length + 1}
+          variants={item}
+          initial="hidden"
+          animate="show"
+          className="pt-6"
         >
-             <Link
-              href="/contact"
-              onClick={closeMenu}
-              className="w-full block text-center py-4 bg-premium-accent text-white dark:text-black font-black text-lg rounded-2xl uppercase tracking-widest shadow-lg shadow-premium-shadow active:scale-95 transition-all"
-            >
-              सदस्यता लें
-            </Link>
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className="block text-center py-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-sky-500 text-black font-semibold text-lg shadow-lg"
+          >
+            Contact
+          </Link>
         </motion.div>
+
       </div>
 
-      {/* Footer */}
-      <div className="p-8 border-t border-premium-border">
-        <p className="text-premium-muted/50 text-xs font-bold tracking-[0.2em] uppercase text-center transition-colors duration-500">
-          Nimod Cooperative • {new Date().getFullYear()}
-        </p>
+      {/* bottom */}
+      <div className="pb-8 text-center text-[var(--text-muted)] text-xs">
+        Nimod • {new Date().getFullYear()}
       </div>
     </motion.div>
   );
