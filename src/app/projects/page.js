@@ -2,10 +2,6 @@
 
 import { motion } from "framer-motion";
 
-/* layout */
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-
 /* sections */
 import ProjectsHero from "@/components/projects/ProjectsHero";
 import ProjectsIntro from "@/components/projects/ProjectsIntro";
@@ -46,8 +42,7 @@ export default function ProjectsPage() {
       {/* 🔥 background fx */}
       <ProjectsBackgroundFX />
 
-      <Navbar />
-
+      
       {/* HERO */}
       <ProjectsHero />
 
@@ -151,8 +146,7 @@ export default function ProjectsPage() {
         <ProjectsCTA />
       </motion.div>
 
-      <Footer />
-
+      
     </main>
   );
 }
