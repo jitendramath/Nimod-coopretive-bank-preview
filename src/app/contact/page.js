@@ -2,10 +2,6 @@
 
 import { motion } from "framer-motion";
 
-/* 🏗️ Layout Components */
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-
 /* 📞 Contact Page Specific Components */
 import ContactHero from "@/components/contact/ContactHero";
 import ContactInfoGrid from "@/components/contact/ContactInfoGrid";
@@ -38,9 +34,6 @@ export default function ContactPage() {
       
       {/* 🌌 Hardware Accelerated Ambient Background */}
       <ContactBackgroundFX />
-
-      {/* Navigation */}
-      <Navbar />
 
       {/* 1. HERO SECTION (Immediate Entrance) */}
       <ContactHero />
@@ -84,9 +77,6 @@ export default function ContactPage() {
       >
         <ContactMap />
       </motion.div>
-
-      {/* Footer */}
-      <Footer />
 
       {/* 📱 Mobile Optimized Bottom Blur (Optional but adds depth) */}
       <div className="md:hidden fixed bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent pointer-events-none z-40" />
