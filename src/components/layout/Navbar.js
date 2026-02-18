@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, ShieldCheck } from "lucide-react";
+import { Menu, X, Sun, Moon, ShieldCheck, UserCircle } from "lucide-react";
 import MobileMenu from "./MobileMenu";
+import SignInModal from "@/components/auth/SignInModal"; // ✅ Modal Import
 
 const navLinks = [
   { name: "संस्था", href: "/about" },
@@ -16,6 +17,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false); // ✅ Login State
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -41,9 +43,8 @@ export default function Navbar() {
       >
         <div className="w-[92%] max-w-[1200px] mx-auto flex justify-between items-center">
           
-          {/* 💎 Premium Logo (Refined & Classy) */}
+          {/* 💎 Premium Logo */}
           <Link href="/" className="group relative z-50 flex items-center gap-2">
-            {/* Optional: A subtle icon for branding */}
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-premium-accent to-emerald-600 flex items-center justify-center text-white shadow-lg shadow-premium-accent/20">
                <ShieldCheck size={18} strokeWidth={2.5} />
             </div>
@@ -55,7 +56,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* 🖥️ Desktop Navigation (Clean & Medium Weight) */}
+          {/* 🖥️ Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <Link
@@ -64,15 +65,13 @@ export default function Navbar() {
                 className="text-[15px] font-medium text-premium-muted/80 hover:text-premium-text transition-colors relative group"
               >
                 {link.name}
-                {/* Subtle Dot Indicator on Hover */}
                 <span className="absolute -bottom-1.5 left-1/2 w-1 h-1 bg-premium-accent rounded-full opacity-0 -translate-x-1/2 transition-all duration-300 group-hover:opacity-100"></span>
               </Link>
             ))}
 
-            {/* Separator Line */}
             <div className="h-6 w-[1px] bg-premium-border"></div>
 
-            {/* 🌙☀️ Theme Toggle (Minimalist) */}
+            {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full text-premium-muted hover:bg-premium-surface hover:text-premium-accent transition-all"
@@ -81,13 +80,14 @@ export default function Navbar() {
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            {/* Premium Action Button (Soft Shadow) */}
-            <Link
-              href="/contact"
-              className="px-5 py-2 bg-premium-text text-premium-bg rounded-lg text-sm font-semibold hover:opacity-90 transition-all shadow-lg shadow-premium-text/10"
+            {/* ✅ Login Button (Trigger Modal) */}
+            <button
+              onClick={() => setIsSignInOpen(true)}
+              className="px-5 py-2 bg-premium-text text-premium-bg rounded-lg text-sm font-semibold hover:opacity-90 transition-all shadow-lg shadow-premium-text/10 flex items-center gap-2"
             >
-              सदस्यता लें
-            </Link>
+              <UserCircle size={18} />
+              सदस्य लॉगिन
+            </button>
           </div>
 
           {/* 📱 Mobile Actions */}
@@ -109,10 +109,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 📱 Mobile Menu Slide-over */}
+      {/* 📱 Mobile Menu (Pass Login Handler) */}
       <AnimatePresence>
-        {isOpen && <MobileMenu closeMenu={() => setIsOpen(false)} links={navLinks} />}
+        {isOpen && (
+          <MobileMenu 
+            closeMenu={() => setIsOpen(false)} 
+            links={navLinks} 
+            onSignIn={() => { setIsOpen(false); setIsSignInOpen(true); }} // Mobile click handling
+          />
+        )}
       </AnimatePresence>
+
+      {/* ✅ SIGN IN MODAL */}
+      <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
     </>
   );
 }
