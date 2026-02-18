@@ -4,52 +4,56 @@ import { motion } from "framer-motion";
 
 export default function AboutBackgroundFX() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
-      {/* 🔥 MAIN EMERALD AURA */}
+      {/* 🌈 LIGHT MODE BASE */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f7fafc] via-[#f3f6fb] to-[#eef2f7] dark:hidden" />
+
+      {/* 🌑 DARK MODE BASE */}
+      <div className="absolute inset-0 hidden dark:block bg-gradient-to-b from-[#020617] via-[#020617] to-black" />
+
+      {/* 💎 CENTER AURA (MAIN LUXURY LIGHT) */}
+      <div className="
+        absolute left-1/2 top-[20%] -translate-x-1/2
+        w-[700px] h-[700px]
+        bg-emerald-400/10 dark:bg-emerald-500/10
+        blur-[140px] rounded-full
+        opacity-70 dark:opacity-40
+      " />
+
+      {/* 💎 SIDE AURA */}
+      <div className="
+        absolute right-[-120px] bottom-0
+        w-[520px] h-[520px]
+        bg-cyan-400/10 dark:bg-cyan-500/10
+        blur-[140px] rounded-full
+        opacity-60 dark:opacity-30
+      " />
+
+      {/* ✨ SOFT MESH GLOW */}
+      <div className="
+        absolute inset-0 opacity-[0.05] dark:opacity-[0.07]
+        bg-[radial-gradient(circle_at_30%_20%,var(--accent-primary),transparent_60%)]
+      " />
+
+      {/* 🧠 PREMIUM GRAIN TEXTURE (AWARD LEVEL TOUCH) */}
+      <div className="
+        absolute inset-0 opacity-[0.03] dark:opacity-[0.05]
+        mix-blend-overlay
+        bg-[url('https://grainy-gradients.vercel.app/noise.svg')]
+      " />
+
+      {/* 🌌 ULTRA SLOW FLOAT */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.8 }}
-        transition={{ duration: 2 }}
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] 
-        bg-emerald-400/20 blur-[160px] rounded-full"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="
+          absolute left-[20%] top-[55%]
+          w-[280px] h-[280px]
+          bg-emerald-300/10 dark:bg-emerald-500/10
+          blur-[120px] rounded-full
+        "
       />
-
-      {/* 🔵 SOFT CYAN ORB */}
-      <motion.div
-        animate={{
-          y: [0, 40, 0],
-          x: [0, 30, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-[40%] -left-[120px] w-[420px] h-[420px] 
-        bg-cyan-400/10 blur-[140px] rounded-full"
-      />
-
-      {/* 🟣 LUXURY DEPTH LIGHT */}
-      <motion.div
-        animate={{
-          y: [0, -30, 0],
-          x: [0, -20, 0],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-[10%] right-[-120px] w-[380px] h-[380px] 
-        bg-purple-500/10 blur-[150px] rounded-full"
-      />
-
-      {/* ✨ TOP PREMIUM LINE GLOW */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent opacity-60" />
-
-      {/* ✨ BOTTOM FADE */}
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#050507]" />
 
     </div>
   );
