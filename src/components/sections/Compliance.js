@@ -116,20 +116,6 @@ export default function Compliance() {
           ))}
         </motion.div>
 
-        {/* Bottom Trust Badges */}
-        <motion.div
-          initial={{ opacity:0, y:40 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.9 }}
-          className="mt-20 flex flex-wrap justify-center items-center gap-4 md:gap-8"
-        >
-          {["RBI Guidelines Followed", "ISO 9001:2015 Standards", "Secure SSL Encryption", "Zero-Tolerance Fraud Policy"].map((badge, i) => (
-            <div key={i} className="px-6 py-3 rounded-full border border-premium-border bg-premium-surface/50 text-premium-muted/60 text-[10px] md:text-xs font-black uppercase tracking-[0.15em] hover:text-premium-accent hover:border-premium-accent/50 transition-all duration-300 cursor-default shadow-sm backdrop-blur-sm">
-              {badge}
-            </div>
-          ))}
-        </motion.div>
 
       </div>
     </section>
