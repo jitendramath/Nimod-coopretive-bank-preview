@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
+  // 🔥 Fix for Firebase & Undici Build Error
+  transpilePackages: ['undici', 'firebase', '@firebase/auth'],
+
   // Image optimization safe for all hosting
   images: {
     remotePatterns: [
