@@ -2,10 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
-  // 🔥 यह लाइन 'undici' के मॉडर्न कोड को Vercel पर क्रैश होने से बचाएगी
-  transpilePackages: ['undici', 'firebase', '@firebase/auth'],
-
+  
   images: {
     remotePatterns: [
       {
