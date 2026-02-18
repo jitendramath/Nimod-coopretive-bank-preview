@@ -20,7 +20,6 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  // 🔥 Hydration & Scroll Logic
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -35,87 +34,97 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-premium-bg/85 backdrop-blur-md border-b border-premium-border/50 py-3 shadow-sm"
+            ? "backdrop-blur-xl bg-[var(--bg-primary)]/70 border-b border-[var(--border-color)] py-3"
             : "bg-transparent py-6"
         }`}
       >
-        <div className="w-[92%] max-w-[1200px] mx-auto flex justify-between items-center">
-          
-          {/* 💎 Premium Logo */}
-          <Link href="/" className="group relative z-50 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-premium-accent to-emerald-600 flex items-center justify-center text-white shadow-lg shadow-premium-accent/20">
-               <ShieldCheck size={18} strokeWidth={2.5} />
+        <div className="w-[92%] max-w-[1250px] mx-auto flex justify-between items-center">
+
+          {/* 💎 ULTRA PREMIUM LOGO */}
+          <Link href="/" className="flex items-center gap-3 group">
+
+            {/* icon */}
+            <div className="relative">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-sky-500 flex items-center justify-center text-black shadow-lg shadow-emerald-400/20 group-hover:scale-105 transition">
+                <ShieldCheck size={18} strokeWidth={2.4}/>
+              </div>
             </div>
-            
-            <span className="text-xl md:text-2xl font-bold text-premium-text tracking-tight transition-colors duration-500">
-              Nimod
-              <span className="font-normal text-premium-muted">Coop</span>
-              <span className="text-premium-accent">.</span>
-            </span>
+
+            {/* text logo */}
+            <div className="leading-none">
+              <div className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[var(--text-main)]">
+                Nimod
+                <span className="text-emerald-500">.</span>
+              </div>
+              <div className="text-[10px] tracking-[0.35em] uppercase text-[var(--text-muted)] mt-[2px]">
+                Cooperative
+              </div>
+            </div>
           </Link>
 
-          {/* 🖥️ Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* 🖥️ Desktop */}
+          <div className="hidden md:flex items-center gap-9">
+
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="text-[15px] font-medium text-premium-muted/80 hover:text-premium-text transition-colors relative group"
+                className="text-[15px] font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition relative"
               >
                 {link.name}
-                <span className="absolute -bottom-1.5 left-1/2 w-1 h-1 bg-premium-accent rounded-full opacity-0 -translate-x-1/2 transition-all duration-300 group-hover:opacity-100"></span>
               </Link>
             ))}
 
-            <div className="h-6 w-[1px] bg-premium-border"></div>
+            {/* divider */}
+            <div className="h-5 w-[1px] bg-[var(--border-color)]"></div>
 
-            {/* Theme Toggle */}
+            {/* theme */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full text-premium-muted hover:bg-premium-surface hover:text-premium-accent transition-all"
-              aria-label="Toggle Theme"
+              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "dark" ? <Sun size={18}/> : <Moon size={18}/>}
             </button>
 
-            {/* ✅ Simple Link Button (No Modal) */}
+            {/* premium button */}
             <Link
               href="/contact"
-              className="px-5 py-2 bg-premium-text text-premium-bg rounded-lg text-sm font-semibold hover:opacity-90 transition-all shadow-lg shadow-premium-text/10"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-sky-500 text-black text-sm font-semibold shadow-lg hover:scale-[1.03] transition"
             >
-              सदस्यता लें
+              Contact
             </Link>
           </div>
 
-          {/* 📱 Mobile Actions */}
+          {/* 📱 Mobile */}
           <div className="flex items-center gap-3 md:hidden">
+
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 text-premium-muted hover:text-premium-text transition-colors"
+              className="p-2"
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={20}/> : <Moon size={20}/>}
             </button>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 p-2 text-premium-text hover:text-premium-accent transition-colors focus:outline-none"
+              className="p-2 text-[var(--text-main)]"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={26}/> : <Menu size={26}/>}
             </button>
+
           </div>
         </div>
       </nav>
 
-      {/* 📱 Mobile Menu */}
+      {/* mobile menu */}
       <AnimatePresence>
         {isOpen && (
-          <MobileMenu 
-            closeMenu={() => setIsOpen(false)} 
-            links={navLinks} 
+          <MobileMenu
+            closeMenu={() => setIsOpen(false)}
+            links={navLinks}
           />
         )}
       </AnimatePresence>
     </>
   );
 }
-
