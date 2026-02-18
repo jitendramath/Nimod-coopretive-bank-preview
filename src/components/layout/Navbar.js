@@ -40,27 +40,11 @@ export default function Navbar() {
       >
         <div className="w-[92%] max-w-[1250px] mx-auto flex justify-between items-center">
 
-          {/* 💎 ULTRA PREMIUM LOGO */}
-          <Link href="/" className="flex items-center gap-3 group">
-
-            {/* icon */}
-            <div className="relative">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-sky-500 flex items-center justify-center text-black shadow-lg shadow-emerald-400/20 group-hover:scale-105 transition">
-                <ShieldCheck size={18} strokeWidth={2.4}/>
-              </div>
-            </div>
-
-            {/* text logo */}
-            <div className="leading-none">
-              <div className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[var(--text-main)]">
-                Nimod
-                <span className="text-emerald-500">.</span>
-              </div>
-              <div className="text-[10px] tracking-[0.35em] uppercase text-[var(--text-muted)] mt-[2px]">
-                Cooperative
-              </div>
-            </div>
-          </Link>
+          <Link href="/" className="group">
+  <span className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[var(--text-main)] transition">
+    Nimod<span className="text-emerald-500">Cooperative</span>
+  </span>
+</Link>
 
           {/* 🖥️ Desktop */}
           <div className="hidden md:flex items-center gap-9">
