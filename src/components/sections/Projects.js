@@ -1,169 +1,179 @@
 "use client";
 
-import { Zap, Warehouse, Landmark, Store, ArrowRight } from "lucide-react";
+import { Zap, Warehouse, Landmark, Store, ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRef } from "react";
 
-/* =========================
-   Animation system
-========================= */
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.15 }
+const projects = [
+  {
+    icon: Zap,
+    title: "सौर ऊर्जा संयंत्र",
+    category: "Renewable Energy",
+    status: "Active",
+    desc: "15.34 किलोवाट क्षमता का संयंत्र। संस्था अब ऊर्जा में आत्मनिर्भर है और ग्रिड को बिजली निर्यात कर रही है।",
+    img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1920&auto=format&fit=crop"
+  },
+  {
+    icon: Warehouse,
+    title: "भंडारण गोदाम",
+    category: "Infrastructure",
+    status: "Completed",
+    desc: "2000 मीट्रिक टन क्षमता। किसानों की फसल को सुरक्षित रखने के लिए आधुनिक वेंटिलेशन सिस्टम।",
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1920&auto=format&fit=crop"
+  },
+  {
+    icon: Landmark,
+    title: "मिनी बैंक शाखा",
+    category: "Banking",
+    status: "Live",
+    desc: "पूर्णतः कंप्यूटरीकृत बैंकिंग सेवाएं। नकद जमा, निकासी और ऋण सुविधा अब आपके गांव में।",
+    img: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=1920&auto=format&fit=crop"
+  },
+  {
+    icon: Store,
+    title: "सुपर मार्केट",
+    category: "Retail",
+    status: "Upgrading",
+    desc: "उचित मूल्य की दुकान। उच्च गुणवत्ता वाला राशन और घरेलू सामान अब बाजार से कम दाम पर।",
+    img: "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?q=80&w=1920&auto=format&fit=crop"
   }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 80, scale: 0.96 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
+];
 
 export default function Projects() {
-
-  const projects = [
-    {
-      icon: Zap,
-      title: "सौर ऊर्जा संयंत्र",
-      status: "ACTIVE",
-      desc: "15.34 किलोवाट क्षमता का सौर ऊर्जा संयंत्र — ऊर्जा आत्मनिर्भरता एवं ग्रिड निर्यात सक्षम।",
-      img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop"
-    },
-    {
-      icon: Warehouse,
-      title: "भंडारण गोदाम",
-      status: "COMPLETED",
-      desc: "2000 मीट्रिक टन क्षमता का आधुनिक भंडारण केंद्र — सुरक्षित कृषि स्टॉक प्रबंधन।",
-      img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop"
-    },
-    {
-      icon: Landmark,
-      title: "मिनी बैंक शाखा",
-      status: "ACTIVE",
-      desc: "ग्रामीण डिजिटल बैंकिंग केंद्र — जमा, निकासी और पूर्ण कंप्यूटरीकृत सेवा।",
-      img: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=1600&auto=format&fit=crop"
-    },
-    {
-      icon: Store,
-      title: "सुपर मार्केट",
-      status: "UPGRADING",
-      desc: "उचित मूल्य पर गुणवत्तापूर्ण उपभोक्ता सामग्री उपलब्ध कराने हेतु आधुनिक स्टोर।",
-      img: "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?q=80&w=1600&auto=format&fit=crop"
-    }
-  ];
+  const scrollRef = useRef(null);
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
+    <section className="relative py-24 bg-black overflow-hidden">
+      
+      {/* 🌑 Ambient Background Glow */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* ambient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[var(--accent-primary)]/5 blur-[180px] pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10">
+        
+        {/* 🔥 Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 px-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl"
+          >
+            <h4 className="text-premium-accent font-bold tracking-widest uppercase text-sm mb-3">
+              Our Initiatives
+            </h4>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
+              हमारी <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">परियोजनाएं</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="hidden md:block"
+          >
+            <Link href="/projects" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors group">
+              सभी देखें <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
 
-      <div className="w-[92%] max-w-[1300px] mx-auto relative z-10">
-
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity:0, y:60 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.7 }}
-          className="mb-12 md:mb-20"
+        {/* 🚀 PREMIUM CAROUSEL (The Lazy Swipe Magic) */}
+        <div 
+          ref={scrollRef}
+          className="
+            flex gap-6 overflow-x-auto snap-x snap-mandatory 
+            pb-12 pt-4 px-4 -mx-4 scroll-smooth
+            [scrollbar-width:none] [-ms-overflow-style:none] 
+            [&::-webkit-scrollbar]:hidden
+          "
+          style={{ scrollPaddingLeft: '1rem', scrollPaddingRight: '1rem' }}
         >
-          <h2 className="text-3xl md:text-5xl font-semibold text-[var(--text-main)] mb-5">
-            हमारी <span className="text-[var(--accent-primary)]">परियोजनाएं</span>
-          </h2>
-          <p className="text-[var(--text-muted)] max-w-xl">
-            संस्था की प्रमुख विकास परियोजनाएं जो ग्रामीण अर्थव्यवस्था को सशक्त बनाती हैं।
-          </p>
-        </motion.div>
-
-        {/* =========================
-           MOBILE: HORIZONTAL SCROLL
-        ========================= */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once:true }}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-2 gap-6 overflow-x-auto md:overflow-visible pb-4 snap-x snap-mandatory scroll-smooth"
-        >
-
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              variants={item}
-              className="snap-center min-w-[88%] sm:min-w-[70%] md:min-w-0 group relative h-[420px] md:h-[460px] rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_10px_40px_var(--shadow-color)] transition-all duration-500 hover:-translate-y-2"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              // 👇 This is the MAGIC for "One Card at a Time"
+              style={{ scrollSnapStop: 'always' }} 
+              className="
+                snap-center shrink-0 
+                w-[85vw] sm:w-[400px] md:w-[450px] 
+                h-[550px] relative group rounded-[2.5rem] overflow-hidden 
+                border border-white/10 bg-[#0a0a0a] 
+                shadow-2xl shadow-black/50
+              "
             >
-              {/* IMAGE */}
-              <div
-                className="absolute inset-0 bg-cover bg-center scale-110 group-hover:scale-125 transition-transform duration-[2000ms]"
-                style={{ backgroundImage:`url(${project.img})` }}
-              />
+              {/* 🖼️ Image with Parallax Zoom */}
+              <div className="absolute inset-0 overflow-hidden">
+                <img 
+                  src={project.img} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90" />
+              </div>
 
-              {/* DARK GLASS */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-
-              {/* GLASS OVERLAY */}
-              <div className="absolute inset-0 backdrop-blur-[2px]" />
-
-              {/* CONTENT */}
-              <div className="relative h-full p-6 md:p-10 flex flex-col justify-between text-white">
-
-                {/* STATUS */}
-                <div className="flex justify-between items-start">
-                  <span className="px-4 py-1 rounded-full text-[10px] tracking-widest font-semibold bg-white/10 border border-white/20 backdrop-blur-md">
+              {/* 💎 Glass Overlay & Content */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                
+                {/* Floating Badge */}
+                <div className="absolute top-6 left-6">
+                  <span className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-bold text-white tracking-wider uppercase">
                     {project.status}
                   </span>
                 </div>
 
-                {/* TEXT */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-4">
+                <div className="transform transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                  <div className="flex items-center gap-3 mb-3 text-emerald-400">
+                    <project.icon size={20} />
+                    <span className="text-xs font-bold tracking-widest uppercase">{project.category}</span>
+                  </div>
+
+                  <h3 className="text-3xl font-bold text-white mb-4 leading-tight">
                     {project.title}
                   </h3>
-                  <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-md">
+
+                  <p className="text-neutral-400 text-sm leading-relaxed line-clamp-3 mb-6 group-hover:text-white/80 transition-colors">
                     {project.desc}
                   </p>
-                </div>
 
-                {/* FOOTER */}
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-sm tracking-wide text-white/80 group-hover:text-white transition">
-                    Project Detail <ArrowRight size={16} />
-                  </span>
+                  <div className="flex items-center justify-between border-t border-white/10 pt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="text-sm font-medium text-white">Details</span>
+                    <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
+                      <ExternalLink size={18} />
+                    </div>
+                  </div>
                 </div>
-
               </div>
 
-              {/* hover glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent_70%)] transition duration-700" />
-
+              {/* ✨ Hover Glow Effect */}
+              <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-all duration-500 pointer-events-none" />
             </motion.div>
           ))}
 
-          {/* FINAL CTA CARD */}
+          {/* ➤ "View All" Card */}
           <Link
             href="/projects"
-            className="snap-center min-w-[85%] sm:min-w-[60%] md:min-w-0 group relative h-[420px] md:h-[460px] rounded-[2.5rem] flex items-center justify-center border border-dashed border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl hover:border-[var(--accent-primary)] transition-all"
+            style={{ scrollSnapStop: 'always' }}
+            className="
+              snap-center shrink-0 
+              w-[85vw] sm:w-[300px] h-[550px] 
+              flex flex-col items-center justify-center gap-6
+              rounded-[2.5rem] border border-dashed border-white/10 
+              hover:bg-white/5 transition-all group
+            "
           >
-            <div className="text-center space-y-4">
-              <div className="text-lg tracking-widest text-[var(--text-muted)]">
-                सभी परियोजनाएं
-              </div>
-              <div className="text-3xl font-semibold text-[var(--accent-primary)] flex items-center justify-center gap-3">
-                View All <ArrowRight />
-              </div>
+            <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform border border-white/10">
+              <ArrowRight className="text-white" size={32} />
             </div>
+            <span className="text-white font-bold tracking-widest uppercase">View All Projects</span>
           </Link>
-
-        </motion.div>
+        </div>
       </div>
     </section>
   );
