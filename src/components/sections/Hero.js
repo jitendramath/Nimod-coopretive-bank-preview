@@ -133,65 +133,79 @@ export default function Hero() {
 
         </motion.div>
 
-        {/* 💎 PREMIUM GLASS STATS */}
-        <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4"
-        >
+        {/* 💎 PREMIUM COLOR STATS */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="mt-14 md:mt-20"
+>
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
 
-          {/* glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
+    {[
+      {
+        val: "900+",
+        label: "किसान सदस्य",
+        bg: "from-emerald-500/15 to-emerald-400/5",
+        glow: "group-hover:shadow-emerald-500/30",
+        text: "text-emerald-600 dark:text-emerald-400"
+      },
+      {
+        val: "1200+",
+        label: "परिवार जुड़े",
+        bg: "from-cyan-500/15 to-cyan-400/5",
+        glow: "group-hover:shadow-cyan-500/30",
+        text: "text-cyan-600 dark:text-cyan-400"
+      },
+      {
+        val: "₹3 Cr+",
+        label: "ऋण वितरण",
+        bg: "from-violet-500/15 to-fuchsia-400/5",
+        glow: "group-hover:shadow-violet-500/30",
+        text: "text-violet-600 dark:text-violet-400"
+      },
+      {
+        val: "1954",
+        label: "स्थापना वर्ष",
+        bg: "from-amber-500/15 to-yellow-400/5",
+        glow: "group-hover:shadow-amber-500/30",
+        text: "text-amber-600 dark:text-amber-400"
+      }
+    ].map((stat, i) => (
 
-          <div className="
-            relative grid grid-cols-2 md:grid-cols-4
-            bg-white/60 dark:bg-[#0a0a0a]/60 
-            backdrop-blur-2xl 
-            border border-white/20 dark:border-white/5
-            shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]
-            rounded-[2rem] md:rounded-full
-            overflow-hidden
-          ">
-            
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
+      <div
+        key={i}
+        className={`
+        group relative p-5 md:p-6 rounded-2xl md:rounded-[1.8rem]
+        bg-gradient-to-br ${stat.bg}
+        backdrop-blur-xl border border-white/20 dark:border-white/5
+        shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+        dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+        transition-all duration-500
+        hover:-translate-y-1.5 hover:scale-[1.02]
+        hover:shadow-xl ${stat.glow}
+        overflow-hidden
+        `}
+      >
 
-            {[
-              { val: "900+", label: "किसान सदस्य" },
-              { val: "1200+", label: "परिवार जुड़े" },
-              { val: "3 Cr+", label: "ऋण वितरण (₹)" },
-              { val: "1954", label: "स्थापना वर्ष" }
-            ].map((stat, index) => (
-              <div key={index} className="relative group p-6 md:py-8 flex flex-col items-center justify-center text-center">
+        {/* glow blob */}
+        <div className="absolute -top-10 -right-10 w-24 h-24 bg-white/20 dark:bg-white/10 blur-2xl rounded-full opacity-40 group-hover:scale-150 transition duration-700"/>
 
-                {/* mobile dividers */}
-                {index < 2 && (
-                  <div className="md:hidden absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-                )}
-                {index % 2 === 0 && (
-                  <div className="md:hidden absolute right-0 top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-                )}
+        {/* number */}
+        <div className={`text-2xl md:text-3xl font-semibold mb-1 tracking-tight ${stat.text}`}>
+          {stat.val}
+        </div>
 
-                {/* desktop divider */}
-                {index !== 3 && (
-                  <div className="hidden md:block absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-                )}
+        {/* label */}
+        <div className="text-[11px] md:text-xs tracking-widest uppercase text-[var(--text-muted)] font-semibold">
+          {stat.label}
+        </div>
 
-                {/* number */}
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-white mb-1 tracking-tighter">
-                  <Counter value={stat.val} />
-                </div>
-
-                {/* label */}
-                <div className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400/80">
-                  {stat.label}
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </motion.div>
+      </div>
+    ))}
+  </div>
+</motion.div>
 
       </div>
     </section>
