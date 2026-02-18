@@ -113,22 +113,6 @@ export default function Governance() {
           ))}
         </motion.div>
 
-        {/* Bottom Trust Row */}
-        <motion.div
-          initial={{ opacity:0, y:40 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.9 }}
-          className="mt-20 pt-12 border-t border-dashed border-premium-border flex flex-wrap justify-center gap-8 md:gap-16 transition-colors duration-500"
-        >
-          {["Democratic Control", "Member Economic Participation", "Autonomy & Independence"].map((text, i) => (
-            <div key={i} className="flex items-center gap-3 opacity-50 hover:opacity-100 transition-opacity cursor-default group">
-              <div className="w-2.5 h-2.5 rounded-full bg-premium-accent shadow-[0_0_8px_var(--accent-glow)] group-hover:scale-125 transition-transform" />
-              <span className="text-[10px] md:text-xs font-bold text-premium-text uppercase tracking-widest transition-colors duration-500">{text}</span>
-            </div>
-          ))}
-        </motion.div>
-
       </div>
     </section>
   );
