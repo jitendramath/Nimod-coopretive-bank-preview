@@ -115,85 +115,102 @@ export default function Hero() {
 
         </motion.div>
 
-        {/* 📊 LUXURY FLOATING STATS */}
-<motion.div
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1, delay: 0.5 }}
-  className="relative"
->
+  /* =========================================
+   💎 LUXURY LIVE STATS COMPONENT
+========================================= */
 
-  {/* outer glow */}
-  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-transparent blur-2xl rounded-[2.5rem]" />
+// छोटा सा हेल्पर Component जो नंबर को 0 से ऊपर ले जाएगा
+const Counter = ({ value }) => {
+  const numericValue = parseInt(value.replace(/\D/g, "")); // "₹3 Cr+" -> 3
+  const suffix = value.replace(/[0-9]/g, ""); // "₹3 Cr+" -> " Cr+"
+  
+  return (
+    <motion.span
+      initial={{ opacity: 0, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, filter: "blur(0px)" }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="inline-flex"
+    >
+      <span className="tabular-nums tracking-tight">
+        {/* यहाँ हम Framer Motion का use करके animate कर सकते हैं, 
+            लेकिन simplicity और performance के लिए अभी static + fade रखा है। 
+            Premium feel "Tabular Nums" और font से आती है। */}
+        {numericValue}
+      </span>
+      <span className="text-[0.6em] align-top ml-0.5 mt-1 opacity-70 font-medium">
+        {suffix}
+      </span>
+    </motion.span>
+  );
+};
+
+/* मेन Stats ब्लॉक */
+<motion.div
+  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4"
+>
+  {/* 🔥 Behind Glow (Atmosphere) */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
 
   <div className="
-    relative
-    grid grid-cols-2 md:grid-cols-4
-    gap-4 md:gap-0
-    rounded-[2.5rem]
-    border border-[var(--border-color)]
-    bg-[var(--card-bg)]
-    backdrop-blur-2xl
-    shadow-[0_20px_60px_var(--shadow-color)]
+    relative grid grid-cols-2 md:grid-cols-4
+    bg-white/60 dark:bg-[#0a0a0a]/60 
+    backdrop-blur-2xl 
+    border border-white/20 dark:border-white/5
+    shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]
+    rounded-[2rem] md:rounded-full
     overflow-hidden
   ">
+    
+    {/* ✨ Glass Shine Effect */}
+    <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
 
     {[
       { val: "900+", label: "किसान सदस्य" },
       { val: "1200+", label: "परिवार जुड़े" },
-      { val: "₹3 Cr+", label: "ऋण वितरण" },
+      { val: "3 Cr+", label: "ऋण वितरण (₹)" }, // ₹ सिंबल हटाकर लेबल में डाल दिया क्लीन लुक के लिए
       { val: "1954", label: "स्थापना वर्ष" }
     ].map((stat, index) => (
-      
-      <div
-        key={index}
-        className="
-        relative group
-        py-7 md:py-9
-        text-center
-        transition
-        hover:bg-white/[0.03]
-        "
-      >
-
-        {/* divider */}
-        {index !== 3 && (
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-12 w-px bg-[var(--border-color)]"/>
+      <div key={index} className="relative group p-6 md:py-8 flex flex-col items-center justify-center text-center">
+        
+        {/* 📱 Mobile Divider (Horizontal) - Only for top 2 items */}
+        {index < 2 && (
+          <div className="md:hidden absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
+        )}
+        
+        {/* 📱 Mobile Divider (Vertical) - Only for left items (0 and 2) */}
+        {index % 2 === 0 && (
+          <div className="md:hidden absolute right-0 top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
         )}
 
-        {/* glow hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition duration-700 bg-[radial-gradient(circle_at_center,var(--accent-glow),transparent_60%)]" />
+        {/* 🖥️ Desktop Divider */}
+        {index !== 3 && (
+          <div className="hidden md:block absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
+        )}
 
-        {/* value */}
-        <div className="
-          text-2xl md:text-4xl
-          font-medium
-          tracking-tight
-          text-[var(--text-main)]
-          group-hover:text-[var(--accent-primary)]
-          transition
-        ">
-          {stat.val}
+        {/* Hover Gradient Blob */}
+        <div className="absolute inset-0 bg-emerald-400/0 group-hover:bg-emerald-400/5 transition-colors duration-500" />
+
+        {/* Number Value */}
+        <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-white mb-1 tracking-tighter drop-shadow-sm">
+           <Counter value={stat.val} />
         </div>
 
-        {/* label */}
-        <div className="
-          mt-2
-          text-[10px] md:text-xs
-          tracking-[0.22em]
-          uppercase
-          text-[var(--text-muted)]
-        ">
+        {/* Label */}
+        <div className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400/80">
           {stat.label}
         </div>
-
       </div>
     ))}
-
   </div>
 </motion.div>
 
-      </div>
+
+    </div>
     </section>
   );
 }
