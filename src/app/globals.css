@@ -3,39 +3,51 @@
 @tailwind utilities;
 
 /* =========================================
-   🎨 THEME BRAIN (Variables)
+   🎨 ULTRA LUXURY THEME SYSTEM
    ========================================= */
 
 @layer base {
   :root {
-    /* ☀️ LIGHT MODE (Porcelain & Jewel Tones) */
-    --bg-primary: #F0F2F5;       /* Soft Cloud White */
-    --bg-secondary: #FFFFFF;     /* Pure White Surface */
-    --text-main: #0F172A;        /* Deep Navy Slate (Not Black) */
-    --text-muted: #64748B;       /* Cool Premium Grey */
-    --border-color: rgba(0, 0, 0, 0.06);
-    --card-bg: rgba(255, 255, 255, 0.65); /* Frosted Glass */
-    --accent-primary: #059669;   /* Jewel Emerald (Darker for white bg) */
-    --accent-glow: rgba(5, 150, 105, 0.15);
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Soft Shadow */
+
+    /* 🤍 LIGHT THEME (Luxury Porcelain) */
+    --bg-primary: #f6f8fb;
+    --bg-secondary: #ffffff;
+    --bg-soft: #eef2f7;
+
+    --text-main: #0b1220;
+    --text-muted: #6b7280;
+
+    --border-color: rgba(15, 23, 42, 0.08);
+    --card-bg: rgba(255,255,255,0.65);
+
+    --accent-primary: #10b981;
+    --accent-glow: rgba(16,185,129,0.18);
+
+    --shadow-soft: 0 10px 40px rgba(2,6,23,0.06);
   }
 
   .dark {
-    /* 🌙 DARK MODE (Space & Neon Glows) */
-    --bg-primary: #050507;       /* Deep Charcoal */
-    --bg-secondary: #0B0C11;     /* Dark Surface */
-    --text-main: #FFFFFF;        /* Pure White */
-    --text-muted: rgba(255, 255, 255, 0.6);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --accent-primary: #3AF4B7;   /* Neon Emerald */
-    --accent-glow: rgba(58, 244, 183, 0.2);
-    --shadow-color: rgba(0, 0, 0, 0.6); /* Deep Shadow */
+
+    /* 🌙 DARK THEME (Deep Luxury Space) */
+    --bg-primary: #020617;
+    --bg-secondary: #05070d;
+    --bg-soft: #020617;
+
+    --text-main: #ffffff;
+    --text-muted: rgba(255,255,255,0.65);
+
+    --border-color: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.04);
+
+    --accent-primary: #34f5c5;
+    --accent-glow: rgba(52,245,197,0.25);
+
+    --shadow-soft: 0 20px 60px rgba(0,0,0,0.6);
   }
 }
 
 /* =========================================
-   🍎 ULTRA LUXURY SCROLL SYSTEM
+   🌌 GLOBAL BODY ENGINE
    ========================================= */
 
 html {
@@ -43,124 +55,124 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
   color: var(--text-main);
-  /* Smooth Theme Transition for everything */
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s ease;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 🌈 ANIMATED BACKGROUND ENGINE */
-
-/* Light Mode Background (Soft Mist) */
-body {
-  background: linear-gradient(
-    120deg,
-    #F0F2F5,
-    #E6FFFA, /* Soft Mint Hint */
-    #F0F9FF, /* Soft Sky Hint */
-    #F0F2F5
-  );
-  background-size: 400% 400%;
-  animation: premiumBG 20s ease infinite;
-}
-
-/* Dark Mode Background (Deep Space) */
-.dark body {
-  background: linear-gradient(
-    120deg,
-    #020617,
-    #031b14,
-    #020617,
-    #041a13
-  );
-  background-size: 400% 400%;
-}
-
-@keyframes premiumBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Subtle Grain Texture (Luxury Feel) */
+/* ===== LIGHT THEME LUXURY BACKGROUND ===== */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.035;
-  pointer-events: none;
-  z-index: 50;
-  mix-blend-mode: overlay;
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(600px 350px at 15% -10%, rgba(16,185,129,0.10), transparent),
+    radial-gradient(500px 300px at 85% 0%, rgba(59,130,246,0.10), transparent);
+  pointer-events:none;
+}
+
+/* ===== DARK MODE BACKGROUND ===== */
+.dark body::before{
+  background:
+    radial-gradient(500px 300px at 10% -10%, rgba(52,245,197,0.12), transparent),
+    radial-gradient(400px 250px at 90% 10%, rgba(59,130,246,0.08), transparent);
+}
+
+/* subtle luxury grain */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity:.03;
+  pointer-events:none;
+  z-index:-1;
 }
 
 /* =========================================
-   ✨ UTILITIES & CLASSES
+   ✨ PREMIUM CARD SYSTEM
    ========================================= */
 
-/* Luxury Reveal Animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px) scale(0.98);
-  filter: blur(10px);
-  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+.premium-card{
+  background:var(--card-bg);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--border-color);
+  box-shadow:var(--shadow-soft);
+  transition:all .45s cubic-bezier(.22,1,.36,1);
 }
 
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0px) scale(1);
-  filter: blur(0px);
+.premium-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent-primary);
+  box-shadow:0 25px 60px rgba(0,0,0,0.08);
 }
 
-/* Stagger Delays */
-.delay-1 { transition-delay: 0.15s; }
-.delay-2 { transition-delay: 0.3s; }
-.delay-3 { transition-delay: 0.45s; }
+/* =========================================
+   🔘 PREMIUM BUTTON
+   ========================================= */
 
-/* Premium Card (Glassmorphism Adapter) */
-.premium-card {
-  background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
-  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+.btn-premium{
+  background:linear-gradient(135deg,#10b981,#22d3ee);
+  color:white;
+  font-weight:600;
+  border-radius:12px;
+  padding:.9rem 1.6rem;
+  transition:all .35s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 10px 30px rgba(16,185,129,.25);
 }
 
-.premium-card:hover {
-  border-color: var(--accent-primary);
-  box-shadow: 0 20px 40px var(--shadow-color);
-  transform: translateY(-5px);
+.btn-premium:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 20px 40px rgba(16,185,129,.35);
 }
 
-/* Scrollbar Hide */
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+/* =========================================
+   ✨ TEXT GRADIENT LUXURY
+   ========================================= */
+
+.text-luxury{
+  background:linear-gradient(90deg,#10b981,#38bdf8,#10b981);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:textflow 6s linear infinite;
 }
 
-/* Text Selection */
-::selection {
-  background: var(--accent-primary);
-  color: #fff;
+@keyframes textflow{
+  0%{background-position:200% center}
+  100%{background-position:-200% center}
 }
 
-/* Shimmer Text (Theme Aware) */
-.text-shimmer {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(
-    90deg,
-    var(--accent-primary),
-    #38bdf8,
-    var(--accent-primary)
-  );
-  background-size: 200% auto;
-  animation: shimmer 6s linear infinite;
+/* =========================================
+   🪄 REVEAL ANIMATION
+   ========================================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(60px) scale(.98);
+  filter:blur(10px);
+  transition:all 1s cubic-bezier(.22,1,.36,1);
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% center; }
-  100% { background-position: -200% center; }
+.reveal.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* =========================================
+   🍎 SCROLLBAR HIDE
+   ========================================= */
+
+::-webkit-scrollbar{
+  width:0;
+  height:0;
+}
+
+/* selection */
+::selection{
+  background:var(--accent-primary);
+  color:#fff;
 }
