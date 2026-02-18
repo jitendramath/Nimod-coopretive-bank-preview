@@ -1,137 +1,203 @@
 "use client";
 
-import { Zap, Warehouse, Landmark, Store } from "lucide-react";
+import Link from "next/link";
+import { Zap, Warehouse, Landmark, Store, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-/* 🍎 Apple luxury stagger system */
 const container = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
+  show: { transition: { staggerChildren: 0.12 } }
 };
 
 const item = {
-  hidden: { opacity: 0, y: 90, scale: 0.96, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.85,
-      ease: [0.22, 1, 0.36, 1]
-    }
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
 export default function Projects() {
+
   const projects = [
     {
       icon: Zap,
       title: "सौर ऊर्जा संयंत्र",
       status: "Active",
-      color: "text-yellow-600 dark:text-yellow-400",
-      bg: "bg-yellow-500/10",
-      desc: "15.34 किलोवाट क्षमता का सौर ऊर्जा संयंत्र, जिससे संस्था पूर्णतः ऊर्जा आत्मनिर्भर है और अतिरिक्त बिजली ग्रिड को बेचती है।"
+      image: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1400",
+      desc: "15.34 किलोवाट क्षमता का संयंत्र, संस्था ऊर्जा आत्मनिर्भर एवं ग्रिड निर्यात सक्षम।"
     },
     {
       icon: Warehouse,
       title: "भंडारण गोदाम",
       status: "Completed",
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-500/10",
-      desc: "2000 मीट्रिक टन क्षमता का आधुनिक गोदाम, जहाँ किसानों की उपज और खाद-बीज का सुरक्षित भंडारण किया जाता है।"
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1400",
+      desc: "2000 मीट्रिक टन क्षमता, सुरक्षित भंडारण एवं आधुनिक प्रबंधन।"
     },
     {
       icon: Landmark,
       title: "मिनी बैंक शाखा",
       status: "Active",
-      color: "text-premium-accent",
-      bg: "bg-premium-accent/10",
-      desc: "ग्रामीणों के लिए डिजिटल बैंकिंग, नकद निकासी और जमा की सुविधा। 100% कंप्यूटरीकृत बैंकिंग सिस्टम।"
+      image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400",
+      desc: "100% कंप्यूटरीकृत डिजिटल बैंकिंग सुविधा ग्रामीणों के लिए।"
     },
     {
       icon: Store,
       title: "सुपर मार्केट",
       status: "Upgrading",
-      color: "text-purple-600 dark:text-purple-400",
-      bg: "bg-purple-500/10",
-      desc: "गाँव में ही उचित मूल्य पर उच्च गुणवत्ता वाली दैनिक उपयोग की वस्तुएं उपलब्ध कराने हेतु आधुनिक स्टोर।"
+      image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1400",
+      desc: "गाँव में उच्च गुणवत्ता दैनिक उपयोग सामग्री उपलब्ध।"
     }
   ];
 
   return (
-    <section id="projects" className="py-24 bg-premium-bg relative overflow-hidden transition-colors duration-500">
+    <section className="relative py-24 md:py-32 overflow-hidden">
 
-      {/* 🌌 Dynamic Ambient Glows */}
-      <div className="absolute top-1/4 -right-40 w-[500px] h-[500px] bg-premium-accent/5 blur-[150px] pointer-events-none" />
+      {/* Ambient luxury background */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-400/20 dark:bg-emerald-500/20 blur-[160px] rounded-full pointer-events-none" />
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity:0, y:70 }}
+          initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
-          transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
-          className="mb-16"
+          transition={{ duration:.7 }}
+          className="mb-16 md:mb-24 max-w-2xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
-            हमारी <span className="text-premium-accent">परियोजनाएं</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-6">
+            हमारी <span className="text-[var(--accent-primary)]">परियोजनाएं</span>
           </h2>
-          <div className="h-1.5 w-24 bg-premium-accent/40 rounded-full shadow-[0_0_10px_var(--accent-glow)]" />
+          <p className="text-[15px] md:text-lg text-[var(--text-muted)]">
+            संस्था की प्रमुख विकास परियोजनाएं जो ग्रामीण अर्थव्यवस्था को सशक्त बनाती हैं।
+          </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* MOBILE SWIPE */}
+        <div className="lg:hidden -mx-4 px-4 overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-6 pb-4">
+
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={item}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once:true }}
+              className="snap-center shrink-0 w-[85%] rounded-[28px] overflow-hidden relative group"
+            >
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                style={{ backgroundImage: `url(${project.image})` }}
+              />
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/70" />
+
+              {/* Glass content */}
+              <div className="relative p-7 h-[380px] flex flex-col justify-between backdrop-blur-sm">
+
+                <div>
+                  <span className="px-4 py-1 text-[10px] uppercase tracking-[0.2em] rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
+                    {project.status}
+                  </span>
+
+                  <h3 className="text-2xl mt-6 font-semibold text-white">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-white/80 text-sm mt-4 leading-relaxed">
+                    {project.desc}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 text-white text-sm">
+                  Project Detail <ArrowRight size={16}/>
+                </div>
+
+              </div>
+            </motion.div>
+          ))}
+
+          {/* CTA CARD */}
+          <Link
+            href="/projects"
+            className="snap-center shrink-0 w-[85%] rounded-[28px] border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl flex items-center justify-center text-center p-10"
+          >
+            <div>
+              <h3 className="text-xl font-semibold text-[var(--text-main)] mb-4">
+                सभी परियोजनाएं देखें
+              </h3>
+              <span className="inline-flex items-center gap-2 text-[var(--accent-primary)]">
+                Explore All <ArrowRight size={16}/>
+              </span>
+            </div>
+          </Link>
+
+        </div>
+
+        {/* DESKTOP GRID */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once:true, margin:"-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
+          viewport={{ once:true }}
+          className="hidden lg:grid grid-cols-2 gap-10"
         >
           {projects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               variants={item}
-              className="group relative p-8 md:p-10 rounded-[2.5rem] bg-premium-card border border-premium-border backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-premium-shadow overflow-hidden"
+              className="relative rounded-[32px] overflow-hidden group cursor-pointer"
             >
-              {/* Internal Accent Glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-[radial-gradient(circle_at_top_right,var(--accent-glow),transparent_70%)] pointer-events-none" />
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                style={{ backgroundImage: `url(${project.image})` }}
+              />
 
-              {/* Top Row: Icon & Status */}
-              <div className="flex justify-between items-start mb-10 relative z-10">
-                <div className={`p-5 rounded-[1.2rem] bg-premium-surface shadow-sm ${project.color} group-hover:scale-110 group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black transition-all duration-500`}>
-                  <project.icon size={30} strokeWidth={2} />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/70" />
+
+              <div className="relative p-10 h-[420px] flex flex-col justify-between backdrop-blur-sm">
+
+                <div>
+                  <span className="px-4 py-1 text-[10px] uppercase tracking-[0.2em] rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
+                    {project.status}
+                  </span>
+
+                  <h3 className="text-3xl mt-6 font-semibold text-white">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-white/80 mt-4 text-base leading-relaxed max-w-md">
+                    {project.desc}
+                  </p>
                 </div>
-                <span className="px-4 py-1.5 rounded-full bg-premium-surface border border-premium-border text-[10px] font-black text-premium-muted uppercase tracking-[0.2em] shadow-sm">
-                  {project.status}
-                </span>
-              </div>
 
-              {/* Text Content */}
-              <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-premium-text mb-5 group-hover:text-premium-accent transition-colors duration-300">
-                  {project.title}
-                </h3>
-                
-                <p className="text-premium-muted leading-relaxed text-lg mb-8 transition-colors duration-500 font-medium">
-                  {project.desc}
-                </p>
-              </div>
+                <div className="flex items-center gap-2 text-white group-hover:translate-x-2 transition-transform">
+                  Project Detail <ArrowRight size={18}/>
+                </div>
 
-              {/* Premium Progress/Detail Indicator */}
-              <div className="mt-auto pt-6 border-t border-premium-border flex items-center gap-3 text-premium-accent text-sm font-black tracking-widest uppercase group-hover:translate-x-3 transition-transform duration-300">
-                Project Detail <span className="text-xl">→</span>
               </div>
-
-              {/* Decorative Animated Bottom Border */}
-              <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-premium-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-center" />
             </motion.div>
           ))}
+
+          {/* Desktop CTA */}
+          <Link
+            href="/projects"
+            className="rounded-[32px] border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl flex items-center justify-center p-14 text-center hover:shadow-[0_20px_60px_var(--shadow-color)] transition-all"
+          >
+            <div>
+              <h3 className="text-2xl font-semibold text-[var(--text-main)] mb-4">
+                सभी परियोजनाएं देखें
+              </h3>
+              <span className="inline-flex items-center gap-2 text-[var(--accent-primary)]">
+                Explore All <ArrowRight size={18}/>
+              </span>
+            </div>
+          </Link>
+
         </motion.div>
 
       </div>
