@@ -83,6 +83,16 @@ export default function Hero() {
             आधुनिक कृषि संसाधन और पारदर्शी बैंकिंग सेवाएं।
           </motion.p>
 
+  {/* 💎 Elite micro trust line */}
+<motion.div
+  variants={fadeUp}
+  className="flex justify-center mb-8"
+>
+  <p className="text-[11px] md:text-xs text-[var(--text-muted)] tracking-[0.18em] whitespace-nowrap overflow-hidden text-ellipsis">
+    Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span> • Govt Registered
+  </p>
+</motion.div>
+  
           {/* buttons */}
           <motion.div
             variants={fadeUp}
