@@ -1,20 +1,29 @@
 "use client";
 
-import Link from "next/link";
 import { Zap, Warehouse, Landmark, Store, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
+/* =========================
+   Animation system
+========================= */
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } }
+  show: {
+    transition: { staggerChildren: 0.15 }
+  }
 };
 
 const item = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 80, scale: 0.96 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1]
+    }
   }
 };
 
@@ -24,182 +33,137 @@ export default function Projects() {
     {
       icon: Zap,
       title: "सौर ऊर्जा संयंत्र",
-      status: "Active",
-      image: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1400",
-      desc: "15.34 किलोवाट क्षमता का संयंत्र, संस्था ऊर्जा आत्मनिर्भर एवं ग्रिड निर्यात सक्षम।"
+      status: "ACTIVE",
+      desc: "15.34 किलोवाट क्षमता का सौर ऊर्जा संयंत्र — ऊर्जा आत्मनिर्भरता एवं ग्रिड निर्यात सक्षम।",
+      img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop"
     },
     {
       icon: Warehouse,
       title: "भंडारण गोदाम",
-      status: "Completed",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1400",
-      desc: "2000 मीट्रिक टन क्षमता, सुरक्षित भंडारण एवं आधुनिक प्रबंधन।"
+      status: "COMPLETED",
+      desc: "2000 मीट्रिक टन क्षमता का आधुनिक भंडारण केंद्र — सुरक्षित कृषि स्टॉक प्रबंधन।",
+      img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop"
     },
     {
       icon: Landmark,
       title: "मिनी बैंक शाखा",
-      status: "Active",
-      image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400",
-      desc: "100% कंप्यूटरीकृत डिजिटल बैंकिंग सुविधा ग्रामीणों के लिए।"
+      status: "ACTIVE",
+      desc: "ग्रामीण डिजिटल बैंकिंग केंद्र — जमा, निकासी और पूर्ण कंप्यूटरीकृत सेवा।",
+      img: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=1600&auto=format&fit=crop"
     },
     {
       icon: Store,
       title: "सुपर मार्केट",
-      status: "Upgrading",
-      image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1400",
-      desc: "गाँव में उच्च गुणवत्ता दैनिक उपयोग सामग्री उपलब्ध।"
+      status: "UPGRADING",
+      desc: "उचित मूल्य पर गुणवत्तापूर्ण उपभोक्ता सामग्री उपलब्ध कराने हेतु आधुनिक स्टोर।",
+      img: "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?q=80&w=1600&auto=format&fit=crop"
     }
   ];
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
 
-      {/* Ambient luxury background */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-400/20 dark:bg-emerald-500/20 blur-[160px] rounded-full pointer-events-none" />
+      {/* ambient */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[var(--accent-primary)]/5 blur-[180px] pointer-events-none" />
 
-      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
+      <div className="w-[92%] max-w-[1300px] mx-auto relative z-10">
 
-        {/* Header */}
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity:0, y:40 }}
+          initial={{ opacity:0, y:60 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
-          transition={{ duration:.7 }}
-          className="mb-16 md:mb-24 max-w-2xl"
+          transition={{ duration:0.7 }}
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-6">
+          <h2 className="text-3xl md:text-5xl font-semibold text-[var(--text-main)] mb-5">
             हमारी <span className="text-[var(--accent-primary)]">परियोजनाएं</span>
           </h2>
-          <p className="text-[15px] md:text-lg text-[var(--text-muted)]">
+          <p className="text-[var(--text-muted)] max-w-xl">
             संस्था की प्रमुख विकास परियोजनाएं जो ग्रामीण अर्थव्यवस्था को सशक्त बनाती हैं।
           </p>
         </motion.div>
 
-        {/* MOBILE SWIPE */}
-        <div className="lg:hidden -mx-4 px-4 overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-6 pb-4">
-
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once:true }}
-              className="snap-center shrink-0 w-[85%] rounded-[28px] overflow-hidden relative group"
-            >
-              {/* Background image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${project.image})` }}
-              />
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/70" />
-
-              {/* Glass content */}
-              <div className="relative p-7 h-[380px] flex flex-col justify-between backdrop-blur-sm">
-
-                <div>
-                  <span className="px-4 py-1 text-[10px] uppercase tracking-[0.2em] rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
-                    {project.status}
-                  </span>
-
-                  <h3 className="text-2xl mt-6 font-semibold text-white">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-white/80 text-sm mt-4 leading-relaxed">
-                    {project.desc}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 text-white text-sm">
-                  Project Detail <ArrowRight size={16}/>
-                </div>
-
-              </div>
-            </motion.div>
-          ))}
-
-          {/* CTA CARD */}
-          <Link
-            href="/projects"
-            className="snap-center shrink-0 w-[85%] rounded-[28px] border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl flex items-center justify-center text-center p-10"
-          >
-            <div>
-              <h3 className="text-xl font-semibold text-[var(--text-main)] mb-4">
-                सभी परियोजनाएं देखें
-              </h3>
-              <span className="inline-flex items-center gap-2 text-[var(--accent-primary)]">
-                Explore All <ArrowRight size={16}/>
-              </span>
-            </div>
-          </Link>
-
-        </div>
-
-        {/* DESKTOP GRID */}
+        {/* =========================
+           MOBILE: HORIZONTAL SCROLL
+        ========================= */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once:true }}
-          className="hidden lg:grid grid-cols-2 gap-10"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-2 gap-6 overflow-x-auto md:overflow-visible pb-4 snap-x snap-mandatory scroll-smooth"
         >
+
           {projects.map((project, index) => (
             <motion.div
               key={index}
               variants={item}
-              className="relative rounded-[32px] overflow-hidden group cursor-pointer"
+              className="snap-center min-w-[88%] sm:min-w-[70%] md:min-w-0 group relative h-[420px] md:h-[460px] rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_10px_40px_var(--shadow-color)] transition-all duration-500 hover:-translate-y-2"
             >
+              {/* IMAGE */}
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url(${project.image})` }}
+                className="absolute inset-0 bg-cover bg-center scale-110 group-hover:scale-125 transition-transform duration-[2000ms]"
+                style={{ backgroundImage:`url(${project.img})` }}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/70" />
+              {/* DARK GLASS */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
-              <div className="relative p-10 h-[420px] flex flex-col justify-between backdrop-blur-sm">
+              {/* GLASS OVERLAY */}
+              <div className="absolute inset-0 backdrop-blur-[2px]" />
 
-                <div>
-                  <span className="px-4 py-1 text-[10px] uppercase tracking-[0.2em] rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
+              {/* CONTENT */}
+              <div className="relative h-full p-6 md:p-10 flex flex-col justify-between text-white">
+
+                {/* STATUS */}
+                <div className="flex justify-between items-start">
+                  <span className="px-4 py-1 rounded-full text-[10px] tracking-widest font-semibold bg-white/10 border border-white/20 backdrop-blur-md">
                     {project.status}
                   </span>
+                </div>
 
-                  <h3 className="text-3xl mt-6 font-semibold text-white">
+                {/* TEXT */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-4">
                     {project.title}
                   </h3>
-
-                  <p className="text-white/80 mt-4 text-base leading-relaxed max-w-md">
+                  <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-md">
                     {project.desc}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-white group-hover:translate-x-2 transition-transform">
-                  Project Detail <ArrowRight size={18}/>
+                {/* FOOTER */}
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-2 text-sm tracking-wide text-white/80 group-hover:text-white transition">
+                    Project Detail <ArrowRight size={16} />
+                  </span>
                 </div>
 
               </div>
+
+              {/* hover glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-[radial-gradient(circle_at_center,white,transparent_70%)] transition duration-700" />
+
             </motion.div>
           ))}
 
-          {/* Desktop CTA */}
+          {/* FINAL CTA CARD */}
           <Link
             href="/projects"
-            className="rounded-[32px] border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl flex items-center justify-center p-14 text-center hover:shadow-[0_20px_60px_var(--shadow-color)] transition-all"
+            className="snap-center min-w-[85%] sm:min-w-[60%] md:min-w-0 group relative h-[420px] md:h-[460px] rounded-[2.5rem] flex items-center justify-center border border-dashed border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl hover:border-[var(--accent-primary)] transition-all"
           >
-            <div>
-              <h3 className="text-2xl font-semibold text-[var(--text-main)] mb-4">
-                सभी परियोजनाएं देखें
-              </h3>
-              <span className="inline-flex items-center gap-2 text-[var(--accent-primary)]">
-                Explore All <ArrowRight size={18}/>
-              </span>
+            <div className="text-center space-y-4">
+              <div className="text-lg tracking-widest text-[var(--text-muted)]">
+                सभी परियोजनाएं
+              </div>
+              <div className="text-3xl font-semibold text-[var(--accent-primary)] flex items-center justify-center gap-3">
+                View All <ArrowRight />
+              </div>
             </div>
           </Link>
 
         </motion.div>
-
       </div>
     </section>
   );
