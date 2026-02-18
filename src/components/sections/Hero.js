@@ -26,23 +26,44 @@ const staggerContainer = {
   }
 };
 
+/* 💎 Live Counter (luxury clean version) */
+const Counter = ({ value }) => {
+  const numericValue = parseInt(value.replace(/\D/g, ""));
+  const suffix = value.replace(/[0-9]/g, "");
+
+  return (
+    <motion.span
+      initial={{ opacity: 0, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, filter: "blur(0px)" }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="inline-flex items-start"
+    >
+      <span className="tabular-nums tracking-tight">
+        {numericValue}
+      </span>
+      <span className="text-[0.55em] ml-1 mt-1 opacity-70 font-medium">
+        {suffix}
+      </span>
+    </motion.span>
+  );
+};
+
 export default function Hero() {
   return (
     <section className="relative pt-28 pb-20 md:pt-40 md:pb-28 lg:pt-52 lg:pb-36 overflow-hidden">
 
-      {/* 💎 Premium background system */}
+      {/* 💎 Premium background */}
       <div className="absolute inset-0 -z-10">
 
-        {/* light gradient */}
+        {/* light */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#f7f9fc] via-[#f3f6fb] to-[#eef2f7] dark:hidden" />
 
-        {/* dark gradient */}
+        {/* dark */}
         <div className="absolute inset-0 hidden dark:block bg-gradient-to-b from-[#020617] via-[#020617] to-black" />
 
-        {/* glow 1 */}
+        {/* glow */}
         <div className="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-400/20 blur-[120px] rounded-full opacity-30 dark:opacity-20" />
-
-        {/* glow 2 */}
         <div className="absolute bottom-[-200px] right-[-100px] w-[500px] h-[500px] bg-sky-400/20 blur-[140px] rounded-full opacity-20 dark:opacity-10" />
 
       </div>
@@ -83,16 +104,13 @@ export default function Hero() {
             आधुनिक कृषि संसाधन और पारदर्शी बैंकिंग सेवाएं।
           </motion.p>
 
-  {/* 💎 Elite micro trust line */}
-<motion.div
-  variants={fadeUp}
-  className="flex justify-center mb-8"
->
-  <p className="text-[11px] md:text-xs text-[var(--text-muted)] tracking-[0.18em] whitespace-nowrap overflow-hidden text-ellipsis">
-    Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span>
-  </p>
-</motion.div>
-  
+          {/* micro trust */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+            <p className="text-[11px] md:text-xs text-[var(--text-muted)] tracking-[0.18em] whitespace-nowrap overflow-hidden text-ellipsis">
+              Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span>
+            </p>
+          </motion.div>
+
           {/* buttons */}
           <motion.div
             variants={fadeUp}
@@ -115,72 +133,67 @@ export default function Hero() {
 
         </motion.div>
 
+        {/* 💎 PREMIUM GLASS STATS */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4"
+        >
 
-<motion.div
-  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, delay: 0.2 }}
-  className="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 px-4"
->
-  {/* 🔥 Behind Glow (Atmosphere) */}
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
+          {/* glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
 
-  <div className="
-    relative grid grid-cols-2 md:grid-cols-4
-    bg-white/60 dark:bg-[#0a0a0a]/60 
-    backdrop-blur-2xl 
-    border border-white/20 dark:border-white/5
-    shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]
-    rounded-[2rem] md:rounded-full
-    overflow-hidden
-  ">
-    
-    {/* ✨ Glass Shine Effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
+          <div className="
+            relative grid grid-cols-2 md:grid-cols-4
+            bg-white/60 dark:bg-[#0a0a0a]/60 
+            backdrop-blur-2xl 
+            border border-white/20 dark:border-white/5
+            shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]
+            rounded-[2rem] md:rounded-full
+            overflow-hidden
+          ">
+            
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
 
-    {[
-      { val: "900+", label: "किसान सदस्य" },
-      { val: "1200+", label: "परिवार जुड़े" },
-      { val: "3 Cr+", label: "ऋण वितरण (₹)" }, // ₹ सिंबल हटाकर लेबल में डाल दिया क्लीन लुक के लिए
-      { val: "1954", label: "स्थापना वर्ष" }
-    ].map((stat, index) => (
-      <div key={index} className="relative group p-6 md:py-8 flex flex-col items-center justify-center text-center">
-        
-        {/* 📱 Mobile Divider (Horizontal) - Only for top 2 items */}
-        {index < 2 && (
-          <div className="md:hidden absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-        )}
-        
-        {/* 📱 Mobile Divider (Vertical) - Only for left items (0 and 2) */}
-        {index % 2 === 0 && (
-          <div className="md:hidden absolute right-0 top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-        )}
+            {[
+              { val: "900+", label: "किसान सदस्य" },
+              { val: "1200+", label: "परिवार जुड़े" },
+              { val: "3 Cr+", label: "ऋण वितरण (₹)" },
+              { val: "1954", label: "स्थापना वर्ष" }
+            ].map((stat, index) => (
+              <div key={index} className="relative group p-6 md:py-8 flex flex-col items-center justify-center text-center">
 
-        {/* 🖥️ Desktop Divider */}
-        {index !== 3 && (
-          <div className="hidden md:block absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
-        )}
+                {/* mobile dividers */}
+                {index < 2 && (
+                  <div className="md:hidden absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
+                )}
+                {index % 2 === 0 && (
+                  <div className="md:hidden absolute right-0 top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
+                )}
 
-        {/* Hover Gradient Blob */}
-        <div className="absolute inset-0 bg-emerald-400/0 group-hover:bg-emerald-400/5 transition-colors duration-500" />
+                {/* desktop divider */}
+                {index !== 3 && (
+                  <div className="hidden md:block absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-800 to-transparent" />
+                )}
 
-        {/* Number Value */}
-        <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-white mb-1 tracking-tighter drop-shadow-sm">
-           <Counter value={stat.val} />
-        </div>
+                {/* number */}
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-white mb-1 tracking-tighter">
+                  <Counter value={stat.val} />
+                </div>
 
-        {/* Label */}
-        <div className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400/80">
-          {stat.label}
-        </div>
+                {/* label */}
+                <div className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 dark:text-emerald-400/80">
+                  {stat.label}
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
-    ))}
-  </div>
-</motion.div>
-
-
-    </div>
     </section>
   );
 }
