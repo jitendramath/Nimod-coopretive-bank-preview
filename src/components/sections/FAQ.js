@@ -2,137 +2,174 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
-
-/* 🍎 Apple stagger system */
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.18
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 70, scale: 0.97, filter: "blur(8px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
+import { Plus, Minus, MessageCircle } from "lucide-react";
 
 const faqs = [
   {
     question: "निमोद सहकारी समिति का सदस्य कैसे बनें?",
-    answer: "समिति का सदस्य बनने के लिए आपको निमोद क्षेत्र का निवासी होना अनिवार्य है। आप हमारे मुख्य कार्यालय में आधार कार्ड, निवास प्रमाण पत्र और फोटो के साथ आवेदन कर सकते हैं। सदस्यता शुल्क जमा करने के बाद प्रबंधन समिति आपके आवेदन की समीक्षा करती है।"
+    answer: "समिति का सदस्य बनने के लिए आपको निमोद क्षेत्र का निवासी होना अनिवार्य है। मुख्य कार्यालय में आधार कार्ड, निवास प्रमाण पत्र और फोटो के साथ आवेदन करें। सदस्यता शुल्क जमा करने के बाद प्रबंधन समिति आपके आवेदन की समीक्षा करती है।"
   },
   {
-    question: "समिति द्वारा किस प्रकार के ऋण (Loans) प्रदान किए जाते हैं?",
-    answer: "हम मुख्य रूप से अल्पकालीन फसली ऋण (KCC), कृषि उपकरण ऋण, और महिला स्वयं सहायता समूहों के लिए सूक्ष्म ऋण प्रदान करते हैं। ऋण की ब्याज दरें सरकारी नियमों के अनुसार बहुत ही कम और पारदर्शी रखी गई हैं।"
+    question: "समिति द्वारा किस प्रकार के ऋण प्रदान किए जाते हैं?",
+    answer: "हम फसली ऋण (KCC), कृषि उपकरण ऋण, महिला समूह ऋण और अन्य सहकारी वित्त सेवाएं प्रदान करते हैं। ब्याज दरें सरकारी नियमों के अनुसार पारदर्शी और कम रखी गई हैं।"
   },
   {
-    question: "खाद और बीज प्राप्त करने की क्या प्रक्रिया है?",
-    answer: "समिति के पंजीकृत सदस्य अपने सदस्यता कार्ड के माध्यम से उचित मूल्य पर उच्च गुणवत्ता वाले खाद और बीज प्राप्त कर सकते हैं। स्टॉक की उपलब्धता के आधार पर वितरण 'पहले आओ, पहले पाओ' के आधार पर किया जाता है।"
+    question: "खाद और बीज प्राप्त करने की प्रक्रिया क्या है?",
+    answer: "पंजीकृत सदस्य अपने सदस्यता कार्ड के माध्यम से उचित मूल्य पर खाद और बीज प्राप्त कर सकते हैं। स्टॉक उपलब्धता के अनुसार वितरण किया जाता है।"
   },
   {
     question: "क्या मेरा पैसा समिति में सुरक्षित है?",
-    answer: "हाँ, बिल्कुल। निमोद सहकारी समिति राज्य सहकारिता अधिनियम के अंतर्गत पंजीकृत है और इसका नियमित रूप से सरकारी ऑडिट किया जाता है। हम पारदर्शिता और सुरक्षा के उच्चतम मानकों का पालन करते हैं।"
+    answer: "हाँ। समिति राज्य सहकारिता अधिनियम के अंतर्गत पंजीकृत है और नियमित सरकारी ऑडिट होता है। सभी लेन-देन पारदर्शी और सुरक्षित रखे जाते हैं।"
   }
 ];
 
 export default function FAQ() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [active, setActive] = useState(null);
 
   return (
-    <section id="faq" className="py-24 relative overflow-hidden bg-premium-bg border-t border-premium-border transition-colors duration-500">
+    <section className="relative py-24 overflow-hidden bg-[var(--bg-primary)] border-t border-[var(--border-color)]">
 
-      {/* 🌌 Ambient Dynamic Glows */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[20%] w-[420px] h-[420px] bg-premium-accent/5 dark:bg-emerald-500/8 blur-[180px] pointer-events-none transition-colors duration-500" />
-      <div className="absolute left-[-120px] bottom-10 w-[280px] h-[280px] bg-purple-500/5 dark:bg-purple-400/8 blur-[160px] pointer-events-none transition-colors duration-500" />
-      
-      <div className="w-[92%] max-w-[900px] mx-auto relative z-10">
-        
-        {/* Header Section */}
+      {/* 🌈 luxury ambient bg */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-400/10 blur-[160px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-400/10 blur-[160px] rounded-full" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_30%_30%,var(--accent-primary),transparent_60%)]" />
+      </div>
+
+      <div className="max-w-[850px] mx-auto px-4 relative z-10">
+
+        {/* 🔥 header */}
         <motion.div
-          initial={{ opacity:0, y:70 }}
+          initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
-          transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
+          transition={{ duration:0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
-            अक्सर पूछे जाने वाले <span className="text-premium-accent">सवाल</span>
+          <h2 className="text-3xl md:text-5xl font-semibold text-[var(--text-main)] mb-5">
+            अक्सर पूछे जाने वाले <span className="text-[var(--accent-primary)]">सवाल</span>
           </h2>
-          <p className="text-premium-muted text-lg max-w-2xl mx-auto transition-colors duration-500 font-medium">
-            समिति और हमारी सेवाओं से संबंधित सामान्य जिज्ञासाओं के समाधान यहाँ प्राप्त करें।
+
+          <p className="text-[var(--text-muted)] max-w-xl mx-auto">
+            समिति और सेवाओं से जुड़ी सामान्य जिज्ञासाओं के उत्तर यहाँ मिलेंगे।
           </p>
         </motion.div>
 
-        {/* 🍎 Staggered Accordion List */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once:true, margin:"-80px" }}
-          className="space-y-5"
-        >
-          {faqs.map((faq, index) => (
-            <motion.div 
-              key={index}
-              variants={item}
-              className="group relative rounded-[2rem] bg-premium-card border border-premium-border overflow-hidden transition-all duration-300 hover:border-premium-accent/30 hover:shadow-xl hover:shadow-premium-shadow"
+        {/* 💎 luxury faq list */}
+        <div className="space-y-4">
+
+          {faqs.map((faq, i)=>(
+            <div
+              key={i}
+              className="
+              group relative overflow-hidden
+              rounded-2xl
+              border border-[var(--border-color)]
+              bg-[var(--card-bg)]
+              backdrop-blur-xl
+              transition-all duration-500
+              hover:shadow-[0_20px_60px_var(--shadow-color)]
+              "
             >
+
+              {/* subtle hover glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition duration-700 bg-[radial-gradient(circle_at_left,var(--accent-primary),transparent_60%)]"/>
+
+              {/* question */}
               <button
-                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                className="w-full p-7 md:p-8 flex justify-between items-center text-left focus:outline-none"
+                onClick={()=>setActive(active===i?null:i)}
+                className="w-full flex items-center justify-between gap-6 p-6 md:p-7 text-left"
               >
-                <span className="text-lg md:text-xl font-bold text-premium-text pr-8 transition-colors duration-500">
+                <span className="text-[15px] md:text-lg font-medium text-[var(--text-main)]">
                   {faq.question}
                 </span>
-                <div className={`p-3 rounded-full transition-all duration-300 shadow-sm ${activeIndex === index ? 'bg-premium-accent text-white dark:text-black' : 'bg-premium-surface text-premium-muted hover:text-premium-accent'}`}>
-                  {activeIndex === index ? <Minus size={22} strokeWidth={3} /> : <Plus size={22} strokeWidth={3} />}
+
+                <div className="
+                w-10 h-10 shrink-0 rounded-full
+                flex items-center justify-center
+                border border-[var(--border-color)]
+                bg-[var(--card-bg)]
+                text-[var(--text-muted)]
+                group-hover:text-[var(--accent-primary)]
+                transition
+                ">
+                  {active===i ? <Minus size={18}/> : <Plus size={18}/>}
                 </div>
               </button>
 
+              {/* answer */}
               <AnimatePresence initial={false}>
-                {activeIndex === index && (
+                {active===i && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    initial={{ height:0, opacity:0 }}
+                    animate={{ height:"auto", opacity:1 }}
+                    exit={{ height:0, opacity:0 }}
+                    transition={{ duration:0.35 }}
                   >
-                    <div className="px-8 pb-8 text-premium-muted leading-relaxed border-t border-premium-border pt-6 text-[15px] md:text-lg transition-colors duration-500 font-medium">
+                    <div className="
+                    px-6 md:px-7 pb-7
+                    text-[var(--text-muted)]
+                    leading-relaxed text-sm md:text-base
+                    border-t border-[var(--border-color)]
+                    ">
                       {faq.answer}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Bottom CTA Box */}
+            </div>
+          ))}
+
+        </div>
+
+        {/* 🧠 bottom support box */}
         <motion.div
-          initial={{ opacity:0, y:50 }}
+          initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
-          transition={{ duration:0.9 }}
-          className="mt-16 text-center p-10 rounded-[2.5rem] bg-gradient-to-b from-premium-accent/5 to-transparent border border-premium-border shadow-lg transition-all duration-500"
+          transition={{ duration:0.8 }}
+          className="
+          mt-14 text-center
+          rounded-[2rem]
+          border border-[var(--border-color)]
+          bg-[var(--card-bg)]
+          backdrop-blur-xl
+          p-8
+          "
         >
-          <p className="text-premium-muted font-medium text-lg">
-            क्या आपको अपना जवाब नहीं मिला?{" "}
-            <a href="#contact" className="text-premium-accent font-black hover:underline transition-all underline-offset-4">
-              हमें सीधे संदेश भेजें →
-            </a>
+          <div className="flex justify-center mb-4">
+            <div className="
+            w-14 h-14 rounded-full
+            flex items-center justify-center
+            bg-[var(--accent-primary)]
+            text-white
+            shadow-lg
+            ">
+              <MessageCircle size={24}/>
+            </div>
+          </div>
+
+          <h4 className="text-lg md:text-xl font-semibold text-[var(--text-main)] mb-2">
+            अभी भी सवाल है?
+          </h4>
+
+          <p className="text-[var(--text-muted)] mb-5">
+            हमारी टीम आपकी सहायता के लिए हमेशा तैयार है।
           </p>
+
+          <a
+            href="#contact"
+            className="
+            inline-block px-6 py-3 rounded-xl
+            bg-[var(--accent-primary)]
+            text-white font-medium
+            hover:scale-[1.05]
+            transition
+            "
+          >
+            संपर्क करें
+          </a>
         </motion.div>
 
       </div>
