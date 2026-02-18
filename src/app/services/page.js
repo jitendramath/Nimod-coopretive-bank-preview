@@ -2,10 +2,6 @@
 
 import { motion } from "framer-motion";
 
-/* layout */
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-
 /* hero + intro */
 import ServicesHero from "@/components/services/ServicesHero";
 import ServicesIntro from "@/components/services/ServicesIntro";
@@ -48,7 +44,6 @@ export default function ServicesPage() {
       {/* 🔥 animated luxury background */}
       <ServicesBackgroundFX />
 
-      <Navbar />
 
       {/* HERO */}
       <ServicesHero />
@@ -113,7 +108,7 @@ export default function ServicesPage() {
         <ServicesCTA />
       </motion.div>
 
-      <Footer />
+      
     </main>
   );
 }
