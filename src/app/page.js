@@ -4,8 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import PremiumLoader from "@/components/ui/PremiumLoader";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 /* sections */
 import Hero from "@/components/sections/Hero";
@@ -44,10 +42,8 @@ export default function Home() {
       {/* SITE */}
       {siteReady && (
         <>
-          <Navbar />
           <Hero />
           
-
           <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
             <About />
           </motion.div>
@@ -80,7 +76,7 @@ export default function Home() {
             <Contact />
           </motion.div>
 
-          <Footer />
+          
         </>
       )}
 
