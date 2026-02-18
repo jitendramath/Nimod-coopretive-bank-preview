@@ -3,9 +3,6 @@
 import { motion } from "framer-motion";
 
 import AboutBackgroundFX from "@/components/about/AboutBackgroundFX";
-/* layout */
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 /* about sections */
 import AboutHero from "@/components/about/AboutHero";
@@ -40,7 +37,7 @@ export default function AboutPage() {
   {/* 🔥 BACKGROUND FX */}
   <AboutBackgroundFX />
 
-  <Navbar />
+  
 
       {/* HERO */}
       <AboutHero />
@@ -95,7 +92,7 @@ export default function AboutPage() {
         <AboutCTA />
       </motion.div>
 
-      <Footer />
+      
 
     </main>
   );
