@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, ShieldCheck, UserCircle } from "lucide-react";
+import { Menu, X, Sun, Moon, ShieldCheck } from "lucide-react";
 import MobileMenu from "./MobileMenu";
-import SignInModal from "@/components/auth/SignInModal"; // ✅ Modal Import
 
 const navLinks = [
   { name: "संस्था", href: "/about" },
@@ -17,7 +16,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false); // ✅ Login State
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -80,14 +78,13 @@ export default function Navbar() {
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            {/* ✅ Login Button (Trigger Modal) */}
-            <button
-              onClick={() => setIsSignInOpen(true)}
-              className="px-5 py-2 bg-premium-text text-premium-bg rounded-lg text-sm font-semibold hover:opacity-90 transition-all shadow-lg shadow-premium-text/10 flex items-center gap-2"
+            {/* ✅ Simple Link Button (No Modal) */}
+            <Link
+              href="/contact"
+              className="px-5 py-2 bg-premium-text text-premium-bg rounded-lg text-sm font-semibold hover:opacity-90 transition-all shadow-lg shadow-premium-text/10"
             >
-              <UserCircle size={18} />
-              सदस्य लॉगिन
-            </button>
+              सदस्यता लें
+            </Link>
           </div>
 
           {/* 📱 Mobile Actions */}
@@ -109,19 +106,16 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 📱 Mobile Menu (Pass Login Handler) */}
+      {/* 📱 Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <MobileMenu 
             closeMenu={() => setIsOpen(false)} 
             links={navLinks} 
-            onSignIn={() => { setIsOpen(false); setIsSignInOpen(true); }} // Mobile click handling
           />
         )}
       </AnimatePresence>
-
-      {/* ✅ SIGN IN MODAL */}
-      <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
     </>
   );
 }
+
