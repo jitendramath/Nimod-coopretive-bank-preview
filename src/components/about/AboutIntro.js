@@ -3,108 +3,151 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/* 🔥 smooth reveal */
 const fadeUp = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
 export default function AboutIntro() {
   return (
-    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
-      
-      {/* 🌌 Subtle Premium Glow (Dynamic) */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-premium-accent/10 blur-[160px] rounded-full pointer-events-none transition-colors duration-500" />
+    <section className="relative py-20 md:py-28 overflow-hidden bg-[var(--bg-primary)]">
 
-      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
+      {/* 🌈 soft ambient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-120px] left-[-120px] w-[420px] h-[420px] bg-emerald-400/10 blur-[140px] rounded-full"/>
+        <div className="absolute bottom-[-100px] right-[-100px] w-[420px] h-[420px] bg-cyan-400/10 blur-[160px] rounded-full"/>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1200px] mx-auto px-4 relative z-10">
 
-          {/* LEFT IMAGE BOX */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* 🖼 IMAGE SIDE */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
-            className="relative"
+            viewport={{ once:true }}
+            className="relative group"
           >
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-premium-border shadow-2xl shadow-premium-shadow group transition-all duration-500">
-              
+            <div className="
+              relative overflow-hidden
+              rounded-[2.2rem]
+              border border-[var(--border-color)]
+              shadow-[0_25px_70px_var(--shadow-color)]
+              bg-[var(--card-bg)]
+            ">
+
+              {/* IMAGE (landscape safe) */}
               <Image
-                src="/images/cooperative-main.jpg"
-                alt="Nimod PACS Building"
-                width={900}
-                height={700}
-                className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-[1600ms]"
+                src="/images/nimod-gate.jpg"
+                alt="Nimod Cooperative"
+                width={1400}
+                height={900}
+                className="
+                  w-full 
+                  h-[260px] sm:h-[340px] md:h-[420px]
+                  object-cover
+                  transition duration-[2000ms]
+                  group-hover:scale-[1.04]
+                "
+                priority={false}
               />
 
-              {/* Theme-Aware Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+              {/* gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"/>
 
-              {/* Floating Foundation Badge */}
-              <div className="absolute bottom-6 left-6 px-6 py-2.5 rounded-full bg-premium-surface/80 backdrop-blur-md border border-premium-border text-premium-text text-[10px] font-bold tracking-[0.2em] uppercase shadow-lg">
+              {/* badge */}
+              <div className="
+                absolute bottom-5 left-5
+                px-5 py-2 rounded-full
+                bg-[var(--card-bg)]/80 backdrop-blur-md
+                border border-[var(--border-color)]
+                text-[var(--text-main)]
+                text-[10px] tracking-[0.2em] uppercase
+                shadow
+              ">
                 Since 1954
               </div>
+
+              {/* soft shine */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-700 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent)]"/>
             </div>
           </motion.div>
 
-          {/* RIGHT TEXT CONTENT */}
+          {/* 🧠 CONTENT SIDE */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
-            className="space-y-8"
+            viewport={{ once:true }}
+            className="space-y-7"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-premium-text leading-tight transition-colors duration-500">
-              ग्रामीण विकास की एक <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-accent to-teal-500 dark:to-premium-mint">
-                विश्वसनीय सहकारी संस्था
+
+            {/* small tag */}
+            <div className="text-[11px] tracking-[0.25em] uppercase text-[var(--accent-primary)] font-semibold">
+              About Cooperative
+            </div>
+
+            {/* heading */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight text-[var(--text-main)]">
+              संस्था का{" "}
+              <span className="text-[var(--accent-primary)]">
+                परिचय
               </span>
             </h2>
 
-            <div className="h-1.5 w-24 bg-premium-accent rounded-full shadow-[0_0_10px_var(--accent-glow)]" />
+            {/* intro text */}
+            <p className="text-[15px] sm:text-base md:text-lg leading-relaxed text-[var(--text-muted)] max-w-xl">
+              <span className="text-[var(--accent-primary)] font-semibold">
+                बहुद्देशीय ग्राम सेवा सहकारी समिति निमोद
+              </span>{" "}
+              ग्रामीण वित्तीय सेवाओं, कृषि संसाधनों और सामाजिक सशक्तिकरण के क्षेत्र में एक अग्रणी सहकारी संस्था है,
+              जो पारदर्शिता और विश्वास के साथ ग्रामीण अर्थव्यवस्था को सुदृढ़ बना रही है।
+            </p>
 
-            <div className="space-y-6">
-              <p className="text-premium-text text-lg leading-relaxed transition-colors duration-500 font-semibold opacity-90">
-                बहुउद्देशीय प्राथमिक ग्राम सेवा सहकारी समिति निमोद वर्ष 1954 से
-                ग्रामीण किसानों, महिलाओं और परिवारों के आर्थिक एवं सामाजिक विकास
-                हेतु निरंतर कार्यरत एक विश्वसनीय सहकारी संस्था है।
-              </p>
+            {/* luxury highlight strips */}
+            <div className="space-y-3 pt-2">
 
-              <p className="text-premium-muted leading-relaxed transition-colors duration-500 font-medium">
-                सहकारिता के सिद्धांतों पर आधारित यह संस्था वित्तीय समावेशन,
-                कृषि उन्नति, ऊर्जा आत्मनिर्भरता एवं सामाजिक सशक्तिकरण के क्षेत्र
-                में निरंतर योगदान दे रही है और क्षेत्रीय विकास का एक मजबूत
-                स्तंभ बन चुकी है।
-              </p>
-            </div>
+              {[
+                "70+ वर्षों की विश्वसनीय सहकारी विरासत",
+                "1200+ परिवारों का निरंतर विश्वास",
+                "ग्रामीण वित्तीय एवं सामाजिक विकास का केंद्र"
+              ].map((item, i)=>(
+                <div
+                  key={i}
+                  className="
+                  flex items-center gap-3
+                  px-5 py-3 rounded-xl
+                  bg-[var(--card-bg)]
+                  border border-[var(--border-color)]
+                  backdrop-blur-xl
+                  text-sm md:text-base
+                  text-[var(--text-main)]
+                  shadow-sm
+                  hover:border-[var(--accent-primary)]
+                  hover:shadow-[0_10px_30px_var(--shadow-color)]
+                  transition-all duration-300
+                  "
+                >
+                  <div className="
+                    w-2 h-2 rounded-full
+                    bg-[var(--accent-primary)]
+                    shadow-[0_0_10px_var(--accent-primary)]
+                  "/>
+                  {item}
+                </div>
+              ))}
 
-            {/* Premium Info Summary Cards */}
-            <div className="grid grid-cols-2 gap-5 pt-6">
-              <div className="p-6 rounded-[2rem] bg-premium-card border border-premium-border transition-all duration-500 shadow-sm hover:shadow-lg hover:shadow-premium-shadow">
-                <div className="text-premium-accent text-3xl font-black tracking-tighter">
-                  1954
-                </div>
-                <div className="text-premium-muted text-xs font-bold uppercase tracking-widest mt-2">
-                  स्थापना वर्ष
-                </div>
-              </div>
-
-              <div className="p-6 rounded-[2rem] bg-premium-card border border-premium-border transition-all duration-500 shadow-sm hover:shadow-lg hover:shadow-premium-shadow">
-                <div className="text-premium-accent text-3xl font-black tracking-tighter">
-                  70+ वर्ष
-                </div>
-                <div className="text-premium-muted text-xs font-bold uppercase tracking-widest mt-2">
-                  सेवा अनुभव
-                </div>
-              </div>
             </div>
 
           </motion.div>
+
         </div>
       </div>
     </section>
