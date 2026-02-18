@@ -1,118 +1,165 @@
 "use client";
 
-import { Sprout, Tractor, Milk, Warehouse, ShoppingBasket, Users } from "lucide-react";
+import {
+  Sprout,
+  Tractor,
+  Milk,
+  Warehouse,
+  ShoppingBasket,
+  Users
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const container = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.18 }
-  }
+  show: { transition: { staggerChildren: 0.12 } }
 };
 
 const item = {
-  hidden: { opacity: 0, y: 70, scale: 0.96, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
 export default function Services() {
+
   const services = [
     {
       icon: Sprout,
       title: "कृषि ऋण एवं वित्त",
-      text: "अल्पकालीन एवं मध्यकालीन कृषि ऋण, फसली ऋण, बचत योजनाएं एवं वित्तीय सहायता।"
+      text: "अल्पकालीन एवं मध्यकालीन कृषि ऋण, फसली ऋण एवं बचत योजनाएं।",
+      glow: "rgba(16,185,129,0.35)",
+      gradient: "from-emerald-400/25 via-emerald-300/5 to-transparent",
+      iconColor: "text-emerald-600 dark:text-emerald-400"
     },
     {
       icon: Tractor,
       title: "कृषि आदान एवं उपकरण",
-      text: "उन्नत बीज, उर्वरक, कीटनाशक एवं आधुनिक कृषि उपकरणों की उपलब्धता।"
+      text: "उन्नत बीज, उर्वरक एवं आधुनिक कृषि उपकरण उपलब्ध।",
+      glow: "rgba(59,130,246,0.35)",
+      gradient: "from-blue-400/25 via-blue-300/5 to-transparent",
+      iconColor: "text-blue-600 dark:text-blue-400"
     },
     {
       icon: Milk,
       title: "दुग्ध संग्रह एवं विपणन",
-      text: "दुग्ध उत्पादकों से संगठित दुग्ध संग्रह, गुणवत्ता नियंत्रण एवं विपणन सहायता।"
+      text: "संगठित दुग्ध संग्रह, गुणवत्ता नियंत्रण एवं विपणन सहायता।",
+      glow: "rgba(244,114,182,0.35)",
+      gradient: "from-rose-400/25 via-rose-300/5 to-transparent",
+      iconColor: "text-rose-600 dark:text-rose-400"
     },
     {
       icon: Warehouse,
       title: "भंडारण एवं गोदाम",
-      text: "2000 मीट्रिक टन क्षमता का भंडारण प्रबंधन, खाद-बीज संग्रह एवं सुरक्षित स्टॉक।"
+      text: "2000 MT क्षमता के सुरक्षित भंडारण एवं स्टॉक प्रबंधन।",
+      glow: "rgba(251,191,36,0.35)",
+      gradient: "from-amber-400/25 via-amber-300/5 to-transparent",
+      iconColor: "text-amber-600 dark:text-amber-400"
     },
     {
       icon: ShoppingBasket,
       title: "उपभोक्ता स्टोर",
-      text: "दैनिक उपयोग की वस्तुएं, कृषि सामग्री एवं आवश्यक उपभोक्ता उत्पाद उचित मूल्य पर।"
+      text: "आवश्यक उपभोक्ता वस्तुएं एवं कृषि सामग्री उचित मूल्य पर।",
+      glow: "rgba(139,92,246,0.35)",
+      gradient: "from-violet-400/25 via-violet-300/5 to-transparent",
+      iconColor: "text-violet-600 dark:text-violet-400"
     },
     {
       icon: Users,
       title: "महिला स्वयं सहायता",
-      text: "महिला सशक्तिकरण हेतु स्वयं सहायता समूहों का गठन, प्रशिक्षण एवं वित्तीय सहयोग।"
+      text: "स्वयं सहायता समूह गठन, प्रशिक्षण एवं वित्तीय सहयोग।",
+      glow: "rgba(236,72,153,0.35)",
+      gradient: "from-pink-400/25 via-pink-300/5 to-transparent",
+      iconColor: "text-pink-600 dark:text-pink-400"
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-premium-bg relative overflow-hidden transition-colors duration-500">
+    <section className="relative py-24 md:py-32 overflow-hidden">
 
-      {/* 🌌 Ambient Glow */}
-      <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-premium-accent/5 blur-[160px] pointer-events-none" />
+      {/* MASTER BACKGROUND BLOBS */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 left-[-10%] w-[500px] h-[500px] bg-emerald-400/20 dark:bg-emerald-500/20 blur-[160px] rounded-full"/>
+        <div className="absolute top-[50%] right-[-10%] w-[500px] h-[500px] bg-violet-400/20 dark:bg-violet-500/20 blur-[160px] rounded-full"/>
+      </div>
 
       <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
 
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity:0, y:60 }}
+        {/* HEADER */}
+        <motion.div
+          initial={{ opacity:0, y:40 }}
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
-          transition={{ duration:0.8, ease:[0.22,1,0.36,1] }}
-          className="mb-16 md:text-center max-w-3xl mx-auto"
+          transition={{ duration:.7 }}
+          className="text-center mb-16 md:mb-24 max-w-2xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-premium-text mb-6 transition-colors duration-500">
-            प्रमुख <span className="text-premium-accent">सेवाएं</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-6">
+            प्रमुख <span className="text-[var(--accent-primary)]">सेवाएं</span>
           </h2>
-          <p className="text-lg text-premium-muted font-medium transition-colors duration-500">
-            निमोद ग्राम सेवा सहकारी समिति ग्रामीण आवश्यकताओं को ध्यान में रखते हुए बहु-आयामी सेवाएं प्रदान करती है।
+
+          <p className="text-[15px] md:text-lg text-[var(--text-muted)] leading-relaxed">
+            ग्रामीण आवश्यकताओं को ध्यान में रखते हुए बहु-आयामी सेवाएं।
           </p>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* GRID */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once:true, margin:"-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          viewport={{ once:true, margin:"-60px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {services.map((service, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               variants={item}
-              className="group relative p-8 rounded-[2.5rem] bg-premium-card border border-premium-border transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-premium-shadow"
+              className="group relative rounded-[30px] p-[1px] transition-all duration-500"
+              style={{
+                background: `linear-gradient(130deg, ${service.glow}, transparent 45%)`
+              }}
             >
-              {/* Icon Box */}
-              <div className="w-16 h-16 rounded-2xl bg-premium-surface flex items-center justify-center text-premium-accent mb-8 shadow-sm group-hover:bg-premium-accent group-hover:text-white dark:group-hover:text-black transition-all duration-500">
-                <service.icon size={30} strokeWidth={2} />
-              </div>
-              
-              <h3 className="text-xl md:text-2xl font-bold text-premium-text mb-4 transition-colors duration-500">
-                {service.title}
-              </h3>
-              
-              <p className="text-premium-muted leading-relaxed text-sm md:text-base mb-8 transition-colors duration-500 font-medium">
-                {service.text}
-              </p>
+              <div className="relative h-full rounded-[30px] p-7 md:p-8 backdrop-blur-xl bg-[var(--card-bg)] border border-[var(--border-color)] overflow-hidden transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-[0_25px_70px_var(--shadow-color)]">
 
-              {/* Action Link */}
-              <div className="mt-auto flex items-center text-premium-accent text-sm font-black tracking-widest group-hover:translate-x-3 transition-transform duration-300">
-                अधिक जानें <span className="ml-3 text-lg">→</span>
-              </div>
+                {/* internal hover gradient */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br ${service.gradient}`} />
 
-              {/* Subtle Bottom Glow */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-premium-accent opacity-30 group-hover:w-full transition-all duration-700 rounded-full" />
+                {/* ICON */}
+                <div className={`w-14 h-14 mb-6 rounded-xl flex items-center justify-center bg-white/40 dark:bg-white/5 border border-white/20 backdrop-blur-md ${service.iconColor}`}>
+                  <service.icon size={26}/>
+                </div>
+
+                {/* TITLE */}
+                <h3 className="text-[18px] md:text-[20px] font-semibold tracking-tight text-[var(--text-main)] mb-3">
+                  {service.title}
+                </h3>
+
+                {/* TEXT */}
+                <p className="text-[14px] text-[var(--text-muted)] leading-relaxed mb-8">
+                  {service.text}
+                </p>
+
+                {/* CTA */}
+                <div className="flex items-center gap-2 text-[13px] font-medium tracking-wide text-[var(--text-main)] group-hover:translate-x-2 transition-transform duration-300">
+                  <span className="opacity-80 group-hover:opacity-100">
+                    अधिक जानें
+                  </span>
+                  <span className="text-[18px] transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+
+                {/* floating glow orb */}
+                <div
+                  className="absolute -bottom-20 -right-20 w-40 h-40 blur-3xl opacity-30 group-hover:opacity-70 transition"
+                  style={{ background: service.glow }}
+                />
+
+              </div>
             </motion.div>
           ))}
         </motion.div>
