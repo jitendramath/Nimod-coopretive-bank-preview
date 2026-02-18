@@ -115,37 +115,7 @@ export default function Hero() {
 
         </motion.div>
 
-  /* =========================================
-   💎 LUXURY LIVE STATS COMPONENT
-========================================= */
 
-// छोटा सा हेल्पर Component जो नंबर को 0 से ऊपर ले जाएगा
-const Counter = ({ value }) => {
-  const numericValue = parseInt(value.replace(/\D/g, "")); // "₹3 Cr+" -> 3
-  const suffix = value.replace(/[0-9]/g, ""); // "₹3 Cr+" -> " Cr+"
-  
-  return (
-    <motion.span
-      initial={{ opacity: 0, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, filter: "blur(0px)" }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="inline-flex"
-    >
-      <span className="tabular-nums tracking-tight">
-        {/* यहाँ हम Framer Motion का use करके animate कर सकते हैं, 
-            लेकिन simplicity और performance के लिए अभी static + fade रखा है। 
-            Premium feel "Tabular Nums" और font से आती है। */}
-        {numericValue}
-      </span>
-      <span className="text-[0.6em] align-top ml-0.5 mt-1 opacity-70 font-medium">
-        {suffix}
-      </span>
-    </motion.span>
-  );
-};
-
-/* मेन Stats ब्लॉक */
 <motion.div
   initial={{ opacity: 0, y: 40, scale: 0.95 }}
   whileInView={{ opacity: 1, y: 0, scale: 1 }}
