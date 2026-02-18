@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 
 export default function PremiumLoader({ onFinish }) {
   const [loading, setLoading] = useState(true);
@@ -11,13 +12,13 @@ export default function PremiumLoader({ onFinish }) {
 
     const finishLoading = () => {
       const elapsed = Date.now() - start;
-      const remaining = Math.max(800 - elapsed, 0); // कम से कम 800ms का सिनेमैटिक होल्ड
+      const remaining = Math.max(800 - elapsed, 0); // 800ms Cinematic Hold
 
       setTimeout(() => {
         setLoading(false);
         setTimeout(() => {
           if (onFinish) onFinish();
-        }, 800); // Exit animation duration
+        }, 600);
       }, remaining);
     };
 
@@ -36,61 +37,62 @@ export default function PremiumLoader({ onFinish }) {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            filter: "blur(15px)", // जाते समय धुंधला हो जाएगा
-            scale: 1.05,
-            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+            scale: 1.1,
+            filter: "blur(20px)",
+            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#ffffff] dark:bg-[#050505] transition-colors duration-500"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-white dark:bg-[#050505] transition-colors duration-500"
         >
-          {/* ✨ Ambient Background Glow (Matching Navbar Gradient) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 dark:bg-emerald-500/10 blur-[120px] rounded-full animate-pulse pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-sky-500/10 blur-[90px] rounded-full pointer-events-none" />
+          {/* ✨ Background Glow (Atmosphere) */}
+          <div className="absolute w-[400px] h-[400px] bg-emerald-500/10 blur-[120px] rounded-full animate-pulse pointer-events-none" />
 
-          {/* 🖊️ TYPOGRAPHY LOGO (Matches Navbar) */}
-          <div className="relative overflow-hidden p-4">
-            <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white"
+          {/* ⭕ THE LUXURY CIRCLE LOADER */}
+          <div className="relative w-24 h-24 flex items-center justify-center">
+            
+            {/* 1. Outer Ring (Conic Gradient Spin) */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+              className="absolute inset-0 rounded-full p-[2px] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_90deg,#10b981_180deg,#0ea5e9_360deg)] opacity-80"
             >
-              Nimod
-              <span className="text-emerald-500 inline-block ml-1">Cooperative</span>
-            </motion.h1>
+              <div className="w-full h-full bg-white dark:bg-[#050505] rounded-full" />
+            </motion.div>
 
-            {/* ✨ Shimmer Effect Over Text */}
+            {/* 2. Middle Ring (Reverse Slow Spin) */}
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
-              transition={{
-                repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/20 to-transparent skew-x-12"
+              animate={{ rotate: -360 }}
+              transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+              className="absolute inset-3 rounded-full border border-emerald-500/30 border-t-transparent border-l-transparent"
             />
+
+            {/* 3. Center Glass Orb & Icon */}
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "backOut" }}
+              className="relative z-10 w-12 h-12 rounded-full bg-gradient-to-tr from-emerald-500/20 to-sky-500/20 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+            >
+              {/* Logo Icon Inside */}
+              <ShieldCheck className="text-emerald-600 dark:text-emerald-400 w-6 h-6 drop-shadow-lg" strokeWidth={2.5} />
+            </motion.div>
+            
           </div>
 
-          {/* ➖ Minimal Loading Bar */}
-          <div className="mt-6 w-32 h-[2px] bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden relative">
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "0%" }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-sky-500"
-            />
-          </div>
-
-          {/* Tagline Fade In */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="absolute bottom-10 text-xs font-medium tracking-[0.3em] uppercase text-neutral-400 dark:text-neutral-600"
+          {/* ✍️ Brand Name Below */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-8 text-center"
           >
-            Loading Experience...
-          </motion.p>
+            <h2 className="text-sm font-bold tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase">
+              Nimod <span className="text-emerald-500">Coop</span>
+            </h2>
+            <p className="text-[10px] text-neutral-400 font-medium tracking-wider mt-1">
+              SECURING FUTURE
+            </p>
+          </motion.div>
+
         </motion.div>
       )}
     </AnimatePresence>
