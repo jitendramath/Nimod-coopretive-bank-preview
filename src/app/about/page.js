@@ -2,9 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import AboutBackgroundFX from "@/components/about/AboutBackgroundFX";
 
-/* about sections */
 import AboutHero from "@/components/about/AboutHero";
 import AboutIntro from "@/components/about/AboutIntro";
 import AboutStats from "@/components/about/AboutStats";
@@ -34,8 +32,7 @@ export default function AboutPage() {
   return (
     <main className="bg-premium-black overflow-hidden relative">
 
-  {/* 🔥 BACKGROUND FX */}
-  <AboutBackgroundFX />
+ 
 
   
 
