@@ -91,7 +91,6 @@ export default function AboutObjectives() {
           ref={scrollRef}
           onScroll={handleScroll}
           className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory px-6 md:px-0 pb-8 md:pb-0 scrollbar-hide"
-          style={{ scrollBehavior: 'smooth' }}
         >
           {objectives.map((item, i) => (
             <motion.div
@@ -100,8 +99,8 @@ export default function AboutObjectives() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto snap-center group"
-            >
+              className="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto snap-center snap-always group"
+                >
               <div className="relative h-full p-6 md:p-8 rounded-[1.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-lg shadow-gray-200/50 dark:shadow-none transition-all duration-300 hover:border-emerald-500/30 hover:-translate-y-1">
                 
                 {/* Icon Box */}
