@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // 👈 Logo के लिए Image इम्पोर्ट किया
 import { useTheme } from "next-themes";
 import { AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, ShieldCheck } from "lucide-react";
@@ -40,11 +41,28 @@ export default function Navbar() {
       >
         <div className="w-[92%] max-w-[1250px] mx-auto flex justify-between items-center">
 
-          <Link href="/" className="group">
-  <span className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[var(--text-main)] transition">
-    Nimod<span className="text-emerald-500">Cooperative</span>
-  </span>
-</Link>
+          {/* 👑 PREMIUM LOGO SECTION */}
+          <Link href="/" className="group flex items-center">
+            {/* ☀️ Light Theme Logo (Black Logo) */}
+            <Image
+              src="/images/logo-light.png" // Light mode में दिखने वाला लोगो
+              alt="MPPacs Nimod Logo"
+              width={180}
+              height={46}
+              priority // Header इमेज है इसलिए priority दी है ताकि फ़ास्ट लोड हो
+              className="w-auto h-7 md:h-9 block dark:hidden transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            
+            {/* 🌙 Dark Theme Logo (White Logo) */}
+            <Image
+              src="/images/logo-dark.png" // Dark mode में दिखने वाला लोगो
+              alt="MPPacs Nimod Logo"
+              width={180}
+              height={46}
+              priority // Header इमेज है इसलिए priority दी है ताकि फ़ास्ट लोड हो
+              className="w-auto h-7 md:h-9 hidden dark:block transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </Link>
 
           {/* 🖥️ Desktop */}
           <div className="hidden md:flex items-center gap-9">
