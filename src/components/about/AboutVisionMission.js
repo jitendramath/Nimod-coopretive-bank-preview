@@ -13,53 +13,52 @@ export default function AboutVisionMission() {
       icon: Eye,
       title: "हमारा दृष्टिकोण",
       desc: "ग्रामीण समुदाय को वित्तीय रूप से सशक्त बनाते हुए एक पारदर्शी, उत्तरदायी और आत्मनिर्भर सहकारी मॉडल स्थापित करना हमारा मुख्य दृष्टिकोण है। हमारा लक्ष्य है कि प्रत्येक किसान, महिला और युवा आधुनिक वित्तीय सेवाओं एवं संसाधनों से जुड़कर आर्थिक रूप से मजबूत बने।",
-      tag: "Future Ready Rural Economy",
-      theme: "emerald",
-      gradient: "from-emerald-500/20 to-teal-500/20"
+      tag: "Future Ready Rural Economy"
     },
     {
       icon: Target,
       title: "हमारा मिशन",
       desc: "सहकारिता के माध्यम से किसानों और ग्रामीण नागरिकों को सशक्त बनाना, उन्हें आधुनिक तकनीकों, वित्तीय सेवाओं और सरकारी योजनाओं से जोड़ना तथा क्षेत्रीय विकास में सक्रिय योगदान देना हमारा मिशन है। हम प्रगति और विश्वास के साथ निरंतर आगे बढ़ रहे हैं।",
-      tag: "Cooperative Powered Growth",
-      theme: "blue",
-      gradient: "from-blue-500/20 to-cyan-500/20"
+      tag: "Cooperative Powered Growth"
     }
   ];
 
-  // 🖱️ Logic to track active card on scroll (For Dots)
+  // smooth dots tracking (throttled)
   const handleScroll = () => {
-    if (scrollRef.current) {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const cardWidth = scrollRef.current.offsetWidth * 0.85; // Mobile card width approx
-      const index = Math.round(scrollLeft / cardWidth);
-      const safeIndex = Math.min(Math.max(index, 0), visionMissionData.length - 1);
-      setActiveIndex(safeIndex);
-    }
+    requestAnimationFrame(() => {
+      if (scrollRef.current) {
+        const scrollLeft = scrollRef.current.scrollLeft;
+        const cardWidth = scrollRef.current.offsetWidth * 0.85;
+        const index = Math.round(scrollLeft / cardWidth);
+        const safeIndex = Math.min(Math.max(index, 0), visionMissionData.length - 1);
+        setActiveIndex(safeIndex);
+      }
+    });
   };
 
   return (
-    <section className="relative py-24 md:py-32 bg-gray-50 dark:bg-[#050505] overflow-hidden transition-colors duration-500">
+    <section className="relative py-24 md:py-32 bg-gray-50 dark:bg-[#050505] overflow-hidden">
 
-      {/* 🕸️ Premium Noise Texture */}
+      {/* light noise */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
 
-      {/* 🌌 Ambient Background Lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/5 dark:bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none transition-colors duration-500" />
+      {/* ambient glow (single blur only) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/5 dark:bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="w-full md:w-[90%] max-w-7xl mx-auto relative z-10">
 
-        {/* --- Header Section --- */}
+        {/* header */}
         <div className="text-center px-4 mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight transition-colors duration-500"
+            className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight"
           >
             हमारा <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400">दृष्टिकोण</span> और{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400">मिशन</span>
           </motion.h2>
+
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -72,30 +71,29 @@ export default function AboutVisionMission() {
           </motion.p>
         </div>
 
-        {/* --- 📱 MOBILE: Swipeable Container | 💻 DESKTOP: Grid --- */}
+        {/* swipe container */}
         <div 
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex md:grid md:grid-cols-2 gap-6 lg:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory px-6 md:px-0 pb-8 md:pb-0 scrollbar-hide"
+          className="flex md:grid md:grid-cols-2 gap-6 lg:gap-12 
+          overflow-x-auto md:overflow-visible 
+          snap-x snap-mandatory 
+          px-6 md:px-0 pb-8 md:pb-0 
+          scrollbar-hide 
+          scroll-smooth 
+          will-change-transform 
+          [transform:translateZ(0)]"
         >
           {visionMissionData.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              /* snap-always is the key for lazy, controlled swiping! */
-              className="flex-shrink-0 w-[88vw] sm:w-[400px] md:w-auto snap-center snap-always group"
+              className="flex-shrink-0 w-[88vw] sm:w-[400px] md:w-auto snap-center snap-always will-change-transform"
             >
-              <div className="relative h-full p-8 md:p-12 rounded-[2.5rem] bg-white dark:bg-[#111] border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-500 shadow-xl shadow-gray-200/40 dark:shadow-none hover:-translate-y-2">
-                
-                {/* Background Magic Glow on Hover */}
-                <div className={`absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br ${item.gradient} blur-xl pointer-events-none -z-10`} />
+              <div className="relative h-full p-8 md:p-12 rounded-[2.5rem] bg-white dark:bg-[#111] border border-gray-100 dark:border-white/5 shadow-md shadow-gray-200/30 dark:shadow-none">
 
                 <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-emerald-600 dark:text-emerald-400 mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/20">
+                  {/* icon */}
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-emerald-600 dark:text-emerald-400 mb-8">
                     <item.icon size={32} />
                   </div>
 
@@ -113,21 +111,20 @@ export default function AboutVisionMission() {
                   </div>
                 </div>
 
-                {/* Mobile 'Swipe' Hint Arrow for the very first card */}
+                {/* swipe arrow hint */}
                 {i === 0 && (
                   <div className="md:hidden absolute top-8 right-8 text-gray-300 dark:text-gray-600 animate-pulse">
                     <ArrowRight size={20} />
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
           
-          {/* Spacer for proper mobile right padding */}
           <div className="w-2 md:hidden flex-shrink-0" />
         </div>
 
-        {/* --- 🟣 Mobile Indicator Dots --- */}
+        {/* dots */}
         <div className="flex md:hidden justify-center items-center gap-2 mt-2 mb-10">
           {visionMissionData.map((_, i) => (
             <div 
@@ -141,24 +138,19 @@ export default function AboutVisionMission() {
           ))}
         </div>
 
-        {/* --- 🌟 Ultra Premium Quote Strip (Specially for Mobile) --- */}
+        {/* quote section (unchanged smooth) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="relative mt-16 md:mt-32 max-w-4xl mx-auto px-4 md:px-0"
         >
-          {/* The Glass Container */}
-          <div className="relative p-8 md:p-14 rounded-[2.5rem] bg-white/60 dark:bg-[#111]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-2xl shadow-emerald-900/10 dark:shadow-none overflow-hidden text-center group">
-            
-            {/* Huge Background Quote Icon */}
-            <div className="absolute -top-6 -left-2 md:top-4 md:left-8 text-emerald-500/10 dark:text-emerald-500/5 transform -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110">
+          <div className="relative p-8 md:p-14 rounded-[2.5rem] bg-white/60 dark:bg-[#111]/80 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-xl shadow-emerald-900/10 dark:shadow-none overflow-hidden text-center">
+
+            <div className="absolute -top-6 -left-2 md:top-4 md:left-8 text-emerald-500/10 dark:text-emerald-500/5 -rotate-12 pointer-events-none">
               <Quote size={140} strokeWidth={1} />
             </div>
-
-            {/* Glowing Accent Ring (Subtle) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-emerald-500/10 blur-[80px] pointer-events-none" />
 
             <div className="relative z-10">
                <p className="text-gray-800 dark:text-gray-200 text-xl md:text-3xl leading-relaxed italic font-medium">
@@ -166,7 +158,6 @@ export default function AboutVisionMission() {
                  तो विकास केवल एक लक्ष्य नहीं बल्कि एक <span className="underline decoration-emerald-500/30 decoration-4 underline-offset-4">निरंतर यात्रा</span> बन जाता है।"
                </p>
 
-               {/* Elegant Bottom Line */}
                <div className="mt-10 flex justify-center items-center gap-4">
                  <div className="h-px w-12 bg-gray-300 dark:bg-gray-700" />
                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
