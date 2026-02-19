@@ -1,113 +1,155 @@
 "use client";
 
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Users, Scale, FileCheck } from "lucide-react";
-
-const governance = [
-  {
-    icon: Users,
-    title: "निर्वाचित प्रबंधन समिति",
-    desc: "समिति का संचालन 12 सदस्यीय निर्वाचित प्रबंधन समिति द्वारा किया जाता है, जो सामूहिक निर्णय और सदस्य हितों को सर्वोपरि रखती है।",
-  },
-  {
-    icon: Scale,
-    title: "लोकतांत्रिक प्रणाली",
-    desc: "राज्य सहकारिता अधिनियम के अनुसार नियमित चुनाव और सभी सदस्यों को समान मताधिकार प्रदान किया जाता है।",
-  },
-  {
-    icon: ShieldCheck,
-    title: "पारदर्शी प्रशासन",
-    desc: "हर वित्तीय और प्रशासनिक निर्णय पारदर्शिता और जवाबदेही के सिद्धांतों के साथ लिया जाता है।",
-  },
-  {
-    icon: FileCheck,
-    title: "नियमित ऑडिट",
-    desc: "सरकारी मानकों के अनुसार प्रतिवर्ष वैधानिक ऑडिट और निरीक्षण सुनिश्चित किया जाता है।",
-  },
-];
+import { ShieldCheck, Users, Scale, FileCheck, ArrowRight, Award } from "lucide-react";
 
 export default function AboutGovernance() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
+
+  const governance = [
+    {
+      icon: Users,
+      title: "प्रबंधन समिति",
+      desc: "12 सदस्यीय निर्वाचित समिति, जो सामूहिक निर्णय और सदस्य हितों को सर्वोपरि रखती है।",
+      theme: "text-blue-600 dark:text-blue-400",
+      bg: "bg-blue-50 dark:bg-blue-500/10 border-blue-100 dark:border-blue-500/20"
+    },
+    {
+      icon: Scale,
+      title: "लोकतांत्रिक प्रणाली",
+      desc: "सहकारिता अधिनियम के अनुसार नियमित चुनाव और सभी को समान मताधिकार।",
+      theme: "text-emerald-600 dark:text-emerald-400",
+      bg: "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20"
+    },
+    {
+      icon: ShieldCheck,
+      title: "पारदर्शी प्रशासन",
+      desc: "हर वित्तीय और प्रशासनिक निर्णय पूरी पारदर्शिता और जवाबदेही के साथ।",
+      theme: "text-violet-600 dark:text-violet-400",
+      bg: "bg-violet-50 dark:bg-violet-500/10 border-violet-100 dark:border-violet-500/20"
+    },
+    {
+      icon: FileCheck,
+      title: "नियमित ऑडिट",
+      desc: "सरकारी मानकों के अनुसार प्रतिवर्ष वैधानिक ऑडिट और सख्त निरीक्षण।",
+      theme: "text-amber-600 dark:text-amber-400",
+      bg: "bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20"
+    },
+  ];
+
+  // 🖱️ Logic for Indicator Dots
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const cardWidth = scrollRef.current.offsetWidth * 0.85; // Mobile card width approx
+      const index = Math.round(scrollLeft / cardWidth);
+      const safeIndex = Math.min(Math.max(index, 0), governance.length - 1);
+      setActiveIndex(safeIndex);
+    }
+  };
+
   return (
-    <section className="relative py-24 md:py-32 bg-premium-bg overflow-hidden transition-colors duration-500">
+    <section className="relative py-16 md:py-24 bg-white dark:bg-[#080808] overflow-hidden transition-colors duration-500">
 
-      {/* 🌌 Premium Ambient Glow (Dynamic) */}
-      <div className="absolute right-[-200px] top-[-120px] w-[600px] h-[600px] bg-premium-accent/10 blur-[200px] rounded-full pointer-events-none transition-colors duration-500" />
+      {/* 🕸️ Subtle Texture */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
 
-      <div className="w-[92%] max-w-[1200px] mx-auto relative z-10">
+      <div className="w-full md:w-[90%] max-w-7xl mx-auto relative z-10">
 
-        {/* Heading Section */}
-        <div className="text-center mb-20">
+        {/* --- Header Section (Compact) --- */}
+        <div className="text-center px-4 mb-12 md:mb-16">
           <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-premium-text mb-6 tracking-tight transition-colors duration-500"
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight"
           >
-            प्रबंधन एवं <span className="text-premium-accent">शासन</span>
+            प्रबंधन एवं <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-600 dark:from-emerald-400 dark:to-blue-400">शासन</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-premium-muted max-w-2xl mx-auto text-lg leading-relaxed transition-colors duration-500 font-medium"
+            className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-[15px] md:text-base leading-relaxed font-medium"
           >
-            समिति का संचालन पारदर्शिता, लोकतंत्र और जवाबदेही के सिद्धांतों पर आधारित है,
-            जिससे सदस्यों और ग्रामीण समुदाय का विश्वास लगातार मजबूत बना रहे।
+            पारदर्शिता, लोकतंत्र और जवाबदेही के सिद्धांतों पर आधारित संचालन।
           </motion.p>
         </div>
 
-        {/* Governance Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-
+        {/* --- 📱 MOBILE: Swipeable Container | 💻 DESKTOP: 4-Column Grid --- */}
+        <div 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex lg:grid lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory px-6 md:px-0 pb-6 lg:pb-0 scrollbar-hide"
+        >
           {governance.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 70 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: i * 0.15,
-                duration: 0.9,
-                ease: [0.22, 1, 0.36, 1],
-              }}
               viewport={{ once: true }}
-              className="group relative rounded-[2.5rem] border border-premium-border bg-premium-card p-8 md:p-12 hover:border-premium-accent/40 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-premium-shadow"
+              transition={{ delay: i * 0.1 }}
+              /* 'snap-always' forces a stop at each card */
+              className="flex-shrink-0 w-[85vw] sm:w-[320px] lg:w-auto snap-center snap-always group"
             >
+              {/* Compact Card */}
+              <div className="relative h-full p-6 md:p-7 rounded-[1.5rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
 
-              {/* Internal Hover Glow */}
-              <div className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-10 transition duration-500 bg-[radial-gradient(circle_at_top,var(--accent-glow),transparent_60%)] pointer-events-none"></div>
-
-              <div className="relative z-10">
-
-                {/* Icon Box */}
-                <div className="w-16 h-16 mb-8 rounded-2xl bg-premium-accent/10 flex items-center justify-center text-premium-accent group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                  <item.icon size={32} />
+                {/* Top Row: Icon */}
+                <div className={`w-12 h-12 mb-5 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-110 ${item.bg} ${item.theme}`}>
+                  <item.icon size={22} strokeWidth={1.8} />
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold text-premium-text mb-5 group-hover:text-premium-accent transition-colors duration-300">
+                {/* Title & Desc */}
+                <h3 className="text-[1.1rem] font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                   {item.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-premium-muted leading-relaxed text-[15px] md:text-base transition-colors duration-500 font-medium">
+                <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm font-medium">
                   {item.desc}
                 </p>
+
+                {/* Swipe Hint (Only on the first card, mobile only) */}
+                {i === 0 && (
+                  <div className="lg:hidden absolute top-6 right-6 text-gray-300 dark:text-gray-600 animate-pulse">
+                    <ArrowRight size={18} />
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
+          
+          {/* Mobile Right Padding Spacer */}
+          <div className="w-2 lg:hidden flex-shrink-0" />
         </div>
 
-        {/* Bottom Trust Bar */}
+        {/* --- 🟣 Mobile Indicator Dots --- */}
+        <div className="flex lg:hidden justify-center items-center gap-2 mt-2">
+          {governance.map((_, i) => (
+            <div 
+              key={i}
+              className={`transition-all duration-300 rounded-full ${
+                activeIndex === i 
+                  ? "w-6 h-1.5 bg-emerald-500" 
+                  : "w-1.5 h-1.5 bg-gray-300 dark:bg-gray-700"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* --- Compact Trust Bar --- */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-24 border-t border-premium-border pt-12 text-center transition-colors duration-500"
+          className="mt-12 md:mt-16 pt-8 border-t border-gray-100 dark:border-white/5 text-center flex flex-col items-center justify-center gap-2"
         >
-          <p className="text-premium-muted/60 text-sm md:text-base tracking-wide font-semibold italic">
-            "राजस्थान सहकारिता अधिनियम के अंतर्गत पंजीकृत एवं वैधानिक रूप से संचालित संस्था"
+          <Award size={20} className="text-emerald-500 mb-1" />
+          <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm tracking-wide font-semibold uppercase">
+            राजस्थान सहकारिता अधिनियम के अंतर्गत पंजीकृत एवं वैधानिक रूप से संचालित
           </p>
         </motion.div>
 
