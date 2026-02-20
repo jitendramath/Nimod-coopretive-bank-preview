@@ -7,8 +7,33 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Nimod Cooperative",
-  description: "Official portal of Nimod Cooperative Society for digital services and rural development.",
+  title: "Nimod Cooperative Society | निमोद सहकारी समिति",
+  description: "बहुउद्देशीय प्राथमिक ग्राम सेवा सहकारी समिति निमोद। डिजिटल बैंकिंग, सुपरमार्केट और कृषि सुविधाओं के साथ ग्रामीण विकास का आधुनिक मॉडल।",
+  
+  // 🟢 Open Graph (For WhatsApp, Facebook, LinkedIn, Telegram, Instagram)
+  openGraph: {
+    title: "Nimod Cooperative Society | निमोद सहकारी समिति",
+    description: "सहकारिता के माध्यम से ग्रामीण विकास का आधुनिक मॉडल। जानिए हमारी डिजिटल बैंकिंग, सुपरमार्केट और कृषि सुविधाओं के बारे में।",
+    url: "https://nimodbank.in", // अपनी असली वेबसाइट का लिंक यहाँ डालें (अगर अलग है तो)
+    siteName: "Nimod Cooperative Society",
+    images: [
+      {
+        url: "https://i.ibb.co/zT42c2Kr/og.png", // तुम्हारी Premium 1200x630 Image
+        width: 1200,
+        height: 630,
+        alt: "Nimod Cooperative Society Preview",
+      },
+    ],
+    type: "website",
+  },
+
+  // 🐦 Twitter (For X / Twitter)
+  twitter: {
+    card: "summary_large_image",
+    title: "Nimod Cooperative Society | निमोद सहकारी समिति",
+    description: "सहकारिता के माध्यम से ग्रामीण विकास का आधुनिक मॉडल।",
+    images: ["https://i.ibb.co/zT42c2Kr/og.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
