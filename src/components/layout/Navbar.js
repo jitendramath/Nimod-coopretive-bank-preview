@@ -93,10 +93,10 @@ export default function Navbar() {
 
             {/* premium button */}
             <Link
-              href="/contact"
+              href="/sign-in"
               className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-sky-500 text-black text-sm font-semibold shadow-lg hover:scale-[1.03] transition"
             >
-              Contact
+              Sign-in
             </Link>
           </div>
 
