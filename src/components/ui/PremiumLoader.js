@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import Image from "next/image"; // 👈 Logo के लिए Image इम्पोर्ट किया
 
 export default function PremiumLoader({ onFinish }) {
   const [loading, setLoading] = useState(true);
@@ -37,60 +37,67 @@ export default function PremiumLoader({ onFinish }) {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            scale: 1.1,
-            filter: "blur(20px)",
+            scale: 1.05,
+            filter: "blur(10px)",
             transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-white dark:bg-[#050505] transition-colors duration-500"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-gray-50 dark:bg-[#030303] transition-colors duration-500"
         >
-          {/* ✨ Background Glow (Atmosphere) */}
-          <div className="absolute w-[400px] h-[400px] bg-emerald-500/10 blur-[120px] rounded-full animate-pulse pointer-events-none" />
+          {/* ✨ Subtle Background Glow (Atmosphere) */}
+          <div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-emerald-500/10 dark:bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none" />
 
-          {/* ⭕ THE LUXURY CIRCLE LOADER */}
-          <div className="relative w-24 h-24 flex items-center justify-center">
+          {/* ⭕ THE RESPONSIVE CIRCULAR LOADER */}
+          <div className="relative w-14 h-14 md:w-20 md:h-20 flex items-center justify-center mb-8 md:mb-10">
             
-            {/* 1. Outer Ring (Conic Gradient Spin) */}
+            {/* 1. Fast Outer Ring */}
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-              className="absolute inset-0 rounded-full p-[2px] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_90deg,#10b981_180deg,#0ea5e9_360deg)] opacity-80"
-            >
-              <div className="w-full h-full bg-white dark:bg-[#050505] rounded-full" />
-            </motion.div>
-
-            {/* 2. Middle Ring (Reverse Slow Spin) */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-              className="absolute inset-3 rounded-full border border-emerald-500/30 border-t-transparent border-l-transparent"
+              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              className="absolute inset-0 rounded-full border-[2px] md:border-[3px] border-gray-200/50 dark:border-white/5 border-t-emerald-500"
             />
 
-            {/* 3. Center Glass Orb & Icon */}
+            {/* 2. Slow Inner Ring (Reverse) */}
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "backOut" }}
-              className="relative z-10 w-12 h-12 rounded-full bg-gradient-to-tr from-emerald-500/20 to-sky-500/20 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-            >
-              {/* Logo Icon Inside */}
-              <ShieldCheck className="text-emerald-600 dark:text-emerald-400 w-6 h-6 drop-shadow-lg" strokeWidth={2.5} />
-            </motion.div>
+              animate={{ rotate: -360 }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+              className="absolute inset-2.5 md:inset-3.5 rounded-full border-[2px] border-transparent border-l-cyan-500/80"
+            />
+
+            {/* 3. Center Pulse Dot */}
+            <motion.div
+              animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.5, 1, 0.5] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+            />
             
           </div>
 
-          {/* ✍️ Brand Name Below */}
+          {/* 🌟 BRAND LOGO (Swaps based on Dark/Light Theme) */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 text-center"
+            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+            className="relative flex justify-center items-center"
           >
-            <h2 className="text-sm font-bold tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase">
-              Nimod <span className="text-emerald-500">Coop</span>
-            </h2>
-            <p className="text-[10px] text-neutral-400 font-medium tracking-wider mt-1">
-              SECURING FUTURE
-            </p>
+            {/* ☀️ LIGHT THEME LOGO (Dark Text) */}
+            <Image
+              src="/images/logo-dark.png" 
+              alt="MPPacs Nimod Logo"
+              width={200}
+              height={50}
+              priority
+              className="h-6 md:h-9 w-auto block dark:hidden"
+            />
+            
+            {/* 🌙 DARK THEME LOGO (White Text) */}
+            <Image
+              src="/images/logo-light.png" 
+              alt="MPPacs Nimod Logo"
+              width={200}
+              height={50}
+              priority
+              className="h-6 md:h-9 w-auto hidden dark:block"
+            />
           </motion.div>
 
         </motion.div>
