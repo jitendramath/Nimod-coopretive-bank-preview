@@ -49,8 +49,8 @@ export default function Navbar() {
             <Image
               src="/images/logo-dark.png" 
               alt="MPPacs Nimod Logo"
-              width={400}
-              height={100}
+              width={440}
+              height={110}
               priority 
               className="w-auto h-10 md:h-12 block dark:hidden transition-transform duration-300 group-hover:scale-[1.02]"
             />
@@ -60,8 +60,8 @@ export default function Navbar() {
             <Image
               src="/images/logo-light.png" 
               alt="MPPacs Nimod Logo"
-              width={400}
-              height={100}
+              width={480}
+              height={120}
               priority 
               className="w-auto h-10 md:h-12 hidden dark:block transition-transform duration-300 group-hover:scale-[1.02]"
             />
