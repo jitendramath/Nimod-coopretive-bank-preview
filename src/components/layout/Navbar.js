@@ -9,10 +9,10 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 
 const navLinks = [
-  { name: "संस्था", href: "/about" },
-  { name: "सेवाएं", href: "/services" },
-  { name: "परियोजनाएं", href: "/projects" },
-  { name: "संपर्क", href: "/contact" },
+  { name: "About Us", href: "/about" },
+  { name: "Our Services", href: "/services" },
+  { name: "Our Projects", href: "/projects" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -49,8 +49,8 @@ export default function Navbar() {
             <Image
               src="/images/logo-dark.png" 
               alt="MPPacs Nimod Logo"
-              width={440}
-              height={110}
+              width={520}
+              height={130}
               priority 
               className="w-auto h-10 md:h-12 block dark:hidden transition-transform duration-300 group-hover:scale-[1.02]"
             />
@@ -60,8 +60,8 @@ export default function Navbar() {
             <Image
               src="/images/logo-light.png" 
               alt="MPPacs Nimod Logo"
-              width={480}
-              height={120}
+              width={520}
+              height={130}
               priority 
               className="w-auto h-10 md:h-12 hidden dark:block transition-transform duration-300 group-hover:scale-[1.02]"
             />
