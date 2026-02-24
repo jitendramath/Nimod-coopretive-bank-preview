@@ -3,9 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import PremiumLoader from "@/components/ui/PremiumLoader";
-
-/* sections */
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
@@ -29,19 +26,10 @@ const sectionVariants = {
 };
 
 export default function Home() {
-  const [siteReady, setSiteReady] = useState(false);
 
   return (
     <main className="overflow-hidden">
 
-      {/* LOADER */}
-      {!siteReady && (
-        <PremiumLoader onFinish={() => setSiteReady(true)} />
-      )}
-
-      {/* SITE */}
-      {siteReady && (
-        <>
           <Hero />
           
           <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
@@ -75,10 +63,6 @@ export default function Home() {
           <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
             <Contact />
           </motion.div>
-
-          
-        </>
-      )}
 
     </main>
   );
