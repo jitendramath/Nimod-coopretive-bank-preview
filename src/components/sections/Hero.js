@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-/* 🌟 Ultra smooth premium animation */
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -26,7 +25,6 @@ const staggerContainer = {
   }
 };
 
-/* 💎 Live Counter (luxury clean version) */
 const Counter = ({ value }) => {
   const numericValue = parseInt(value.replace(/\D/g, ""));
   const suffix = value.replace(/[0-9]/g, "");
@@ -53,7 +51,6 @@ export default function Hero() {
   return (
     <section className="relative pt-28 pb-20 md:pt-40 md:pb-28 lg:pt-52 lg:pb-36 overflow-hidden">
 
-      {/* 💎 Premium background */}
       <div className="absolute inset-0 -z-10">
 
         {/* light */}
@@ -91,7 +88,7 @@ export default function Hero() {
           >
             बहुउद्देशीय प्राथमिक ग्राम <br className="hidden md:block" />
             <span className="bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent inline-block mt-2">
-              सेवा सहकारी समिति निमोद
+              सेवा सहकारी सोसायटी निमोद
             </span>
           </motion.h1>
 
@@ -106,8 +103,8 @@ export default function Hero() {
 
           {/* micro trust */}
           <motion.div variants={fadeUp} className="flex justify-center mb-8">
-            <p className="text-[11px] md:text-xs text-[var(--text-muted)] tracking-[0.18em] whitespace-nowrap overflow-hidden text-ellipsis">
-              Trusted by <span className="text-emerald-500 font-semibold">1200+</span> families since <span className="text-emerald-500 font-semibold">1954</span>
+            <p className="text-[11px] md:text-xs text-[var(--text-muted)] whitespace-nowrap overflow-hidden text-ellipsis">
+              Trusted by <span className="text-emerald-500 font-semibold">5000+</span> families since <span className="text-emerald-500 font-semibold">1954</span>
             </p>
           </motion.div>
 
@@ -145,21 +142,21 @@ export default function Hero() {
 
     {[
       {
-        val: "900+",
+        val: "10000+",
         label: "किसान सदस्य",
         bg: "from-emerald-500/15 to-emerald-400/5",
         glow: "group-hover:shadow-emerald-500/30",
         text: "text-emerald-600 dark:text-emerald-400"
       },
       {
-        val: "1200+",
+        val: "5000+",
         label: "परिवार जुड़े",
         bg: "from-cyan-500/15 to-cyan-400/5",
         glow: "group-hover:shadow-cyan-500/30",
         text: "text-cyan-600 dark:text-cyan-400"
       },
       {
-        val: "₹3 Cr+",
+        val: "₹10 Cr+",
         label: "ऋण वितरण",
         bg: "from-violet-500/15 to-fuchsia-400/5",
         glow: "group-hover:shadow-violet-500/30",
