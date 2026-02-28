@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import PremiumLoader from "@/components/PremiumLoader"; // 👈 loader import
+import PremiumLoader from "@/components/ui/PremiumLoader"; // 👈 loader import
 
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
