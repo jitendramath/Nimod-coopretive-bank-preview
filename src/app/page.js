@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+import PremiumLoader from "@/components/PremiumLoader"; // 👈 loader import
+
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
@@ -27,43 +29,55 @@ const sectionVariants = {
 
 export default function Home() {
 
+  const [loadingDone, setLoadingDone] = useState(false);
+
   return (
-    <main className="overflow-hidden">
+    <>
+      {/* 🔥 LOADER */}
+      {!loadingDone && (
+        <PremiumLoader onFinish={() => setLoadingDone(true)} />
+      )}
+
+      {/* 🌍 MAIN WEBSITE */}
+      {loadingDone && (
+        <main className="overflow-hidden">
 
           <Hero />
-          
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <About />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Services />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Impact />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Projects />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Governance />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Compliance />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <FAQ />
           </motion.div>
 
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div variants={sectionVariants} initial="hidden" animate="show">
             <Contact />
           </motion.div>
 
-    </main>
+        </main>
+      )}
+    </>
   );
 }
